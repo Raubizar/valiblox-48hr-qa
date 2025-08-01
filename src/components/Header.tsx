@@ -14,11 +14,17 @@ export const Header = () => {
           <a href="#process" className="text-muted-foreground hover:text-foreground transition-colors">
             Process
           </a>
+          <a href="#reports" className="text-muted-foreground hover:text-foreground transition-colors">
+            Reports
+          </a>
           <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors">
             Benefits
           </a>
           <a href="#trust" className="text-muted-foreground hover:text-foreground transition-colors">
             Trust & Security
+          </a>
+          <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">
+            Articles
           </a>
         </nav>
         
