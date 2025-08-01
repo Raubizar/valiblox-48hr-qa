@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -72,6 +73,7 @@ const categories = ["All", "Best Practices", "Cost Analysis", "Industry Insights
 const Articles = () => {
   return (
     <main className="min-h-screen bg-background">
+      <Header />
       {/* Header */}
       <section className="bg-gradient-subtle py-20">
         <div className="container mx-auto px-6 text-center">
