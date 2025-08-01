@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/Logo";
 import { Shield, Clock, CheckCircle } from "lucide-react";
 import heroImage from "@/assets/hero-datacenter.jpg";
 
@@ -18,6 +19,11 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
         <div className="max-w-4xl mx-auto">
+          {/* Logo */}
+          <div className="flex justify-center mb-8">
+            <Logo size="lg" />
+          </div>
+          
           {/* Trust Indicators */}
           <div className="flex justify-center items-center gap-6 mb-8 text-sm text-muted-foreground">
             <div className="trust-indicator">
