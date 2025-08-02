@@ -16,18 +16,21 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-background/90"></div>
       </div>
       
-      {/* Hero Image Placeholder */}
-      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block">
-        <img 
-          src="/lovable-uploads/60ff2e95-37e1-410a-b3d2-efdc6d60e44d.png" 
-          alt="Professional businessman with laptop representing data center QA expertise"
-          className="w-80 h-60 object-cover rounded-xl shadow-premium border border-border/20 opacity-80"
-        />
+      {/* Hero Image */}
+      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block">
+        <div className="relative">
+          <img 
+            src="/lovable-uploads/60ff2e95-37e1-410a-b3d2-efdc6d60e44d.png" 
+            alt="Professional businessman with laptop representing data center QA expertise"
+            className="w-80 h-60 object-cover rounded-xl shadow-elegant border-2 border-primary/20 backdrop-blur-sm"
+          />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-primary/10 to-transparent"></div>
+        </div>
       </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
-        <div className="max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <div className="max-w-4xl lg:max-w-3xl mx-auto lg:mr-auto lg:ml-8 text-center lg:text-left">
           {/* Logo */}
           <div className="flex justify-center mb-8">
             <Logo size="lg" />
