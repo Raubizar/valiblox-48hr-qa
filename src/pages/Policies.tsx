@@ -50,8 +50,8 @@ export default function Policies() {
                 <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
                 <p>
                   For any privacy-related questions, please contact us at{" "}
-                  <a href="mailto:privacy@valiblox.com" className="text-primary hover:underline">
-                    privacy@valiblox.com
+                  <a href="mailto:team@valiblox.com" className="text-primary hover:underline">
+                    team@valiblox.com
                   </a>
                 </p>
               </div>

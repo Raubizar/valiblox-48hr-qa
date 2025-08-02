@@ -61,11 +61,7 @@ export const Footer = () => {
               <div className="space-y-3 text-xs">
                 <div className="flex items-center gap-2">
                   <Mail className="h-3 w-3 text-slate-400" />
-                  <span className="text-slate-300">hello@valiblox.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-3 w-3 text-slate-400" />
-                  <span className="text-slate-300">+1 (555) 123-4567</span>
+                  <span className="text-slate-300">team@valiblox.com</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="h-3 w-3 text-slate-400" />
