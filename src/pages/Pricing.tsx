@@ -1,0 +1,374 @@
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { 
+  FileText, 
+  CheckCircle, 
+  RotateCcw, 
+  Layers, 
+  Zap, 
+  Shield, 
+  Settings, 
+  Clock, 
+  DollarSign,
+  Download,
+  ArrowRight
+} from "lucide-react";
+
+// Import images
+import pricingChart from "@/assets/pricing-comparison-chart.jpg";
+import blueprintImage from "@/assets/pricing/blueprint-validated.jpg";
+import modelImage from "@/assets/pricing/3d-model-annotated.jpg";
+import stampImage from "@/assets/pricing/validated-stamp.jpg";
+import toolboxImage from "@/assets/pricing/custom-toolbox.jpg";
+import pmImage from "@/assets/pricing/confident-pm.jpg";
+
+const Pricing = () => {
+  return (
+    <main className="min-h-screen bg-background">
+      <Header />
+      
+      {/* Introduction Banner */}
+      <section className="py-20 bg-gradient-hero">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  Pricing Aligned to <span className="text-primary">Real QA Costs</span>
+                </h1>
+                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                  Compare manual QA time & risk vs our 48h independent validation. 
+                  Stop burning weeks on coordination—get professional results in 2 days.
+                </p>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-primary" />
+                    <span>48h delivery</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-primary" />
+                    <span>One free re-check</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-primary" />
+                    <span>Professional validation</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <img 
+                  src={pricingChart} 
+                  alt="Cost comparison: Manual QA vs Valiblox" 
+                  className="max-w-full h-auto rounded-lg shadow-apple-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Cards */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                Choose Your QA Package
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Each package builds on the previous, delivering comprehensive validation 
+                at every stage of your data center project.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              
+              {/* Basic QA Package */}
+              <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary" className="text-xs">Stage 2</Badge>
+                    <div className="text-right">
+                      <div className="text-3xl font-bold text-foreground">$990</div>
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl text-foreground">Basic QA</CardTitle>
+                  <p className="text-muted-foreground">Drawings & specs only</p>
+                </CardHeader>
+                
+                <CardContent className="pt-0">
+                  <div className="mb-6">
+                    <img 
+                      src={blueprintImage} 
+                      alt="Blueprint with validation checkmarks" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <FileText className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Drawing review & validation</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Specification compliance check</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <RotateCcw className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">One free re-check included</span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4 bg-primary-light rounded-lg mb-6">
+                    <p className="text-sm font-medium text-primary">
+                      Save 5–8 days of manual QA & avoid rework costs
+                    </p>
+                  </div>
+                  
+                  <Button className="w-full" variant="outline">
+                    Select Basic QA
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Full QA Package */}
+              <Card className="relative border-2 border-primary hover:border-primary transition-all duration-300 h-full">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-primary text-primary-foreground px-4 py-1">
+                    Most Popular
+                  </Badge>
+                </div>
+                
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary" className="text-xs">Stage 3</Badge>
+                    <div className="text-right">
+                      <div className="text-3xl font-bold text-foreground">$1,990</div>
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl text-foreground">Full QA</CardTitle>
+                  <p className="text-muted-foreground">Includes Basic + model LOD, clash summary</p>
+                </CardHeader>
+                
+                <CardContent className="pt-0">
+                  <div className="mb-6">
+                    <img 
+                      src={modelImage} 
+                      alt="3D model with professional annotations" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <Layers className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">3D model LOD validation</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Zap className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Comprehensive clash detection</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">All Basic QA features</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <RotateCcw className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">One free re-check included</span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4 bg-primary-light rounded-lg mb-6">
+                    <p className="text-sm font-medium text-primary">
+                      Replace 10+ days of coordination with one 48h report
+                    </p>
+                  </div>
+                  
+                  <Button className="w-full bg-primary hover:bg-primary-hover">
+                    Select Full QA
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Final QA Package */}
+              <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary" className="text-xs">Stage 4</Badge>
+                    <div className="text-right">
+                      <div className="text-3xl font-bold text-foreground">$2,990</div>
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl text-foreground">Final QA</CardTitle>
+                  <p className="text-muted-foreground">Full IFC-ready compliance check</p>
+                </CardHeader>
+                
+                <CardContent className="pt-0">
+                  <div className="mb-6">
+                    <img 
+                      src={stampImage} 
+                      alt="Technical drawing with validation stamp" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <Shield className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">IFC compliance validation</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <FileText className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Final revision review</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">All previous QA features</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <RotateCcw className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">One free re-check included</span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4 bg-primary-light rounded-lg mb-6">
+                    <p className="text-sm font-medium text-primary">
+                      Prevent late-stage RFIs and schedule slips
+                    </p>
+                  </div>
+                  
+                  <Button className="w-full" variant="outline">
+                    Select Final QA
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Custom Package Card */}
+            <div className="max-w-4xl mx-auto">
+              <Card className="border-2 border-dashed border-muted-foreground/30 hover:border-primary/50 transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Settings className="w-8 h-8 text-primary" />
+                        <h3 className="text-2xl font-bold text-foreground">Custom QA Package</h3>
+                      </div>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                        Need multi-stage validation or bespoke QA requirements? 
+                        Let's tailor a plan that fits your specific project needs and timeline.
+                      </p>
+                      <Button className="bg-primary hover:bg-primary-hover">
+                        Request Custom Quote
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                    <div className="flex justify-center">
+                      <img 
+                        src={toolboxImage} 
+                        alt="Custom QA toolbox" 
+                        className="max-w-full h-48 object-cover rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guarantee & Anchor Section */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl font-bold text-foreground mb-6">
+              Your QA Investment vs Manual Costs
+            </h3>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Manual QA for a Data Center stage can cost $3,000–10,000 in labour, coordination, 
+              and rework—Valiblox delivers professional validation in 48h and includes one free re-check 
+              to ensure you get exactly what you need.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-center">
+                  <div className="font-semibold text-foreground">48 Hours</div>
+                  <div className="text-sm text-muted-foreground">Professional delivery</div>
+                </div>
+              </div>
+              
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <DollarSign className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-center">
+                  <div className="font-semibold text-foreground">Fixed Price</div>
+                  <div className="text-sm text-muted-foreground">No hourly surprises</div>
+                </div>
+              </div>
+              
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-center">
+                  <div className="font-semibold text-foreground">Guaranteed</div>
+                  <div className="text-sm text-muted-foreground">One free re-check</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Banner */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+                  Ready to de-risk your <span className="text-primary">next submission?</span>
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Stop gambling with manual QA processes. Get professional validation 
+                  that prevents costly rework and schedule delays.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" className="bg-primary hover:bg-primary-hover">
+                    Submit Your Package
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                  <Button size="lg" variant="outline">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Sample Report
+                  </Button>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <img 
+                  src={pmImage} 
+                  alt="Confident project manager with tablet" 
+                  className="max-w-full h-auto rounded-lg shadow-apple-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+};
+
+export default Pricing;
