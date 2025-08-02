@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 
 // Import article images
 import hiddenCostsImage from "@/assets/articles/hidden-costs-design-errors.jpg";
@@ -85,6 +87,18 @@ const Articles = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const readArticleWebhook = useWebhook({
+    source: "articles-read-full-article",
+    title: "Access Full Article",
+    description: "Get access to the complete article with detailed insights and analysis."
+  });
+
+  const subscribeWebhook = useWebhook({
+    source: "articles-subscribe-newsletter",
+    title: "Subscribe to Updates",
+    description: "Stay updated with the latest industry insights and best practices."
+  });
+
   const handleReadMore = (articleId: number) => {
     navigate(`/articles/${articleId}`);
   };
@@ -157,7 +171,7 @@ const Articles = () => {
                     {article.readTime}
                   </div>
                 </div>
-                <Button variant="cta" size="lg" onClick={() => handleReadMore(article.id)}>
+                <Button variant="cta" size="lg" onClick={() => readArticleWebhook.openModal()}>
                   Read Full Article
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -241,7 +255,7 @@ const Articles = () => {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-lg border border-border bg-background text-foreground"
               />
-              <Button variant="cta">
+              <Button variant="cta" onClick={subscribeWebhook.openModal}>
                 Subscribe
               </Button>
             </div>
@@ -249,6 +263,20 @@ const Articles = () => {
         </div>
       </section>
       <Footer />
+
+      {/* Webhook Modals */}
+      <WebhookModal
+        isOpen={readArticleWebhook.isModalOpen}
+        onClose={readArticleWebhook.closeModal}
+        onSubmit={readArticleWebhook.handleSubmit}
+        {...readArticleWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={subscribeWebhook.isModalOpen}
+        onClose={subscribeWebhook.closeModal}
+        onSubmit={subscribeWebhook.handleSubmit}
+        {...subscribeWebhook.modalProps}
+      />
     </main>
   );
 };

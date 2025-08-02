@@ -1,8 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, CheckCircle } from "lucide-react";
 import heroImage from "@/assets/hero-modern-datacenter.jpg";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 
 export const Hero = () => {
+  const bookCallWebhook = useWebhook({
+    source: "hero-book-call",
+    title: "Book a Call",
+    description: "Let's discuss your project requirements and how our QA services can help."
+  });
+
+  const downloadSampleWebhook = useWebhook({
+    source: "hero-download-sample",
+    title: "Download QA Report Sample",
+    description: "Get a detailed sample of our QA report to see the quality and depth of our analysis."
+  });
+
+  const discoveryCallWebhook = useWebhook({
+    source: "hero-book-discovery",
+    title: "Book a Discovery Call",
+    description: "Schedule a discovery call to explore how our services can benefit your specific project."
+  });
+
   return (
     <section className="relative min-h-[70vh] flex items-center justify-center gradient-hero overflow-hidden">
       {/* Background Image with Overlay */}
@@ -58,13 +78,13 @@ export const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-10">
-            <Button variant="cta" size="sm" className="w-full sm:w-auto">
+            <Button variant="cta" size="sm" className="w-full sm:w-auto" onClick={bookCallWebhook.openModal}>
               Book a Call
             </Button>
-            <Button variant="outline-premium" size="sm" className="w-full sm:w-auto">
+            <Button variant="outline-premium" size="sm" className="w-full sm:w-auto" onClick={downloadSampleWebhook.openModal}>
               Download QA Report Sample
             </Button>
-            <Button variant="ghost" size="sm" className="w-full sm:w-auto text-primary hover:text-primary-hover">
+            <Button variant="ghost" size="sm" className="w-full sm:w-auto text-primary hover:text-primary-hover" onClick={discoveryCallWebhook.openModal}>
               Book a Discovery Call →
             </Button>
           </div>
@@ -80,6 +100,26 @@ export const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Webhook Modals */}
+      <WebhookModal
+        isOpen={bookCallWebhook.isModalOpen}
+        onClose={bookCallWebhook.closeModal}
+        onSubmit={bookCallWebhook.handleSubmit}
+        {...bookCallWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={downloadSampleWebhook.isModalOpen}
+        onClose={downloadSampleWebhook.closeModal}
+        onSubmit={downloadSampleWebhook.handleSubmit}
+        {...downloadSampleWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={discoveryCallWebhook.isModalOpen}
+        onClose={discoveryCallWebhook.closeModal}
+        onSubmit={discoveryCallWebhook.handleSubmit}
+        {...discoveryCallWebhook.modalProps}
+      />
     </section>
   );
 };

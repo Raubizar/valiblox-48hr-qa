@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Download, CheckCircle, FileText, BarChart3, AlertTriangle } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 import qaAnalysisImage from "@/assets/qa-analysis-report.jpg";
 import complianceImage from "@/assets/compliance-validation.jpg";
 import executiveDashboardImage from "@/assets/executive-dashboard.jpg";
@@ -182,6 +184,18 @@ const reportData = {
 export default function ReportDetail() {
   const { slug } = useParams<{ slug: string }>();
   
+  const downloadSampleWebhook = useWebhook({
+    source: `report-detail-${slug}-download-sample`,
+    title: "Download Sample Report",
+    description: `Get a sample report to see the quality and detail of our analysis.`
+  });
+
+  const getReportWebhook = useWebhook({
+    source: `report-detail-${slug}-get-report`,
+    title: "Get This Report",
+    description: `Request this specific report for your project.`
+  });
+
   if (!slug || !reportData[slug as keyof typeof reportData]) {
     return (
       <div className="min-h-screen bg-background">
@@ -234,7 +248,7 @@ export default function ReportDetail() {
                 {report.description}
               </p>
               <div className="flex gap-4">
-                <Button variant="cta" size="lg">
+                <Button variant="cta" size="lg" onClick={downloadSampleWebhook.openModal}>
                   <Download className="w-5 h-5 mr-2" />
                   Download Sample Report
                 </Button>
@@ -348,7 +362,7 @@ export default function ReportDetail() {
               </ul>
               
               <div className="flex gap-4 mt-8 pt-6 border-t border-border">
-                <Button variant="cta" size="lg" className="flex-1">
+                <Button variant="cta" size="lg" className="flex-1" onClick={getReportWebhook.openModal}>
                   <Download className="w-5 h-5 mr-2" />
                   Get This Report
                 </Button>
@@ -364,6 +378,20 @@ export default function ReportDetail() {
       </section>
 
       <Footer />
+
+      {/* Webhook Modals */}
+      <WebhookModal
+        isOpen={downloadSampleWebhook.isModalOpen}
+        onClose={downloadSampleWebhook.closeModal}
+        onSubmit={downloadSampleWebhook.handleSubmit}
+        {...downloadSampleWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={getReportWebhook.isModalOpen}
+        onClose={getReportWebhook.closeModal}
+        onSubmit={getReportWebhook.handleSubmit}
+        {...getReportWebhook.modalProps}
+      />
     </div>
   );
 }

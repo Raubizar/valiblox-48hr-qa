@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Download, Eye, FileText, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 import qaAnalysisImage from "@/assets/qa-analysis-report.jpg";
 import complianceImage from "@/assets/compliance-validation.jpg";
 import executiveDashboardImage from "@/assets/executive-dashboard.jpg";
@@ -41,6 +43,12 @@ const reports = [
 ];
 
 export const Reports = () => {
+  const customReportWebhook = useWebhook({
+    source: "reports-custom-format",
+    title: "Request Custom Report Format",
+    description: "Tell us about your specific reporting requirements and we'll adapt our format to match your needs."
+  });
+
   return (
     <section id="reports" className="py-12 bg-accent/30">
       <div className="container mx-auto px-4">
@@ -123,12 +131,20 @@ export const Reports = () => {
               We can adapt our reporting to match your company's standards and requirements. 
               Discuss your specific needs with our team.
             </p>
-            <Button variant="cta" size="sm">
+            <Button variant="cta" size="sm" onClick={customReportWebhook.openModal}>
               Request Custom Report Format
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Webhook Modal */}
+      <WebhookModal
+        isOpen={customReportWebhook.isModalOpen}
+        onClose={customReportWebhook.closeModal}
+        onSubmit={customReportWebhook.handleSubmit}
+        {...customReportWebhook.modalProps}
+      />
     </section>
   );
 };

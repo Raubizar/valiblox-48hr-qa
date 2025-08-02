@@ -1,8 +1,28 @@
 import { Button } from "@/components/ui/button";
 import ctaImage from "@/assets/cta-workspace.jpg";
 import { ArrowRight, Download, Calendar } from "lucide-react";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 
 export const CTA = () => {
+  const bookCallWebhook = useWebhook({
+    source: "cta-section-book-call",
+    title: "Book a Call",
+    description: "Tell us about your project and we'll schedule a consultation to discuss your QA needs."
+  });
+
+  const downloadSampleWebhook = useWebhook({
+    source: "cta-section-download-sample",
+    title: "Download Sample Report",
+    description: "Get a sample QA report to see the quality and detail of our analysis."
+  });
+
+  const discoveryCallWebhook = useWebhook({
+    source: "cta-section-book-discovery",
+    title: "Book Discovery Call",
+    description: "Schedule a discovery call to explore how our QA services can benefit your project."
+  });
+
   return (
     <section className="py-16 bg-primary text-primary-foreground relative overflow-hidden">
       {/* Background Pattern */}
@@ -30,6 +50,7 @@ export const CTA = () => {
             <Button 
               variant="outline" 
               className="bg-white text-primary hover:bg-white/90 border-white font-bold text-base px-6 py-3 w-full sm:w-auto shadow-lg"
+              onClick={bookCallWebhook.openModal}
             >
               <ArrowRight className="w-4 h-4 mr-2" />
               Book a Call
@@ -37,6 +58,7 @@ export const CTA = () => {
             <Button 
               variant="ghost" 
               className="text-white hover:bg-white/10 font-semibold text-base px-6 py-3 w-full sm:w-auto"
+              onClick={downloadSampleWebhook.openModal}
             >
               <Download className="w-4 h-4 mr-2" />
               Download Sample Report
@@ -44,6 +66,7 @@ export const CTA = () => {
             <Button 
               variant="ghost" 
               className="text-white hover:bg-white/10 font-semibold text-base px-6 py-3 w-full sm:w-auto"
+              onClick={discoveryCallWebhook.openModal}
             >
               <Calendar className="w-4 h-4 mr-2" />
               Book Discovery Call
@@ -91,6 +114,26 @@ export const CTA = () => {
           </p>
         </div>
       </div>
+
+      {/* Webhook Modals */}
+      <WebhookModal
+        isOpen={bookCallWebhook.isModalOpen}
+        onClose={bookCallWebhook.closeModal}
+        onSubmit={bookCallWebhook.handleSubmit}
+        {...bookCallWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={downloadSampleWebhook.isModalOpen}
+        onClose={downloadSampleWebhook.closeModal}
+        onSubmit={downloadSampleWebhook.handleSubmit}
+        {...downloadSampleWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={discoveryCallWebhook.isModalOpen}
+        onClose={discoveryCallWebhook.closeModal}
+        onSubmit={discoveryCallWebhook.handleSubmit}
+        {...discoveryCallWebhook.modalProps}
+      />
     </section>
   );
 };

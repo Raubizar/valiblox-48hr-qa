@@ -1,8 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/Logo";
 import { Mail, MapPin, Phone, Linkedin, Twitter, Globe, FileText, Shield, Clock } from "lucide-react";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 
 export const Footer = () => {
+  const bookCallWebhook = useWebhook({
+    source: "footer-book-call",
+    title: "Book a Call",
+    description: "Get in touch to discuss your project and QA requirements."
+  });
+
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       {/* Main Footer Content */}
@@ -73,7 +81,7 @@ export const Footer = () => {
                 <span className="text-slate-300">Dublin, Ireland</span>
               </div>
             </div>
-            <Button size="sm" className="w-full bg-primary hover:bg-primary-hover">
+            <Button size="sm" className="w-full bg-primary hover:bg-primary-hover" onClick={bookCallWebhook.openModal}>
               Book a Call
             </Button>
           </div>
@@ -96,5 +104,13 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
+
+    {/* Webhook Modal */}
+    <WebhookModal
+      isOpen={bookCallWebhook.isModalOpen}
+      onClose={bookCallWebhook.closeModal}
+      onSubmit={bookCallWebhook.handleSubmit}
+      {...bookCallWebhook.modalProps}
+    />
   );
 };

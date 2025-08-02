@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 import { 
   FileText, 
   CheckCircle, 
@@ -26,6 +28,12 @@ import toolboxImage from "@/assets/pricing/custom-toolbox.jpg";
 import pmImage from "@/assets/pricing/confident-pm.jpg";
 
 const Pricing = () => {
+  const submitPackageWebhook = useWebhook({
+    source: "pricing-submit-package",
+    title: "Submit Your Package",
+    description: "Tell us about your project and we'll provide professional QA validation that prevents costly rework and schedule delays."
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
@@ -344,7 +352,7 @@ const Pricing = () => {
                   that prevents costly rework and schedule delays.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="bg-primary hover:bg-primary-hover">
+                  <Button size="lg" className="bg-primary hover:bg-primary-hover" onClick={submitPackageWebhook.openModal}>
                     Submit Your Package
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -367,6 +375,14 @@ const Pricing = () => {
       </section>
 
       <Footer />
+
+      {/* Webhook Modal */}
+      <WebhookModal
+        isOpen={submitPackageWebhook.isModalOpen}
+        onClose={submitPackageWebhook.closeModal}
+        onSubmit={submitPackageWebhook.handleSubmit}
+        {...submitPackageWebhook.modalProps}
+      />
     </main>
   );
 };

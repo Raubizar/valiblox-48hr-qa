@@ -3,12 +3,26 @@ import { Button } from "@/components/ui/button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useWebhook } from "@/hooks/useWebhook";
+import { WebhookModal } from "@/components/WebhookModal";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
+
+  const downloadSampleWebhook = useWebhook({
+    source: "header-download-sample",
+    title: "Download Sample",
+    description: "Get a sample QA report to see the quality and detail of our analysis."
+  });
+
+  const bookCallWebhook = useWebhook({
+    source: "header-book-call",
+    title: "Book a Call",
+    description: "Schedule a consultation to discuss your QA needs and project requirements."
+  });
 
   const handleNavigation = (sectionId: string) => {
     setIsMenuOpen(false); // Close mobile menu when navigating
@@ -89,10 +103,10 @@ export const Header = () => {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-2">
-          <Button variant="outline" size="sm" className="hidden sm:inline-flex">
+          <Button variant="outline" size="sm" className="hidden sm:inline-flex" onClick={downloadSampleWebhook.openModal}>
             Download Sample
           </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary-hover">
+          <Button size="sm" className="bg-primary hover:bg-primary-hover" onClick={bookCallWebhook.openModal}>
             Book a Call
           </Button>
         </div>
@@ -144,10 +158,10 @@ export const Header = () => {
               
               {/* Mobile CTA Buttons */}
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                <Button variant="outline" size="sm" onClick={handleLinkClick}>
+                <Button variant="outline" size="sm" onClick={() => { downloadSampleWebhook.openModal(); setIsMenuOpen(false); }}>
                   Download Sample
                 </Button>
-                <Button size="sm" className="bg-primary hover:bg-primary-hover" onClick={handleLinkClick}>
+                <Button size="sm" className="bg-primary hover:bg-primary-hover" onClick={() => { bookCallWebhook.openModal(); setIsMenuOpen(false); }}>
                   Book a Call
                 </Button>
               </div>
@@ -155,6 +169,20 @@ export const Header = () => {
           </div>
         </div>
       )}
+
+      {/* Webhook Modals */}
+      <WebhookModal
+        isOpen={downloadSampleWebhook.isModalOpen}
+        onClose={downloadSampleWebhook.closeModal}
+        onSubmit={downloadSampleWebhook.handleSubmit}
+        {...downloadSampleWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={bookCallWebhook.isModalOpen}
+        onClose={bookCallWebhook.closeModal}
+        onSubmit={bookCallWebhook.handleSubmit}
+        {...bookCallWebhook.modalProps}
+      />
     </header>
   );
 };
