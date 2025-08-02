@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -82,10 +83,15 @@ const categories = ["All", "Best Practices", "Cost Analysis", "Industry Insights
 
 const Articles = () => {
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const handleReadMore = (articleId: number) => {
     navigate(`/articles/${articleId}`);
   };
+
+  const filteredArticles = selectedCategory === "All" 
+    ? articles 
+    : articles.filter(article => article.category === selectedCategory);
 
   return (
     <main className="min-h-screen bg-background">
@@ -113,8 +119,9 @@ const Articles = () => {
             {categories.map((category) => (
               <Badge
                 key={category}
-                variant={category === "All" ? "default" : "secondary"}
+                variant={category === selectedCategory ? "default" : "secondary"}
                 className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors px-4 py-2"
+                onClick={() => setSelectedCategory(category)}
               >
                 {category}
               </Badge>
@@ -124,7 +131,7 @@ const Articles = () => {
       </section>
 
       {/* Featured Article */}
-      {articles.filter(article => article.featured).map((article) => (
+      {filteredArticles.filter(article => article.featured).map((article) => (
         <section key={article.id} className="py-16 bg-accent/20">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -174,7 +181,7 @@ const Articles = () => {
             Latest Articles
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.filter(article => !article.featured).map((article) => (
+            {filteredArticles.filter(article => !article.featured).map((article) => (
               <Card key={article.id} className="group hover:shadow-card transition-all duration-300 hover:-translate-y-1">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img 
