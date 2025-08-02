@@ -88,9 +88,9 @@ export const Footer = () => {
               © 2024 Valiblox. All rights reserved.
             </div>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+              <a href="/policies#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/policies#terms" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="/policies#cookies" className="hover:text-white transition-colors">Cookie Policy</a>
             </div>
           </div>
         </div>
