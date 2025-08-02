@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, Eye, FileText } from "lucide-react";
+import { Download, Eye, FileText, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import qaAnalysisImage from "@/assets/qa-analysis-report.jpg";
 import complianceImage from "@/assets/compliance-validation.jpg";
 import executiveDashboardImage from "@/assets/executive-dashboard.jpg";
@@ -13,9 +14,8 @@ const reports = [
     description: "Comprehensive drawings and specification review with compliance verification and actionable recommendations for Stage 2 submissions.",
     image: qaAnalysisImage,
     type: "Basic QA Package",
-    price: "$990",
     stage: "Stage 2",
-    pages: "15-25 pages",
+    slug: "basic-qa-validation",
     deliverables: ["Drawing validation", "Specification compliance", "Issue identification", "Correction recommendations"]
   },
   {
@@ -24,9 +24,8 @@ const reports = [
     description: "Complete validation including 3D model LOD verification, clash detection summary, and comprehensive design coordination analysis.",
     image: complianceImage,
     type: "Full QA Package",
-    price: "$1,990",
     stage: "Stage 3",
-    pages: "35-50 pages",
+    slug: "full-qa-analysis",
     deliverables: ["All Basic QA features", "3D model validation", "Clash detection report", "LOD verification", "Coordination analysis"]
   },
   {
@@ -35,9 +34,8 @@ const reports = [
     description: "Final IFC-ready compliance check with complete project validation, metadata verification, and submission-ready documentation.",
     image: executiveDashboardImage,
     type: "IFC Compliance Package",
-    price: "$2,990",
-    stage: "Stage 4", 
-    pages: "60-75 pages",
+    stage: "Stage 4",
+    slug: "ifc-compliance-validation",
     deliverables: ["All previous features", "IFC compliance validation", "Metadata verification", "Final submission review", "Executive summary"]
   }
 ];
@@ -71,9 +69,6 @@ export const Reports = () => {
                   <Badge variant="secondary" className="text-xs font-medium">
                     {report.stage}
                   </Badge>
-                  <div className="text-right">
-                    <div className="text-lg font-bold text-primary">{report.price}</div>
-                  </div>
                 </div>
                 
                 <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -85,8 +80,6 @@ export const Reports = () => {
                 
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mt-4">
                   <span className="font-medium text-primary">{report.type}</span>
-                  <span>•</span>
-                  <span>{report.pages}</span>
                 </div>
               </CardHeader>
               
@@ -105,12 +98,14 @@ export const Reports = () => {
                   </div>
                   <div className="flex gap-2 pt-4">
                     <Button variant="outline" size="sm" className="flex-1">
-                      <Eye className="w-4 h-4" />
-                      Preview
-                    </Button>
-                    <Button variant="default" size="sm" className="flex-1">
                       <Download className="w-4 h-4" />
-                      Download Sample
+                      Sample
+                    </Button>
+                    <Button asChild variant="default" size="sm" className="flex-1">
+                      <Link to={`/reports/${report.slug}`}>
+                        <ArrowRight className="w-4 h-4" />
+                        View Details
+                      </Link>
                     </Button>
                   </div>
                 </div>
