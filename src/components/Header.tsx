@@ -1,7 +1,11 @@
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "react-router-dom";
 
 export const Header = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   return (
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -11,19 +15,31 @@ export const Header = () => {
         </a>
         
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#process" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a 
+            href={isHomePage ? "#process" : "/#process"} 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
             Process
           </a>
-          <a href="#reports" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a 
+            href={isHomePage ? "#reports" : "/#reports"} 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
             Reports
           </a>
           <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">
             Pricing
           </a>
-          <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a 
+            href={isHomePage ? "#benefits" : "/#benefits"} 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
             Benefits
           </a>
-          <a href="#trust" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a 
+            href={isHomePage ? "#trust" : "/#trust"} 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
             Trust & Security
           </a>
           <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">
