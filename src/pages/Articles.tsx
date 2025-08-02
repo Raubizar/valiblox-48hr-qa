@@ -4,6 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+// Import article images
+import hiddenCostsImage from "@/assets/articles/hidden-costs-design-errors.jpg";
+import bimQaImage from "@/assets/articles/bim-quality-assurance.jpg";
+import independentQaImage from "@/assets/articles/independent-vs-inhouse-qa.jpg";
+import dataSecurityImage from "@/assets/articles/data-security-qa.jpg";
+import roiQaImage from "@/assets/articles/roi-professional-qa.jpg";
+import futureAiImage from "@/assets/articles/future-ai-validation.jpg";
 
 const articles = [
   {
@@ -14,7 +23,7 @@ const articles = [
     publishDate: "2024-01-15",
     readTime: "8 min read",
     category: "Cost Analysis",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop&crop=center",
+    image: hiddenCostsImage,
     featured: true
   },
   {
@@ -25,7 +34,7 @@ const articles = [
     publishDate: "2024-01-10",
     readTime: "12 min read",
     category: "Best Practices",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop&crop=center"
+    image: bimQaImage
   },
   {
     id: 3,
@@ -35,7 +44,7 @@ const articles = [
     publishDate: "2024-01-05",
     readTime: "10 min read",
     category: "Industry Insights",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop&crop=center"
+    image: independentQaImage
   },
   {
     id: 4,
@@ -45,7 +54,7 @@ const articles = [
     publishDate: "2023-12-28",
     readTime: "6 min read",
     category: "Security",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=400&fit=crop&crop=center"
+    image: dataSecurityImage
   },
   {
     id: 5,
@@ -55,7 +64,7 @@ const articles = [
     publishDate: "2023-12-20",
     readTime: "15 min read",
     category: "Case Studies",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop&crop=center"
+    image: roiQaImage
   },
   {
     id: 6,
@@ -65,13 +74,19 @@ const articles = [
     publishDate: "2023-12-15",
     readTime: "11 min read",
     category: "Technology",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop&crop=center"
+    image: futureAiImage
   }
 ];
 
 const categories = ["All", "Best Practices", "Cost Analysis", "Industry Insights", "Security", "Case Studies", "Technology"];
 
 const Articles = () => {
+  const navigate = useNavigate();
+
+  const handleReadMore = (articleId: number) => {
+    navigate(`/articles/${articleId}`);
+  };
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
@@ -135,7 +150,7 @@ const Articles = () => {
                     {article.readTime}
                   </div>
                 </div>
-                <Button variant="cta" size="lg">
+                <Button variant="cta" size="lg" onClick={() => handleReadMore(article.id)}>
                   Read Full Article
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -186,7 +201,12 @@ const Articles = () => {
                       <span>{article.author}</span>
                       <span>{new Date(article.publishDate).toLocaleDateString()}</span>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-primary hover:text-primary-hover">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-primary hover:text-primary-hover"
+                      onClick={() => handleReadMore(article.id)}
+                    >
                       Read More
                       <ArrowRight className="w-4 h-4" />
                     </Button>
