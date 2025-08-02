@@ -7,7 +7,7 @@ export const Process = () => {
       number: "01",
       icon: <Upload className="w-8 h-8" />,
       title: "Share Deliverables Securely",
-      description: "Upload your design files through our secure portal. No IT setup required, no software installation needed.",
+      description: "Simply provide us secure access to your design files. No complex setup required, just straightforward collaboration.",
       customerInputs: "Customer Inputs:",
       details: ["Deliverables List", "Standards", "Files Access"]
     },
