@@ -34,8 +34,16 @@ export const Process = () => {
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 tracking-tight">
             Our Unique V-Validation™ Process
           </h2>
+          <div className="flex justify-center gap-4 mb-4">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+              ⚡ Advanced Automation
+            </span>
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+              👥 Expert QA Oversight
+            </span>
+          </div>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Advanced automation combined with expert QA oversight - from submission to compliance confidence in just 48 hours
+            The perfect blend of machine precision and human expertise - delivering compliance confidence in just 48 hours
           </p>
         </div>
 
