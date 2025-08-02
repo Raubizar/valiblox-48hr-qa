@@ -34,7 +34,7 @@ export const submitToWebhook = async (formData: WebhookFormData): Promise<Webhoo
     // Construct webhook URL from encoded parts (for security)
     const encodedParts = [
       "aHR0cHM6Ly9ob29rLmV1Mi5tYWtlLmNvbS8=", // Base64 encoded: https://hook.eu2.make.com/
-      "dzZzdG52dGt4ZTBtOGxmZHZhZjR4YWNlZHR0cnU3NmQ=" // Base64 encoded: w6stnvtkxe0m8lfdvaf4xacedttru76d
+      "cXhkYWNsZXh3NGd2dTRnaDkybHhsYTR0Y2J6cHF0ODg=" // Base64 encoded: qxdaclexw4gvu4gh92lxla4tcbzpqt88
     ];
     
     const webhookUrl = encodedParts.map(part => atob(part)).join('');
