@@ -39,38 +39,38 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <a href="/" className="flex items-center gap-3">
           <Logo size="md" />
-          <div className="text-xl font-bold text-foreground">Valiblox</div>
+          <div className="text-lg font-bold text-foreground">Valiblox</div>
         </a>
         
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-5">
           <button 
             onClick={() => handleNavigation('process')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
             Process
           </button>
           <button 
             onClick={() => handleNavigation('reports')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
             Reports
           </button>
-          <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Pricing
           </a>
           <button 
             onClick={() => handleNavigation('benefits')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
             Benefits
           </button>
           <button 
             onClick={() => handleNavigation('trust')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
             Trust & Security
           </button>
-          <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Articles
           </a>
         </nav>
@@ -88,7 +88,7 @@ export const Header = () => {
         </div>
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
           <Button variant="outline" size="sm" className="hidden sm:inline-flex">
             Download Sample
           </Button>
