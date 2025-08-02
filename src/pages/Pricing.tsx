@@ -194,7 +194,7 @@ const Pricing = () => {
                 </CardContent>
               </Card>
 
-              {/* Final QA Package */}
+              {/* IFC Compliance Validation Package */}
               <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-2">
@@ -203,7 +203,7 @@ const Pricing = () => {
                       <div className="text-3xl font-bold text-foreground">$2,990</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">Final QA</CardTitle>
+                  <CardTitle className="text-xl text-foreground">IFC Compliance Validation</CardTitle>
                   <p className="text-muted-foreground">Full IFC-ready compliance check</p>
                 </CardHeader>
                 
@@ -242,7 +242,7 @@ const Pricing = () => {
                   </div>
                   
                   <Button className="w-full" variant="outline">
-                    Select Final QA
+                    Select IFC Compliance
                   </Button>
                 </CardContent>
               </Card>

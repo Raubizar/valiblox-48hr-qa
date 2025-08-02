@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Download, Eye, FileText } from "lucide-react";
 import qaAnalysisImage from "@/assets/qa-analysis-report.jpg";
 import complianceImage from "@/assets/compliance-validation.jpg";
@@ -8,30 +9,36 @@ import executiveDashboardImage from "@/assets/executive-dashboard.jpg";
 const reports = [
   {
     id: 1,
-    title: "Comprehensive QA Analysis Report",
-    description: "Full validation analysis including structural integrity, code compliance, and design verification with detailed findings and recommendations.",
+    title: "Basic QA Validation Report",
+    description: "Comprehensive drawings and specification review with compliance verification and actionable recommendations for Stage 2 submissions.",
     image: qaAnalysisImage,
-    type: "Technical Analysis",
-    pages: "45-60 pages",
-    deliverables: ["Issue identification", "Risk assessment", "Compliance verification"]
+    type: "Basic QA Package",
+    price: "$990",
+    stage: "Stage 2",
+    pages: "15-25 pages",
+    deliverables: ["Drawing validation", "Specification compliance", "Issue identification", "Correction recommendations"]
   },
   {
     id: 2,
-    title: "Design Compliance Validation",
-    description: "Detailed compliance check against industry standards, building codes, and project specifications with corrective action plans.",
+    title: "Full QA Analysis Report",
+    description: "Complete validation including 3D model LOD verification, clash detection summary, and comprehensive design coordination analysis.",
     image: complianceImage,
-    type: "Compliance Review",
-    pages: "25-35 pages", 
-    deliverables: ["Standards verification", "Code compliance", "Specification alignment"]
+    type: "Full QA Package",
+    price: "$1,990",
+    stage: "Stage 3",
+    pages: "35-50 pages",
+    deliverables: ["All Basic QA features", "3D model validation", "Clash detection report", "LOD verification", "Coordination analysis"]
   },
   {
     id: 3,
-    title: "Executive Summary Dashboard",
-    description: "High-level executive overview with key findings, risk indicators, and actionable insights for project stakeholders and decision makers.",
+    title: "IFC Compliance Validation Report",
+    description: "Final IFC-ready compliance check with complete project validation, metadata verification, and submission-ready documentation.",
     image: executiveDashboardImage,
-    type: "Executive Summary",
-    pages: "8-12 pages",
-    deliverables: ["Key findings", "Risk matrix", "Action priorities"]
+    type: "IFC Compliance Package",
+    price: "$2,990",
+    stage: "Stage 4", 
+    pages: "60-75 pages",
+    deliverables: ["All previous features", "IFC compliance validation", "Metadata verification", "Final submission review", "Executive summary"]
   }
 ];
 
@@ -41,11 +48,10 @@ export const Reports = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Professional QA Reports
+            QA Reports by Package
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get comprehensive, actionable reports tailored to your project needs. 
-            Each report is professionally formatted and ready for stakeholder review.
+            Each pricing package delivers a comprehensive report tailored to your project stage and validation requirements.
           </p>
         </div>
 
@@ -55,25 +61,37 @@ export const Reports = () => {
               <div className="aspect-video overflow-hidden rounded-t-lg">
                 <img 
                   src={report.image} 
-                  alt={`${report.title} sample preview`}
+                  alt={report.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
+              
               <CardHeader>
-                <div className="flex items-center gap-2 text-sm text-primary font-medium mb-2">
-                  <FileText className="w-4 h-4" />
-                  {report.type}
+                <div className="flex items-center justify-between mb-3">
+                  <Badge variant="secondary" className="text-xs font-medium">
+                    {report.stage}
+                  </Badge>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-primary">{report.price}</div>
+                  </div>
                 </div>
-                <CardTitle className="text-xl">{report.title}</CardTitle>
-                <CardDescription className="text-muted-foreground">
+                
+                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {report.title}
+                </CardTitle>
+                <CardDescription className="text-muted-foreground leading-relaxed">
                   {report.description}
                 </CardDescription>
+                
+                <div className="flex items-center gap-4 text-sm text-muted-foreground mt-4">
+                  <span className="font-medium text-primary">{report.type}</span>
+                  <span>•</span>
+                  <span>{report.pages}</span>
+                </div>
               </CardHeader>
+              
               <CardContent>
                 <div className="space-y-4">
-                  <div className="text-sm text-muted-foreground">
-                    <strong>Length:</strong> {report.pages}
-                  </div>
                   <div>
                     <h4 className="font-medium text-foreground mb-2">Key Deliverables:</h4>
                     <ul className="text-sm text-muted-foreground space-y-1">
