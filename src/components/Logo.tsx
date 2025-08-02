@@ -15,8 +15,9 @@ export const Logo = ({ size = "md", className = "" }: LogoProps) => {
   return (
     <img 
       src={logoImage} 
-      alt="Valiblox - Design File QA Validation" 
+      alt="Valiblox - QA Validation Services" 
       className={`${sizeClasses[size]} ${className}`}
+      key="valiblox-logo"
     />
   );
 };
