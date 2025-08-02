@@ -71,6 +71,14 @@ export const Trust = () => {
         <div className="bg-card rounded-2xl p-8 md:p-12 shadow-card border">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
+              {/* Security Image Placeholder */}
+              <div className="mb-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=300&fit=crop&crop=center" 
+                  alt="Macro photography of secure circuit board representing data security"
+                  className="w-full h-48 object-cover rounded-lg shadow-card border border-border/20"
+                />
+              </div>
               <div className="flex items-center gap-3 mb-6">
                 <Shield className="w-10 h-10 text-primary" />
                 <h3 className="text-3xl font-bold text-foreground">

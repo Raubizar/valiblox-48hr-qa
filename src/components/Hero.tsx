@@ -16,6 +16,15 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-background/90"></div>
       </div>
       
+      {/* Hero Image Placeholder */}
+      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block">
+        <img 
+          src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop&crop=center" 
+          alt="Colorful software code on computer monitor representing technical QA validation"
+          className="w-80 h-60 object-cover rounded-xl shadow-premium border border-border/20 opacity-80"
+        />
+      </div>
+      
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
         <div className="max-w-4xl mx-auto">

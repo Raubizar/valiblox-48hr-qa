@@ -53,6 +53,15 @@ export const CTA = () => {
           </div>
         </div>
 
+        {/* CTA Image Placeholder */}
+        <div className="mb-12">
+          <img 
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center" 
+            alt="Professional woman working on laptop representing QA process transformation"
+            className="mx-auto w-96 h-64 object-cover rounded-xl shadow-premium border border-white/20 opacity-90"
+          />
+        </div>
+
         {/* Value Reinforcement */}
         <div className="border-t border-white/20 pt-12">
           <h3 className="text-2xl font-bold mb-8">
