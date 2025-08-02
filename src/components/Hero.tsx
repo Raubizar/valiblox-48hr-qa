@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/Logo";
 import { Shield, Clock, CheckCircle } from "lucide-react";
 import heroImage from "@/assets/hero-modern-datacenter.jpg";
 
@@ -22,15 +21,11 @@ export const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Logo */}
-          <div className="flex justify-center mb-12">
-            <Logo size="lg" />
-          </div>
           
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
+          <div className="flex flex-wrap justify-center items-center gap-8 mb-16">
             <div className="glass-effect px-4 py-2 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
               <Shield className="w-4 h-4 text-primary" />
               NDA-Covered
