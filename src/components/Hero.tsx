@@ -19,8 +19,8 @@ export const Hero = () => {
       {/* Hero Image Placeholder */}
       <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block">
         <img 
-          src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop&crop=center" 
-          alt="Colorful software code on computer monitor representing technical QA validation"
+          src="/lovable-uploads/60ff2e95-37e1-410a-b3d2-efdc6d60e44d.png" 
+          alt="Professional businessman with laptop representing data center QA expertise"
           className="w-80 h-60 object-cover rounded-xl shadow-premium border border-border/20 opacity-80"
         />
       </div>
