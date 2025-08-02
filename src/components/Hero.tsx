@@ -64,7 +64,7 @@ export const Hero = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
             <Button variant="cta" size="lg" className="w-full sm:w-auto min-w-48">
-              Get a Quote
+              Book a Call
             </Button>
             <Button variant="outline-premium" size="lg" className="w-full sm:w-auto min-w-48">
               Download QA Report Sample

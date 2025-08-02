@@ -52,7 +52,7 @@ export const Header = () => {
             Download Sample
           </Button>
           <Button size="sm" className="bg-primary hover:bg-primary-hover">
-            Get a Quote
+            Book a Call
           </Button>
         </div>
       </div>

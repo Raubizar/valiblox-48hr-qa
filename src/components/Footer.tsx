@@ -74,7 +74,7 @@ export const Footer = () => {
               </div>
             </div>
             <Button className="w-full bg-primary hover:bg-primary-hover">
-              Get a Quote
+              Book a Call
             </Button>
           </div>
         </div>
