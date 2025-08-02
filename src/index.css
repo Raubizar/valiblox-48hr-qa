@@ -45,7 +45,7 @@ All colors MUST be HSL.
     --input: 220 13% 91%;
     --ring: 156 73% 44%;
 
-    --radius: 12px;
+    --radius: 8px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -122,13 +122,13 @@ All colors MUST be HSL.
     line-height: 1.2;
   }
 
-  /* Compact typography scale */
-  h1 { font-size: 2rem; }        /* was ~3rem+ */
-  h2 { font-size: 1.75rem; }     /* was ~2.5rem+ */
-  h3 { font-size: 1.5rem; }      /* was ~2rem+ */
-  h4 { font-size: 1.25rem; }     /* was ~1.75rem+ */
-  h5 { font-size: 1.125rem; }    /* was ~1.5rem+ */
-  h6 { font-size: 1rem; }        /* was ~1.25rem+ */
+  /* Ultra-compact typography scale */
+  h1 { font-size: 1.75rem; }     /* 28px - reduced from 32px */
+  h2 { font-size: 1.5rem; }      /* 24px - reduced from 28px */
+  h3 { font-size: 1.25rem; }     /* 20px - reduced from 24px */
+  h4 { font-size: 1.125rem; }    /* 18px - reduced from 20px */
+  h5 { font-size: 1rem; }        /* 16px - reduced from 18px */
+  h6 { font-size: 0.875rem; }    /* 14px - reduced from 16px */
 
   /* Apple-inspired gradients */
   .gradient-primary {

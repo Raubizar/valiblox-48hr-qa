@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-modern-datacenter.jpg";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center gradient-hero overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center justify-center gradient-hero overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -21,27 +21,27 @@ export const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
+        <div className="max-w-3xl mx-auto text-center">
           
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
-            <div className="glass-effect px-3 py-1.5 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
-              <Shield className="w-3.5 h-3.5 text-primary" />
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
+            <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+              <Shield className="w-3 h-3 text-primary" />
               NDA-Covered
             </div>
-            <div className="glass-effect px-3 py-1.5 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
-              <Clock className="w-3.5 h-3.5 text-primary" />
+            <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+              <Clock className="w-3 h-3 text-primary" />
               48h Delivery
             </div>
-            <div className="glass-effect px-3 py-1.5 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
-              <CheckCircle className="w-3.5 h-3.5 text-primary" />
+            <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+              <CheckCircle className="w-3 h-3 text-primary" />
               Zero Software Install
             </div>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-6 leading-tight tracking-tight">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight tracking-tight">
             Independent QA Validation of{" "}
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
               Data Center Design
@@ -50,31 +50,31 @@ export const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-normal">
+          <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal">
             Machine-precision checks combined with expert QA review. 
             Zero software install, zero training, full data security. 
             Built for US Clients who demand faster, error-free deliverables.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-16">
-            <Button variant="cta" className="w-full sm:w-auto min-w-44">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-10">
+            <Button variant="cta" size="sm" className="w-full sm:w-auto">
               Book a Call
             </Button>
-            <Button variant="outline-premium" className="w-full sm:w-auto min-w-44">
+            <Button variant="outline-premium" size="sm" className="w-full sm:w-auto">
               Download QA Report Sample
             </Button>
-            <Button variant="ghost" className="w-full sm:w-auto text-primary hover:text-primary-hover">
+            <Button variant="ghost" size="sm" className="w-full sm:w-auto text-primary hover:text-primary-hover">
               Book a Discovery Call →
             </Button>
           </div>
 
           {/* Value Proposition */}
-          <div className="glass-effect p-6 rounded-2xl max-w-2xl mx-auto">
-            <p className="text-base text-foreground mb-2 font-medium">
+          <div className="glass-effect p-4 rounded-xl max-w-xl mx-auto">
+            <p className="text-sm text-foreground mb-1 font-medium">
               We validate the information before it becomes a costly problem
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Helping PMs and Owners prevent delays, RFIs, rework, and budget overruns
             </p>
           </div>

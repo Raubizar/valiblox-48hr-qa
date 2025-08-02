@@ -42,18 +42,18 @@ const reports = [
 
 export const Reports = () => {
   return (
-    <section id="reports" className="py-16 bg-accent/30">
+    <section id="reports" className="py-12 bg-accent/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-5">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             QA Reports by Package
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
             Each pricing package delivers a comprehensive report tailored to your project stage and validation requirements.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {reports.map((report) => (
             <Card key={report.id} className="group hover:shadow-card transition-all duration-300 hover:-translate-y-1">
               <div className="aspect-video overflow-hidden rounded-t-lg">
@@ -71,7 +71,7 @@ export const Reports = () => {
                   </Badge>
                 </div>
                 
-                <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                   {report.title}
                 </CardTitle>
                 <CardDescription className="text-muted-foreground leading-relaxed">
@@ -115,15 +115,15 @@ export const Reports = () => {
         </div>
 
         <div className="text-center">
-          <div className="bg-card p-8 rounded-lg shadow-card max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
+          <div className="bg-card p-6 rounded-lg shadow-card max-w-xl mx-auto">
+            <h3 className="text-lg font-bold text-foreground mb-3">
               Need a Custom Report Format?
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-4 text-sm">
               We can adapt our reporting to match your company's standards and requirements. 
               Discuss your specific needs with our team.
             </p>
-            <Button variant="cta" size="lg">
+            <Button variant="cta" size="sm">
               Request Custom Report Format
             </Button>
           </div>
