@@ -8,7 +8,8 @@ export const Process = () => {
       icon: <Upload className="w-8 h-8" />,
       title: "Share Deliverables Securely",
       description: "Upload your design files through our secure portal. No IT setup required, no software installation needed.",
-      details: ["300-800 files typical", "All major file formats", "Secure encrypted transfer"]
+      customerInputs: "Customer Inputs:",
+      details: ["Deliverables List", "Standards", "Files Access"]
     },
     {
       number: "02", 
@@ -31,10 +32,10 @@ export const Process = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 tracking-tight">
-            Our Unique 3-Step Process
+            Our Unique V-Validation™ Process
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            From deliverable submission to compliance confidence in just 48 hours
+            Advanced automation combined with expert QA oversight - from submission to compliance confidence in just 48 hours
           </p>
         </div>
 
@@ -78,7 +79,12 @@ export const Process = () => {
                   {step.description}
                 </p>
 
-                {/* Details */}
+                {/* Customer Inputs / Details */}
+                {step.customerInputs && (
+                  <div className="mb-3">
+                    <p className="text-xs font-medium text-primary mb-2">{step.customerInputs}</p>
+                  </div>
+                )}
                 <ul className="space-y-2">
                   {step.details.map((detail, detailIndex) => (
                     <li key={detailIndex} className="flex items-center gap-2 text-xs text-muted-foreground">
