@@ -42,18 +42,18 @@ const reports = [
 
 export const Reports = () => {
   return (
-    <section id="reports" className="py-20 bg-accent/30">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+    <section id="reports" className="py-16 bg-accent/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-5">
             QA Reports by Package
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Each pricing package delivers a comprehensive report tailored to your project stage and validation requirements.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {reports.map((report) => (
             <Card key={report.id} className="group hover:shadow-card transition-all duration-300 hover:-translate-y-1">
               <div className="aspect-video overflow-hidden rounded-t-lg">

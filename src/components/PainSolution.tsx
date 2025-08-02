@@ -39,10 +39,10 @@ export const PainSolution = () => {
   ];
 
   return (
-    <section className="py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
+    <section className="py-20 bg-background">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6 tracking-tight">
             From QA Bottleneck to Competitive Advantage
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -51,7 +51,7 @@ export const PainSolution = () => {
         </div>
 
         {/* Hero Image */}
-        <div className="mb-20 flex justify-center">
+        <div className="mb-16 flex justify-center">
           <div className="relative max-w-4xl">
             <img 
               src={teamImage} 
@@ -65,7 +65,7 @@ export const PainSolution = () => {
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Pain Points */}
           <div>
-            <h3 className="text-3xl font-semibold text-foreground mb-10 text-center lg:text-left">
+            <h3 className="text-2xl font-semibold text-foreground mb-8 text-center lg:text-left">
               Current QA Challenges
             </h3>
             <div className="space-y-4">
@@ -85,7 +85,7 @@ export const PainSolution = () => {
 
           {/* Solutions */}
           <div>
-            <h3 className="text-3xl font-semibold text-foreground mb-10 text-center lg:text-left">
+            <h3 className="text-2xl font-semibold text-foreground mb-8 text-center lg:text-left">
               Valiblox Solution
             </h3>
             <div className="space-y-4">

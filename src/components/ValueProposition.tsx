@@ -30,20 +30,20 @@ export const ValueProposition = () => {
   ];
 
   return (
-    <section id="benefits" className="py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="benefits" className="py-20 bg-background">
+      <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6 tracking-tight">
             Value for Clients & Owners
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Transform QA from a necessary cost into a competitive advantage
           </p>
         </div>
 
         {/* Analytics Dashboard Image */}
-        <div className="mb-20 flex justify-center">
+        <div className="mb-16 flex justify-center">
           <div className="relative max-w-4xl">
             <img 
               src={analyticsImage} 

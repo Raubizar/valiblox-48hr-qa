@@ -27,10 +27,10 @@ export const Process = () => {
   ];
 
   return (
-    <section id="process" className="py-32 gradient-subtle">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
+    <section id="process" className="py-20 gradient-subtle">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6 tracking-tight">
             Our Unique 3-Step Process
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

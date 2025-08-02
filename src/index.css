@@ -115,12 +115,20 @@ All colors MUST be HSL.
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Apple-style typography */
+  /* Apple-style typography - Compact scale */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.2;
   }
+
+  /* Compact typography scale */
+  h1 { font-size: 2rem; }        /* was ~3rem+ */
+  h2 { font-size: 1.75rem; }     /* was ~2.5rem+ */
+  h3 { font-size: 1.5rem; }      /* was ~2rem+ */
+  h4 { font-size: 1.25rem; }     /* was ~1.75rem+ */
+  h5 { font-size: 1.125rem; }    /* was ~1.5rem+ */
+  h6 { font-size: 1rem; }        /* was ~1.25rem+ */
 
   /* Apple-inspired gradients */
   .gradient-primary {
@@ -161,57 +169,57 @@ All colors MUST be HSL.
     @apply inline-flex items-center gap-2 text-sm text-muted-foreground font-medium;
   }
 
-  /* Premium button styles */
+  /* Premium button styles - Compact */
   .btn-premium {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-lg font-semibold shadow-premium transition-all duration-300;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2.5 rounded-lg font-semibold shadow-premium transition-all duration-300;
   }
 
   .btn-outline-premium {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-2.5 rounded-lg font-semibold transition-all duration-300;
   }
 
-  /* Article content styling */
+  /* Article content styling - Compact */
   .article-content {
     @apply text-foreground leading-relaxed;
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.6;
   }
 
   .article-content p {
-    @apply mb-6 text-foreground;
-    font-size: 17px;
-    line-height: 1.7;
+    @apply mb-4 text-foreground;
+    font-size: 15px;
+    line-height: 1.6;
   }
 
   .article-content h2 {
-    @apply text-2xl font-semibold text-foreground mt-12 mb-6;
+    @apply text-xl font-semibold text-foreground mt-8 mb-4;
     letter-spacing: -0.02em;
     line-height: 1.3;
   }
 
   .article-content h3 {
-    @apply text-xl font-semibold text-foreground mt-10 mb-4;
+    @apply text-lg font-semibold text-foreground mt-6 mb-3;
     letter-spacing: -0.01em;
     line-height: 1.35;
   }
 
   .article-content h4 {
-    @apply text-lg font-semibold text-foreground mt-8 mb-3;
+    @apply text-base font-semibold text-foreground mt-5 mb-2;
     line-height: 1.4;
   }
 
   .article-content ul {
-    @apply mb-6 pl-6 space-y-3;
+    @apply mb-4 pl-5 space-y-2;
   }
 
   .article-content ol {
-    @apply mb-6 pl-6 space-y-3;
+    @apply mb-4 pl-5 space-y-2;
   }
 
   .article-content li {
     @apply text-foreground;
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.6;
     position: relative;
   }
 

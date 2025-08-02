@@ -21,27 +21,27 @@ export const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-        <div className="max-w-5xl mx-auto text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto text-center">
           
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 mb-16">
-            <div className="glass-effect px-4 py-2 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
-              <Shield className="w-4 h-4 text-primary" />
+          <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
+            <div className="glass-effect px-3 py-1.5 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
+              <Shield className="w-3.5 h-3.5 text-primary" />
               NDA-Covered
             </div>
-            <div className="glass-effect px-4 py-2 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
-              <Clock className="w-4 h-4 text-primary" />
+            <div className="glass-effect px-3 py-1.5 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
+              <Clock className="w-3.5 h-3.5 text-primary" />
               48h Delivery
             </div>
-            <div className="glass-effect px-4 py-2 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
-              <CheckCircle className="w-4 h-4 text-primary" />
+            <div className="glass-effect px-3 py-1.5 rounded-full flex items-center gap-2 text-sm text-muted-foreground font-medium">
+              <CheckCircle className="w-3.5 h-3.5 text-primary" />
               Zero Software Install
             </div>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-foreground mb-8 leading-none tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-6 leading-tight tracking-tight">
             Independent QA Validation of{" "}
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
               Data Center Design
@@ -50,31 +50,31 @@ export const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-16 max-w-4xl mx-auto leading-relaxed font-normal">
+          <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-normal">
             Machine-precision checks combined with expert QA review. 
             Zero software install, zero training, full data security. 
             Built for US Clients who demand faster, error-free deliverables.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
-            <Button variant="cta" size="lg" className="w-full sm:w-auto min-w-48">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-16">
+            <Button variant="cta" className="w-full sm:w-auto min-w-44">
               Book a Call
             </Button>
-            <Button variant="outline-premium" size="lg" className="w-full sm:w-auto min-w-48">
+            <Button variant="outline-premium" className="w-full sm:w-auto min-w-44">
               Download QA Report Sample
             </Button>
-            <Button variant="ghost" size="lg" className="w-full sm:w-auto text-primary hover:text-primary-hover">
+            <Button variant="ghost" className="w-full sm:w-auto text-primary hover:text-primary-hover">
               Book a Discovery Call →
             </Button>
           </div>
 
           {/* Value Proposition */}
-          <div className="glass-effect p-8 rounded-3xl max-w-3xl mx-auto">
-            <p className="text-lg text-foreground mb-3 font-medium">
+          <div className="glass-effect p-6 rounded-2xl max-w-2xl mx-auto">
+            <p className="text-base text-foreground mb-2 font-medium">
               We validate the information before it becomes a costly problem
             </p>
-            <p className="text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Helping PMs and Owners prevent delays, RFIs, rework, and budget overruns
             </p>
           </div>
