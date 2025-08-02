@@ -1,4 +1,5 @@
 import { TrendingUp, Shield, Clock, Users } from "lucide-react";
+import analyticsImage from "@/assets/analytics-dashboard.jpg";
 
 export const ValueProposition = () => {
   const benefits = [
@@ -29,32 +30,46 @@ export const ValueProposition = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
             Value for Clients & Owners
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Transform QA from a necessary cost into a competitive advantage
           </p>
         </div>
 
+        {/* Analytics Dashboard Image */}
+        <div className="mb-20 flex justify-center">
+          <div className="relative max-w-4xl">
+            <img 
+              src={analyticsImage} 
+              alt="Professional analytics dashboard showing quality assurance metrics and compliance reports"
+              className="w-full h-auto rounded-3xl shadow-apple-xl"
+            />
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-background/20 to-transparent"></div>
+          </div>
+        </div>
+
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {benefits.map((benefit, index) => (
-            <div key={index} className="text-center p-6 bg-card rounded-xl shadow-card border hover:shadow-premium transition-all duration-300">
-              <div className="flex justify-center mb-4">
-                {benefit.icon}
+            <div key={index} className="text-center p-8 bg-card rounded-3xl shadow-apple border border-border/50 hover:shadow-apple-lg transition-all duration-300 group">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-3xl flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                  {benefit.icon}
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-3">
+              <h3 className="text-xl font-semibold text-foreground mb-4 tracking-tight">
                 {benefit.title}
               </h3>
-              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 {benefit.description}
               </p>
-              <div className="inline-block bg-success/10 text-success px-3 py-1 rounded-full text-sm font-semibold">
+              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-2xl text-sm font-semibold">
                 {benefit.metric}
               </div>
             </div>
@@ -62,42 +77,48 @@ export const ValueProposition = () => {
         </div>
 
         {/* ROI Section */}
-        <div className="bg-gradient-to-r from-primary/5 to-success/5 rounded-2xl p-8 md:p-12 border">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="glass-effect rounded-3xl p-12 border border-border/30">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-foreground mb-6">
+              <h3 className="text-3xl font-semibold text-foreground mb-8 tracking-tight">
                 ROI That Speaks for Itself
               </h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+              <div className="space-y-8">
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-3 h-3 bg-primary rounded-full"></div>
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">
+                    <h4 className="font-semibold text-foreground mb-2 text-lg">
                       Reduces Internal Admin Time
                     </h4>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground leading-relaxed">
                       Teams focus on design excellence, not document chasing
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-3 h-3 bg-primary rounded-full"></div>
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">
+                    <h4 className="font-semibold text-foreground mb-2 text-lg">
                       Prevents Budget Overruns
                     </h4>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground leading-relaxed">
                       Early error detection saves thousands in rework costs
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-3 h-3 bg-primary rounded-full"></div>
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">
+                    <h4 className="font-semibold text-foreground mb-2 text-lg">
                       Accelerates Project Delivery
                     </h4>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground leading-relaxed">
                       Faster approvals mean earlier project completion
                     </p>
                   </div>
@@ -105,21 +126,21 @@ export const ValueProposition = () => {
               </div>
             </div>
 
-            <div className="bg-card p-8 rounded-xl shadow-card">
-              <h4 className="text-xl font-bold text-foreground mb-6 text-center">
+            <div className="bg-card p-10 rounded-3xl shadow-apple border border-border/50">
+              <h4 className="text-2xl font-semibold text-foreground mb-8 text-center tracking-tight">
                 Cost Comparison
               </h4>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center p-4 bg-destructive/10 rounded-lg">
-                  <span className="text-sm text-muted-foreground">Traditional Manual QA</span>
-                  <span className="font-bold text-destructive">5-10 Days + $$$</span>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center p-6 bg-destructive/5 rounded-2xl border border-destructive/10">
+                  <span className="text-muted-foreground font-medium">Traditional Manual QA</span>
+                  <span className="font-bold text-destructive text-lg">5-10 Days + $$$</span>
                 </div>
-                <div className="flex justify-between items-center p-4 bg-success/10 rounded-lg">
-                  <span className="text-sm text-muted-foreground">Valiblox QA Service</span>
-                  <span className="font-bold text-success">48 Hours + ROI</span>
+                <div className="flex justify-between items-center p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                  <span className="text-muted-foreground font-medium">Valiblox QA Service</span>
+                  <span className="font-bold text-primary text-lg">48 Hours + ROI</span>
                 </div>
               </div>
-              <p className="text-center text-muted-foreground text-sm mt-6">
+              <p className="text-center text-muted-foreground mt-8 leading-relaxed">
                 <strong className="text-foreground">The cost of one QA round is often less than the cost of a single RFI or rework task.</strong>
               </p>
             </div>

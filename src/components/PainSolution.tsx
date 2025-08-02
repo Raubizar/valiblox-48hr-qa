@@ -1,4 +1,5 @@
 import { AlertTriangle, CheckCircle2, Clock, DollarSign } from "lucide-react";
+import teamImage from "@/assets/team-collaboration.jpg";
 
 export const PainSolution = () => {
   const painPoints = [
@@ -38,32 +39,44 @@ export const PainSolution = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
             From QA Bottleneck to Competitive Advantage
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Transform your quality assurance from a time-consuming liability into a strategic asset
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Hero Image */}
+        <div className="mb-20 flex justify-center">
+          <div className="relative max-w-4xl">
+            <img 
+              src={teamImage} 
+              alt="Professional team collaborating on quality assurance and project validation"
+              className="w-full h-auto rounded-3xl shadow-apple-xl"
+            />
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-background/20 to-transparent"></div>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Pain Points */}
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left">
+            <h3 className="text-3xl font-semibold text-foreground mb-10 text-center lg:text-left">
               Current QA Challenges
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {painPoints.map((pain, index) => (
-                <div key={index} className="flex items-start gap-4 p-6 bg-destructive/5 rounded-lg border border-destructive/20">
-                  <div className="flex-shrink-0 mt-1">
+                <div key={index} className="flex items-start gap-5 p-6 bg-card rounded-2xl shadow-apple border border-border/50 hover:shadow-apple-lg transition-all duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 bg-destructive/10 rounded-2xl flex items-center justify-center mt-1">
                     {pain.icon}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">{pain.title}</h4>
-                    <p className="text-muted-foreground">{pain.description}</p>
+                    <h4 className="font-semibold text-foreground mb-3 text-lg">{pain.title}</h4>
+                    <p className="text-muted-foreground leading-relaxed">{pain.description}</p>
                   </div>
                 </div>
               ))}
@@ -72,18 +85,18 @@ export const PainSolution = () => {
 
           {/* Solutions */}
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-8 text-center lg:text-left">
+            <h3 className="text-3xl font-semibold text-foreground mb-10 text-center lg:text-left">
               Valiblox Solution
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {solutions.map((solution, index) => (
-                <div key={index} className="flex items-start gap-4 p-6 bg-success/5 rounded-lg border border-success/20">
-                  <div className="flex-shrink-0 mt-1">
+                <div key={index} className="flex items-start gap-5 p-6 bg-card rounded-2xl shadow-apple border border-primary/10 hover:shadow-apple-lg transition-all duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mt-1">
                     {solution.icon}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">{solution.title}</h4>
-                    <p className="text-muted-foreground">{solution.description}</p>
+                    <h4 className="font-semibold text-foreground mb-3 text-lg">{solution.title}</h4>
+                    <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
                   </div>
                 </div>
               ))}
@@ -92,32 +105,32 @@ export const PainSolution = () => {
         </div>
 
         {/* Objections & Answers */}
-        <div className="mt-20">
-          <h3 className="text-3xl font-bold text-foreground mb-12 text-center">
+        <div className="mt-32">
+          <h3 className="text-3xl font-semibold text-foreground mb-16 text-center tracking-tight">
             Common Concerns Addressed
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 bg-card rounded-lg shadow-card">
-              <h4 className="font-semibold text-foreground mb-3">
+            <div className="p-8 bg-card rounded-3xl shadow-apple border border-border/50 hover:shadow-apple-lg transition-all duration-300">
+              <h4 className="font-semibold text-foreground mb-4 text-lg">
                 "Our internal teams handle this"
               </h4>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 We supplement your process with machine accuracy and provide an independent QA stamp that enhances credibility with stakeholders.
               </p>
             </div>
-            <div className="p-6 bg-card rounded-lg shadow-card">
-              <h4 className="font-semibold text-foreground mb-3">
+            <div className="p-8 bg-card rounded-3xl shadow-apple border border-border/50 hover:shadow-apple-lg transition-all duration-300">
+              <h4 className="font-semibold text-foreground mb-4 text-lg">
                 "What about data security?"
               </h4>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 All reviews are NDA-covered with zero cloud data retention. Your files remain completely secure throughout the process.
               </p>
             </div>
-            <div className="p-6 bg-card rounded-lg shadow-card">
-              <h4 className="font-semibold text-foreground mb-3">
+            <div className="p-8 bg-card rounded-3xl shadow-apple border border-border/50 hover:shadow-apple-lg transition-all duration-300">
+              <h4 className="font-semibold text-foreground mb-4 text-lg">
                 "Speed vs quality trade-off?"
               </h4>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 Machine-checking ensures no detail is missed, while expert review ensures real-world project sense and compliance.
               </p>
             </div>

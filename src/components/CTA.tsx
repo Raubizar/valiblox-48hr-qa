@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import ctaImage from "@/assets/cta-workspace.jpg";
 import { ArrowRight, Download, Calendar } from "lucide-react";
 
 export const CTA = () => {

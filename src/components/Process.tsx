@@ -1,4 +1,5 @@
 import { Upload, Search, FileCheck } from "lucide-react";
+import qaWorkstationImage from "@/assets/qa-workstation.jpg";
 
 export const Process = () => {
   const steps = [
@@ -26,15 +27,27 @@ export const Process = () => {
   ];
 
   return (
-    <section className="py-20 gradient-subtle">
+    <section className="py-32 gradient-subtle">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
             Our Unique 3-Step Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             From deliverable submission to compliance confidence in just 48 hours
           </p>
+        </div>
+
+        {/* QA Workstation Image */}
+        <div className="mb-20 flex justify-center">
+          <div className="relative max-w-4xl">
+            <img 
+              src={qaWorkstationImage} 
+              alt="Professional QA workstation with multiple monitors displaying technical validation software"
+              className="w-full h-auto rounded-3xl shadow-apple-xl"
+            />
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-background/20 to-transparent"></div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -42,34 +55,34 @@ export const Process = () => {
             <div key={index} className="relative">
               {/* Connection Line (hidden on last item) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 left-full w-full h-px bg-border z-0 transform translate-x-4"></div>
+                <div className="hidden lg:block absolute top-20 left-full w-full h-px bg-primary/20 z-0 transform translate-x-4"></div>
               )}
               
               {/* Step Card */}
-              <div className="relative z-10 bg-card p-8 rounded-xl shadow-card border hover:shadow-premium transition-all duration-300">
+              <div className="relative z-10 bg-card p-8 rounded-3xl shadow-apple border border-border/50 hover:shadow-apple-lg transition-all duration-300 group">
                 {/* Step Number */}
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary text-primary-foreground rounded-full text-2xl font-bold mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-primary-hover text-primary-foreground rounded-3xl text-2xl font-semibold mb-8 shadow-apple">
                   {step.number}
                 </div>
 
                 {/* Icon */}
-                <div className="text-primary mb-4">
+                <div className="text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
                   {step.icon}
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-foreground mb-4">
+                <h3 className="text-2xl font-semibold text-foreground mb-6 tracking-tight">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
                   {step.description}
                 </p>
 
                 {/* Details */}
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {step.details.map((detail, detailIndex) => (
-                    <li key={detailIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                    <li key={detailIndex} className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
                       {detail}
                     </li>
                   ))}
@@ -80,22 +93,31 @@ export const Process = () => {
         </div>
 
         {/* Process Benefits */}
-        <div className="mt-16 text-center bg-card p-8 rounded-xl shadow-card">
-          <h3 className="text-2xl font-bold text-foreground mb-4">
+        <div className="mt-20 text-center glass-effect p-12 rounded-3xl border border-border/30">
+          <h3 className="text-3xl font-semibold text-foreground mb-6 tracking-tight">
             Why Our Process Works
           </h3>
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Machine Precision</h4>
-              <p className="text-sm text-muted-foreground">Automated checks ensure no detail is overlooked</p>
+          <div className="grid md:grid-cols-3 gap-12 mt-12">
+            <div className="group">
+              <div className="w-16 h-16 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-all duration-300">
+                <div className="w-8 h-8 bg-primary rounded-full"></div>
+              </div>
+              <h4 className="font-semibold text-foreground mb-4 text-lg">Machine Precision</h4>
+              <p className="text-muted-foreground leading-relaxed">Automated checks ensure no detail is overlooked</p>
             </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Expert Oversight</h4>
-              <p className="text-sm text-muted-foreground">Human review ensures real-world project sense</p>
+            <div className="group">
+              <div className="w-16 h-16 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-all duration-300">
+                <div className="w-8 h-8 bg-primary rounded-full"></div>
+              </div>
+              <h4 className="font-semibold text-foreground mb-4 text-lg">Expert Oversight</h4>
+              <p className="text-muted-foreground leading-relaxed">Human review ensures real-world project sense</p>
             </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Rapid Turnaround</h4>
-              <p className="text-sm text-muted-foreground">48-hour delivery keeps projects on schedule</p>
+            <div className="group">
+              <div className="w-16 h-16 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-all duration-300">
+                <div className="w-8 h-8 bg-primary rounded-full"></div>
+              </div>
+              <h4 className="font-semibold text-foreground mb-4 text-lg">Rapid Turnaround</h4>
+              <p className="text-muted-foreground leading-relaxed">48-hour delivery keeps projects on schedule</p>
             </div>
           </div>
         </div>
