@@ -31,7 +31,7 @@ export const Trust = () => {
   ];
 
   return (
-    <section className="py-32 gradient-subtle">
+    <section id="trust" className="py-32 gradient-subtle">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-20">

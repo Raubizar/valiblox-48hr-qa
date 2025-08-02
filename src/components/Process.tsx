@@ -27,7 +27,7 @@ export const Process = () => {
   ];
 
   return (
-    <section className="py-32 gradient-subtle">
+    <section id="process" className="py-32 gradient-subtle">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-8 tracking-tight">
