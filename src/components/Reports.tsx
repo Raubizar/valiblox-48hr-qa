@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, Eye, FileText } from "lucide-react";
+import qaAnalysisImage from "@/assets/qa-analysis-report.jpg";
+import complianceImage from "@/assets/compliance-validation.jpg";
+import executiveDashboardImage from "@/assets/executive-dashboard.jpg";
 
 const reports = [
   {
     id: 1,
     title: "Comprehensive QA Analysis Report",
     description: "Full validation analysis including structural integrity, code compliance, and design verification with detailed findings and recommendations.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop&crop=center",
+    image: qaAnalysisImage,
     type: "Technical Analysis",
     pages: "45-60 pages",
     deliverables: ["Issue identification", "Risk assessment", "Compliance verification"]
@@ -16,7 +19,7 @@ const reports = [
     id: 2,
     title: "Design Compliance Validation",
     description: "Detailed compliance check against industry standards, building codes, and project specifications with corrective action plans.",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=300&fit=crop&crop=center",
+    image: complianceImage,
     type: "Compliance Review",
     pages: "25-35 pages", 
     deliverables: ["Standards verification", "Code compliance", "Specification alignment"]
@@ -25,7 +28,7 @@ const reports = [
     id: 3,
     title: "Executive Summary Dashboard",
     description: "High-level executive overview with key findings, risk indicators, and actionable insights for project stakeholders and decision makers.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop&crop=center",
+    image: executiveDashboardImage,
     type: "Executive Summary",
     pages: "8-12 pages",
     deliverables: ["Key findings", "Risk matrix", "Action priorities"]
