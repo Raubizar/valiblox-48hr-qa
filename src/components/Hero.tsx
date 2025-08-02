@@ -57,7 +57,7 @@ export const Hero = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="cta" size="lg" className="w-full sm:w-auto">
-              Submit Your Project
+              Get a Quote
             </Button>
             <Button variant="outline-premium" size="lg" className="w-full sm:w-auto">
               Download QA Report Sample

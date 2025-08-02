@@ -33,7 +33,7 @@ export const Header = () => {
             Download Sample
           </Button>
           <Button size="sm" className="bg-primary hover:bg-primary-hover">
-            Submit Project
+            Get a Quote
           </Button>
         </div>
       </div>

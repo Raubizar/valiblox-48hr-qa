@@ -32,7 +32,7 @@ export const CTA = () => {
               className="bg-white text-primary hover:bg-white/90 border-white font-bold text-lg px-8 py-4 w-full sm:w-auto shadow-lg"
             >
               <ArrowRight className="w-5 h-5 mr-2" />
-              Submit Your Project
+              Get a Quote
             </Button>
             <Button 
               variant="ghost" 
