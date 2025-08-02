@@ -1,10 +1,30 @@
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
+
+  const handleNavigation = (sectionId: string) => {
+    if (isHomePage) {
+      // If on homepage, just scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If on subpage, navigate to homepage then scroll to section
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
   
   return (
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border sticky top-0 z-50">
@@ -15,33 +35,33 @@ export const Header = () => {
         </a>
         
         <nav className="hidden md:flex items-center gap-8">
-          <a 
-            href={isHomePage ? "#process" : "/#process"} 
+          <button 
+            onClick={() => handleNavigation('process')}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Process
-          </a>
-          <a 
-            href={isHomePage ? "#reports" : "/#reports"} 
+          </button>
+          <button 
+            onClick={() => handleNavigation('reports')}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Reports
-          </a>
+          </button>
           <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">
             Pricing
           </a>
-          <a 
-            href={isHomePage ? "#benefits" : "/#benefits"} 
+          <button 
+            onClick={() => handleNavigation('benefits')}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Benefits
-          </a>
-          <a 
-            href={isHomePage ? "#trust" : "/#trust"} 
+          </button>
+          <button 
+            onClick={() => handleNavigation('trust')}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Trust & Security
-          </a>
+          </button>
           <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">
             Articles
           </a>
