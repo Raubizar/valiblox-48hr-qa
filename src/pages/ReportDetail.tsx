@@ -60,7 +60,7 @@ const reportData = {
       "Minimize construction phase surprises and cost overruns"
     ],
     deliverables: [
-      "15-25 page comprehensive validation report",
+      "Comprehensive validation report",
       "Drawing validation checklist with pass/fail status",
       "Specification compliance matrix",
       "Prioritized issue register with correction recommendations",
@@ -115,7 +115,7 @@ const reportData = {
       "Minimize field coordination time through accurate pre-construction planning"
     ],
     deliverables: [
-      "35-50 page detailed analysis report with visual documentation",
+      "Detailed analysis report with visual documentation",
       "3D clash detection report with prioritized resolution strategies",
       "LOD verification matrix with compliance status for all elements",
       "Design coordination assessment with cross-discipline recommendations",
@@ -170,7 +170,7 @@ const reportData = {
       "Ensure long-term project success with complete documentation audit trail"
     ],
     deliverables: [
-      "60-75 page comprehensive final validation report",
+      "Comprehensive final validation report",
       "IFC compliance certificate with detailed validation results",
       "Complete metadata verification report",
       "Executive summary with project approval readiness confirmation",
