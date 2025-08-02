@@ -6,6 +6,7 @@ import { Reports } from "@/components/Reports";
 import { ValueProposition } from "@/components/ValueProposition";
 import { Trust } from "@/components/Trust";
 import { CTA } from "@/components/CTA";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <ValueProposition />
       <Trust />
       <CTA />
+      <Footer />
     </main>
   );
 };
