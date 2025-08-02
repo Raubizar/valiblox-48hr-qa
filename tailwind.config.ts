@@ -27,7 +27,31 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					hover: 'hsl(var(--primary-hover))'
+					hover: 'hsl(var(--primary-hover))',
+					light: 'hsl(var(--primary-light))',
+					dark: 'hsl(var(--primary-dark))',
+					subtle: 'hsl(var(--primary-subtle))'
+				},
+				'tech-blue': {
+					DEFAULT: 'hsl(var(--tech-blue))',
+					foreground: 'hsl(var(--tech-blue-foreground))',
+					hover: 'hsl(var(--tech-blue-hover))',
+					light: 'hsl(var(--tech-blue-light))',
+					subtle: 'hsl(var(--tech-blue-subtle))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))',
+					hover: 'hsl(var(--warning-hover))',
+					light: 'hsl(var(--warning-light))',
+					subtle: 'hsl(var(--warning-subtle))'
+				},
+				warm: {
+					DEFAULT: 'hsl(var(--warm))',
+					foreground: 'hsl(var(--warm-foreground))',
+					hover: 'hsl(var(--warm-hover))',
+					light: 'hsl(var(--warm-light))',
+					subtle: 'hsl(var(--warm-subtle))'
 				},
 				success: {
 					DEFAULT: 'hsl(var(--success))',

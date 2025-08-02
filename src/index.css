@@ -18,11 +18,34 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 11% 15%;
 
-    /* Sophisticated green palette */
+    /* Enhanced Primary Green Palette */
     --primary: 156 73% 44%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 156 73% 38%;
     --primary-light: 156 73% 94%;
+    --primary-dark: 156 73% 32%;
+    --primary-subtle: 156 30% 96%;
+
+    /* Technology Blue Accent */
+    --tech-blue: 217 91% 60%;
+    --tech-blue-foreground: 0 0% 100%;
+    --tech-blue-hover: 217 91% 55%;
+    --tech-blue-light: 217 91% 70%;
+    --tech-blue-subtle: 217 50% 96%;
+
+    /* Warning Amber */
+    --warning: 43 96% 56%;
+    --warning-foreground: 210 11% 15%;
+    --warning-hover: 43 96% 51%;
+    --warning-light: 43 96% 66%;
+    --warning-subtle: 43 70% 96%;
+
+    /* Warm Accent */
+    --warm: 24 70% 52%;
+    --warm-foreground: 0 0% 100%;
+    --warm-hover: 24 70% 47%;
+    --warm-light: 24 70% 62%;
+    --warm-subtle: 24 50% 96%;
 
     /* Apple-style grays */
     --secondary: 220 14% 96%;
@@ -34,7 +57,7 @@ All colors MUST be HSL.
     --accent: 220 14% 96%;
     --accent-foreground: 156 73% 44%;
 
-    /* Success and states */
+    /* Enhanced Success and states */
     --success: 156 73% 44%;
     --success-foreground: 0 0% 100%;
 
