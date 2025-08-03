@@ -175,7 +175,7 @@ const Articles = () => {
                     {article.readTime}
                   </div>
                 </div>
-                <Button variant="cta" size="lg" onClick={() => readArticleWebhook.openModal()}>
+                <Button variant="cta" size="lg" onClick={() => handleReadMore(article.id)}>
                   Read Full Article
                   <ArrowRight className="w-4 h-4" />
                 </Button>
