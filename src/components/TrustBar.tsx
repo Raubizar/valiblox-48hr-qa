@@ -1,4 +1,4 @@
-import { Lock, Clock, Settings } from "lucide-react";
+import { Lock, Clock, Zap } from "lucide-react";
 
 export const TrustBar = () => {
   const trustBadges = [
@@ -8,10 +8,10 @@ export const TrustBar = () => {
     },
     {
       icon: Clock,
-      label: "48h SLA"
+      label: "48 h SLA"
     },
     {
-      icon: Settings,
+      icon: Zap,
       label: "Machine-Checked & Expert-Reviewed"
     }
   ];

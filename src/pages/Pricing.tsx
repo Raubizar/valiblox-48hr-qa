@@ -147,6 +147,22 @@ const Pricing = () => {
                     </div>
                   </div>
                   
+                  {/* Trust Icons */}
+                  <div className="flex justify-center items-center gap-4 mb-6">
+                    <div className="flex items-center gap-1">
+                      <Shield className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">NDA</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">48h</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Zap className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">Expert</span>
+                    </div>
+                  </div>
+                  
                   <div className="p-4 bg-primary-light rounded-lg mb-6">
                     <p className="text-sm font-medium text-primary">
                       Save 5–8 days of manual QA & avoid rework costs
@@ -198,15 +214,31 @@ const Pricing = () => {
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">3D model LOD validation</span>
+                      <span className="text-sm">Model LOD/LOI compliance</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Comprehensive clash detection</span>
+                      <span className="text-sm">Clash-risk summary</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">All Stage 2 QA features</span>
+                      <span className="text-sm">All Stage 2 items</span>
+                    </div>
+                  </div>
+                  
+                  {/* Trust Icons */}
+                  <div className="flex justify-center items-center gap-4 mb-6">
+                    <div className="flex items-center gap-1">
+                      <Shield className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">NDA</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">48h</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Zap className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">Expert</span>
                     </div>
                   </div>
                   
@@ -255,15 +287,31 @@ const Pricing = () => {
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">IFC compliance validation</span>
+                      <span className="text-sm">Revision & metadata control</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Final revision review</span>
+                      <span className="text-sm">IFC-ready compliance summary</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">All previous QA features</span>
+                      <span className="text-sm">All Stage 3 items</span>
+                    </div>
+                  </div>
+                  
+                  {/* Trust Icons */}
+                  <div className="flex justify-center items-center gap-4 mb-6">
+                    <div className="flex items-center gap-1">
+                      <Shield className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">NDA</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">48h</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Zap className="w-4 h-4 text-primary" />
+                      <span className="text-xs text-muted-foreground">Expert</span>
                     </div>
                   </div>
                   
@@ -283,7 +331,7 @@ const Pricing = () => {
             {/* Risk Banner Below Pricing - Desktop */}
             <div className="glass-effect p-6 rounded-xl border border-destructive/20 mb-12 text-center hidden md:block">
               <p className="text-lg font-medium text-foreground">
-                A single deliverable error on a $50 M project can cost 1 % of budget—up to 
+                A single deliverable error on a $50 M project can cost up to 
                 <span className="text-destructive font-semibold"> $500 k in rework and delays.</span>
                 <span className="text-primary font-semibold"> Valiblox nips issues in 48 h.</span>
               </p>
@@ -407,7 +455,7 @@ const Pricing = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button size="lg" className="bg-primary hover:bg-primary-hover" onClick={submitPackageWebhook.openModal}>
-                    Submit Your Package
+                    Get Your 48 h QA Report
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                   <Button size="lg" variant="outline">

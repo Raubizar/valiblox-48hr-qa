@@ -5,10 +5,10 @@ import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 
 export const Footer = () => {
-  const bookCallWebhook = useWebhook({
-    source: "footer-book-call",
-    title: "Book a Call",
-    description: "Get in touch to discuss your project and QA requirements."
+  const qaReportWebhook = useWebhook({
+    source: "footer-qa-report",
+    title: "Get Your 48 h QA Report",
+    description: "Request your comprehensive QA validation report for data center deliverables."
   });
 
   return (
@@ -68,9 +68,33 @@ export const Footer = () => {
                   <span className="text-slate-300">Dublin, Ireland</span>
                 </div>
               </div>
-              <Button size="sm" className="w-full bg-primary hover:bg-primary-hover" onClick={bookCallWebhook.openModal}>
-                Book a Call
+              <Button size="sm" className="w-full bg-primary hover:bg-primary-hover" onClick={qaReportWebhook.openModal}>
+                Get Your 48 h QA Report
               </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Elements Bar */}
+        <div className="border-t border-slate-700 bg-slate-800/50">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-xs">
+              <div className="flex items-center gap-2 text-slate-300">
+                <Shield className="w-4 h-4 text-primary" />
+                <span>NDA-Protected</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-300">
+                <FileText className="w-4 h-4 text-primary" />
+                <span>Expert-Reviewed</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-300">
+                <Clock className="w-4 h-4 text-primary" />
+                <span>Data Security Certified</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-300">
+                <Mail className="w-4 h-4 text-primary" />
+                <span>team@valiblox.com</span>
+              </div>
             </div>
           </div>
         </div>
@@ -94,10 +118,10 @@ export const Footer = () => {
 
       {/* Webhook Modal */}
       <WebhookModal
-        isOpen={bookCallWebhook.isModalOpen}
-        onClose={bookCallWebhook.closeModal}
-        onSubmit={bookCallWebhook.handleSubmit}
-        {...bookCallWebhook.modalProps}
+        isOpen={qaReportWebhook.isModalOpen}
+        onClose={qaReportWebhook.closeModal}
+        onSubmit={qaReportWebhook.handleSubmit}
+        {...qaReportWebhook.modalProps}
       />
     </>
   );

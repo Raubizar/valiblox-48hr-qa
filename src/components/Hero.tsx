@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/hero-pm-confident.jpg";
+import heroImage from "@/assets/hero-relaxed-pm.jpg";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 
@@ -17,8 +17,8 @@ export const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="Professional project manager with tablet showing calm confidence in QA validation" 
-          className="w-full h-full object-cover opacity-10"
+          alt="Relaxed project manager in suit with coffee and tablet, representing QA control" 
+          className="w-full h-full object-cover opacity-15"
         />
       </div>
       
@@ -50,17 +50,16 @@ export const Hero = () => {
 
           {/* Main Headline */}
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight tracking-tight">
-            Eliminate 90 % of costly QA errors—{" "}
+            One Wrong Drawing Can Derail Your Project —{" "}
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              Independent Data Center
-            </span>{" "}
-            deliverable validation in 48 h.
+              Here's How to Stop It
+            </span>
           </h1>
 
           {/* Subheadline */}
           <div className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal space-y-1">
-            <p>Machine-checked, expert-reviewed QA for drawings, models & specs.</p>
-            <p>No software, no IT setup, NDA-covered.</p>
+            <p>Eliminate 90 % of costly QA errors with independent, 48 h validation.</p>
+            <p>Machine-checked & expert-reviewed — no software, NDA-covered.</p>
           </div>
 
           {/* CTA Button */}

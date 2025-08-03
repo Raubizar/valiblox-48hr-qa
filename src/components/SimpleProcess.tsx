@@ -1,24 +1,24 @@
-import { Upload, Cog, FileText } from "lucide-react";
+import { Shield, Zap, FileCheck } from "lucide-react";
 
 export const SimpleProcess = () => {
   const steps = [
     {
       number: 1,
-      icon: Upload,
+      icon: Shield,
       title: "Securely share your files",
-      description: "Upload drawings, models & specs via secure portal"
+      description: "Upload drawings, models & specs through our NDA-covered portal"
     },
     {
       number: 2,
-      icon: Cog,
-      title: "Machine-check & expert review",
-      description: "AI validation followed by expert verification"
+      icon: Zap,
+      title: "Machine-precision checks + expert review",
+      description: "AI validation combined with professional QA engineer oversight"
     },
     {
       number: 3,
-      icon: FileText,
-      title: "Receive PDF QA report in 48h",
-      description: "Comprehensive findings with actionable recommendations"
+      icon: FileCheck,
+      title: "Receive PDF QA report in 48 h",
+      description: "Comprehensive validation report with actionable findings"
     }
   ];
 
@@ -30,7 +30,7 @@ export const SimpleProcess = () => {
             Simple 3-Step Process
           </h2>
           <p className="text-sm text-muted-foreground">
-            From file submission to detailed QA report in 48 hours
+            Professional QA validation delivered in 48 hours — no software, no complexity
           </p>
         </div>
 
