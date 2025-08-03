@@ -4,18 +4,18 @@ export const ValueSnapshot = () => {
   const benefits = [
     {
       icon: Zap,
-      title: "Identify every deliverable error",
-      description: "No surprise RFIs—we spot issues before they become costly problems"
+      title: "Full Visibility",
+      description: "Immediate, item-by-item report of every non-compliance."
     },
     {
       icon: Shield,
-      title: "Enable your consultants to fix issues early",
-      description: "Clear inspection reports help your team address problems proactively"
+      title: "Zero Effort",
+      description: "Upload once; we run all QA cycles until everything is cleared."
     },
     {
       icon: Clock,
-      title: "Protect your schedule, budget, and reputation",
-      description: "Peace of mind knowing nothing slips through the cracks"
+      title: "Schedule Protection",
+      description: "48 h turnaround on every check keeps your project moving."
     }
   ];
 

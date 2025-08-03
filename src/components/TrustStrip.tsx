@@ -1,18 +1,18 @@
-import { Search, Clock, Shield } from "lucide-react";
+import { Lock, Clock, Zap } from "lucide-react";
 
 export const TrustStrip = () => {
   const trustItems = [
     {
-      icon: Search,
-      label: "Independent Inspection"
+      icon: Lock,
+      label: "NDA-Protected"
     },
     {
       icon: Clock,
-      label: "48 h Turnaround"
+      label: "48 h SLA"
     },
     {
-      icon: Shield,
-      label: "NDA-Protected"
+      icon: Zap,
+      label: "Machine-Precision & Expert Review"
     }
   ];
 

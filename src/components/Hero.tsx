@@ -50,16 +50,16 @@ export const Hero = () => {
 
           {/* Main Headline */}
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight tracking-tight">
-            Independent QA Validation in 48 h—{" "}
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              We Spot the Issues, Your Team Fixes Them
+              Spot Every Deliverable Error in 48 h
             </span>
+            —Independent QA for Data Center Projects
           </h1>
 
           {/* Subheadline */}
           <div className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal space-y-1">
-            <p>Effortless inspection of drawings, models & specs—no software, no bias, NDA-covered.</p>
-            <p>Peace of mind for PMs & Owners: know what needs fixing before it gets costly.</p>
+            <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
+            <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
           </div>
 
           {/* CTA Button */}
