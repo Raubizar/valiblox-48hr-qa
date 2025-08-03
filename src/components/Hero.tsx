@@ -1,26 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/hero-modern-datacenter.jpg";
+import heroImage from "@/assets/hero-pm-confident.jpg";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 
 export const Hero = () => {
-  const bookCallWebhook = useWebhook({
-    source: "hero-book-call",
-    title: "Book a Call",
-    description: "Let's discuss your project requirements and how our QA services can help."
-  });
-
-  const downloadSampleWebhook = useWebhook({
-    source: "hero-download-sample",
-    title: "Download QA Report Sample",
-    description: "Get a detailed sample of our QA report to see the quality and depth of our analysis."
-  });
-
-  const discoveryCallWebhook = useWebhook({
-    source: "hero-book-discovery",
-    title: "Book a Discovery Call",
-    description: "Schedule a discovery call to explore how our services can benefit your specific project."
+  const qaReportWebhook = useWebhook({
+    source: "hero-qa-report",
+    title: "Get Your 48 h QA Report",
+    description: "Request your comprehensive QA validation report for data center deliverables."
   });
 
   return (
@@ -29,8 +17,8 @@ export const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="Modern data center facility with professional QA validation" 
-          className="w-full h-full object-cover opacity-5"
+          alt="Professional project manager with tablet showing calm confidence in QA validation" 
+          className="w-full h-full object-cover opacity-10"
         />
       </div>
       
@@ -62,30 +50,23 @@ export const Hero = () => {
 
           {/* Main Headline */}
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight tracking-tight">
-            Independent QA Validation of{" "}
+            Eliminate 90 % of costly QA errors—{" "}
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              Data Center Design
+              Independent Data Center
             </span>{" "}
-            Deliverables in 48 Hours
+            deliverable validation in 48 h.
           </h1>
 
           {/* Subheadline */}
-          <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal">
-            Machine-precision checks combined with expert QA review. 
-            Zero software install, zero training, full data security. 
-            Built for US Clients who demand faster, error-free deliverables.
-          </p>
+          <div className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal space-y-1">
+            <p>Machine-checked, expert-reviewed QA for drawings, models & specs.</p>
+            <p>No software, no IT setup, NDA-covered.</p>
+          </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-10">
-            <Button variant="cta" size="sm" className="w-full sm:w-auto" onClick={bookCallWebhook.openModal}>
-              Book a Call
-            </Button>
-            <Button variant="outline-premium" size="sm" className="w-full sm:w-auto" onClick={downloadSampleWebhook.openModal}>
-              Download QA Report Sample
-            </Button>
-            <Button variant="ghost" size="sm" className="w-full sm:w-auto text-primary hover:text-primary-hover" onClick={discoveryCallWebhook.openModal}>
-              Book a Discovery Call →
+          {/* CTA Button */}
+          <div className="flex justify-center mb-10">
+            <Button variant="cta" size="sm" className="w-full sm:w-auto" onClick={qaReportWebhook.openModal}>
+              Get Your 48 h QA Report
             </Button>
           </div>
 
@@ -101,24 +82,12 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Webhook Modals */}
+      {/* Webhook Modal */}
       <WebhookModal
-        isOpen={bookCallWebhook.isModalOpen}
-        onClose={bookCallWebhook.closeModal}
-        onSubmit={bookCallWebhook.handleSubmit}
-        {...bookCallWebhook.modalProps}
-      />
-      <WebhookModal
-        isOpen={downloadSampleWebhook.isModalOpen}
-        onClose={downloadSampleWebhook.closeModal}
-        onSubmit={downloadSampleWebhook.handleSubmit}
-        {...downloadSampleWebhook.modalProps}
-      />
-      <WebhookModal
-        isOpen={discoveryCallWebhook.isModalOpen}
-        onClose={discoveryCallWebhook.closeModal}
-        onSubmit={discoveryCallWebhook.handleSubmit}
-        {...discoveryCallWebhook.modalProps}
+        isOpen={qaReportWebhook.isModalOpen}
+        onClose={qaReportWebhook.closeModal}
+        onSubmit={qaReportWebhook.handleSubmit}
+        {...qaReportWebhook.modalProps}
       />
     </section>
   );
