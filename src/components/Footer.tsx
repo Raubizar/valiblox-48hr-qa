@@ -68,8 +68,8 @@ export const Footer = () => {
                   <span className="text-slate-300">Dublin, Ireland</span>
                 </div>
               </div>
-              <Button size="sm" className="w-full bg-primary hover:bg-primary-hover" onClick={qaReportWebhook.openModal}>
-                Get Your 48 h QA Report
+              <Button size="sm" variant="outline" className="w-full">
+                <a href="#sample-report">View Sample Report</a>
               </Button>
             </div>
           </div>
