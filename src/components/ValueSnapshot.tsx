@@ -4,18 +4,18 @@ export const ValueSnapshot = () => {
   const benefits = [
     {
       icon: Zap,
-      title: "Automated precision",
-      description: "Machine validation catches what manual reviews miss"
+      title: "Identify every deliverable error",
+      description: "No surprise RFIs—we spot issues before they become costly problems"
     },
     {
       icon: Shield,
-      title: "QA-certified oversight",
-      description: "Expert engineers verify every validation result"
+      title: "Enable your consultants to fix issues early",
+      description: "Clear inspection reports help your team address problems proactively"
     },
     {
       icon: Clock,
-      title: "48 h turnaround",
-      description: "Professional reports delivered within two business days"
+      title: "Protect your schedule, budget, and reputation",
+      description: "Peace of mind knowing nothing slips through the cracks"
     }
   ];
 
@@ -26,6 +26,14 @@ export const ValueSnapshot = () => {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Value Snapshot
           </h2>
+          <div className="glass-effect p-4 rounded-xl border border-primary/20 max-w-md mx-auto mb-6">
+            <div className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">
+              Pilot Proof
+            </div>
+            <p className="text-sm font-medium text-foreground">
+              27 errors spotted in 48 h, saving 10 days of rework.
+            </p>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

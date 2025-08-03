@@ -1,18 +1,18 @@
-import { Shield, Clock, CheckCircle } from "lucide-react";
+import { Search, Clock, Shield } from "lucide-react";
 
 export const TrustStrip = () => {
   const trustItems = [
     {
-      icon: Shield,
-      label: "NDA-Protected"
+      icon: Search,
+      label: "Independent Inspection"
     },
     {
       icon: Clock,
-      label: "48 h SLA"
+      label: "48 h Turnaround"
     },
     {
-      icon: CheckCircle,
-      label: "QA-Certified"
+      icon: Shield,
+      label: "NDA-Protected"
     }
   ];
 
@@ -20,7 +20,7 @@ export const TrustStrip = () => {
     <section className="py-8 bg-muted/20">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-semibold text-foreground mb-2">Why Trust Us</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-2">Trust & Peace of Mind</h3>
         </div>
         
         <div className="flex justify-center items-center gap-12">

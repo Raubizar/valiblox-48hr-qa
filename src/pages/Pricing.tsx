@@ -121,6 +121,7 @@ const Pricing = () => {
                   </div>
                   <CardTitle className="text-xl text-foreground">Stage 2 – Concept QA</CardTitle>
                   <p className="text-muted-foreground">Drawings & specs validation</p>
+                  <p className="text-sm text-primary font-medium mt-2">We inspect & report—your consultants handle fixes</p>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
@@ -169,6 +170,10 @@ const Pricing = () => {
                     </p>
                   </div>
                   
+                  <div className="text-center mb-4">
+                    <p className="text-xs text-muted-foreground font-medium">Includes 1 Free Re-Check</p>
+                  </div>
+                  
                   <Button className="w-full" variant="outline">
                     Secure Stage 2 QA
                   </Button>
@@ -200,6 +205,7 @@ const Pricing = () => {
                   </div>
                   <CardTitle className="text-xl text-foreground">Stage 3 – Developed QA</CardTitle>
                   <p className="text-muted-foreground">Includes Concept + model LOD, clash summary</p>
+                  <p className="text-sm text-primary font-medium mt-2">We inspect & report—your consultants handle fixes</p>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
@@ -248,6 +254,10 @@ const Pricing = () => {
                     </p>
                   </div>
                   
+                  <div className="text-center mb-4">
+                    <p className="text-xs text-muted-foreground font-medium">Includes 1 Free Re-Check</p>
+                  </div>
+                  
                   <Button className="w-full bg-primary hover:bg-primary-hover">
                     Secure Stage 3 QA
                   </Button>
@@ -273,6 +283,7 @@ const Pricing = () => {
                   </div>
                   <CardTitle className="text-xl text-foreground">Stage 4 – Technical QA</CardTitle>
                   <p className="text-muted-foreground">Full IFC-ready compliance check</p>
+                  <p className="text-sm text-primary font-medium mt-2">We inspect & report—your consultants handle fixes</p>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
@@ -319,6 +330,10 @@ const Pricing = () => {
                     <p className="text-sm font-medium text-primary">
                       Prevent late-stage RFIs and schedule slips
                     </p>
+                  </div>
+                  
+                  <div className="text-center mb-4">
+                    <p className="text-xs text-muted-foreground font-medium">Includes 1 Free Re-Check</p>
                   </div>
                   
                   <Button className="w-full" variant="outline">

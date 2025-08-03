@@ -1,24 +1,24 @@
-import { Shield, Zap, FileCheck } from "lucide-react";
+import { Upload, Search, ArrowRight } from "lucide-react";
 
 export const SimpleProcess = () => {
   const steps = [
     {
       number: 1,
-      icon: Shield,
-      title: "Securely share your files",
-      description: "Upload drawings, models & specs through our NDA-covered portal"
+      icon: Upload,
+      title: "Upload files",
+      description: "Share drawings, models & specs through our secure portal"
     },
     {
       number: 2,
-      icon: Zap,
-      title: "Machine-precision checks + expert review",
-      description: "AI validation combined with professional QA engineer oversight"
+      icon: Search,
+      title: "We inspect & report",
+      description: "Independent validation identifies every deliverable error"
     },
     {
       number: 3,
-      icon: FileCheck,
-      title: "Receive PDF QA report in 48 h",
-      description: "Comprehensive validation report with actionable findings"
+      icon: ArrowRight,
+      title: "You fix & move forward",
+      description: "Act on our findings with confidence—no surprises ahead"
     }
   ];
 

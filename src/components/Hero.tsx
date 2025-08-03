@@ -50,16 +50,16 @@ export const Hero = () => {
 
           {/* Main Headline */}
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight tracking-tight">
-            One Wrong Drawing Can Derail Your Project —{" "}
+            Independent QA Validation in 48 h—{" "}
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              Here's How to Stop It
+              We Spot the Issues, Your Team Fixes Them
             </span>
           </h1>
 
           {/* Subheadline */}
           <div className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal space-y-1">
-            <p>Eliminate 90 % of costly QA errors with independent, 48 h validation.</p>
-            <p>Machine-checked & expert-reviewed — no software, NDA-covered.</p>
+            <p>Effortless inspection of drawings, models & specs—no software, no bias, NDA-covered.</p>
+            <p>Peace of mind for PMs & Owners: know what needs fixing before it gets costly.</p>
           </div>
 
           {/* CTA Button */}
