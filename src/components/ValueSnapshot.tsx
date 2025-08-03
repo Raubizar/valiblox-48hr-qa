@@ -20,7 +20,7 @@ export const ValueSnapshot = () => {
   ];
 
   return (
-    <section className="py-12 bg-background">
+    <section id="value" className="py-12 bg-background">
       <div className="max-w-5xl mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-semibold text-foreground mb-4">

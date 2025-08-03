@@ -23,7 +23,7 @@ export const SimpleProcess = () => {
   ];
 
   return (
-    <section className="py-8 md:py-12 bg-muted/30">
+    <section id="process" className="py-8 md:py-12 bg-muted/30">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2">

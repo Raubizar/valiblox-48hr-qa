@@ -64,26 +64,14 @@ export const Header = () => {
             Process
           </button>
           <button 
-            onClick={() => handleNavigation('reports')}
+            onClick={() => handleNavigation('value')}
             className="text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
-            Reports
+            Value
           </button>
           <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Pricing
           </a>
-          <button 
-            onClick={() => handleNavigation('benefits')}
-            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-          >
-            Benefits
-          </button>
-          <button 
-            onClick={() => handleNavigation('trust')}
-            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-          >
-            Trust & Security
-          </button>
           <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Articles
           </a>
@@ -124,10 +112,10 @@ export const Header = () => {
                 Process
               </button>
               <button 
-                onClick={() => handleNavigation('reports')}
+                onClick={() => handleNavigation('value')}
                 className="text-left text-muted-foreground hover:text-foreground transition-colors py-2"
               >
-                Reports
+                Value
               </button>
               <a 
                 href="/pricing" 
@@ -136,18 +124,6 @@ export const Header = () => {
               >
                 Pricing
               </a>
-              <button 
-                onClick={() => handleNavigation('benefits')}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-              >
-                Benefits
-              </button>
-              <button 
-                onClick={() => handleNavigation('trust')}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-              >
-                Trust & Security
-              </button>
               <a 
                 href="/articles" 
                 onClick={handleLinkClick}

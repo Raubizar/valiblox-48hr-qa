@@ -24,7 +24,7 @@ export const Footer = () => {
                 <div className="text-lg font-bold">Valiblox</div>
               </div>
               <p className="text-slate-300 text-xs leading-relaxed">
-                Leading provider of comprehensive QA analysis and validation services for data center infrastructure and design compliance.
+                Independent QA validation for data center projects. We spot every deliverable error in 48 hours—then re-check for free until everything passes.
               </p>
               <div className="flex items-center gap-4">
                 <Linkedin className="h-4 w-4 text-slate-400 hover:text-white cursor-pointer transition-colors" />
@@ -37,10 +37,10 @@ export const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-base font-semibold">Services</h3>
               <ul className="space-y-2 text-xs">
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">QA Validation Reports</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Compliance Analysis</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Design Review</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Executive Dashboards</a></li>
+                <li><a href="/#process" className="text-slate-300 hover:text-white transition-colors">48h QA Reports</a></li>
+                <li><a href="/#value" className="text-slate-300 hover:text-white transition-colors">Error Detection</a></li>
+                <li><a href="/pricing" className="text-slate-300 hover:text-white transition-colors">Package Validation</a></li>
+                <li><a href="/articles" className="text-slate-300 hover:text-white transition-colors">Best Practices</a></li>
               </ul>
             </div>
 
@@ -48,10 +48,10 @@ export const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-base font-semibold">Resources</h3>
               <ul className="space-y-2 text-xs">
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Case Studies</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Industry Standards</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Best Practices</a></li>
-                <li><a href="#" className="text-slate-300 hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="/articles" className="text-slate-300 hover:text-white transition-colors">Expert Articles</a></li>
+                <li><a href="/pricing" className="text-slate-300 hover:text-white transition-colors">Pricing Guide</a></li>
+                <li><a href="/#process" className="text-slate-300 hover:text-white transition-colors">Our Process</a></li>
+                <li><a href="/policies" className="text-slate-300 hover:text-white transition-colors">Policies</a></li>
               </ul>
             </div>
 
@@ -84,12 +84,12 @@ export const Footer = () => {
                 <span>NDA-Protected</span>
               </div>
               <div className="flex items-center gap-2 text-slate-300">
-                <FileText className="w-4 h-4 text-primary" />
-                <span>Expert-Reviewed</span>
+                <Clock className="w-4 h-4 text-primary" />
+                <span>48h Turnaround</span>
               </div>
               <div className="flex items-center gap-2 text-slate-300">
-                <Clock className="w-4 h-4 text-primary" />
-                <span>Data Security Certified</span>
+                <FileText className="w-4 h-4 text-primary" />
+                <span>Machine-Precision + Expert Review</span>
               </div>
               <div className="flex items-center gap-2 text-slate-300">
                 <Mail className="w-4 h-4 text-primary" />
