@@ -82,6 +82,14 @@ const Pricing = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
+            {/* Cost Banner Above Pricing */}
+            <div className="glass-effect p-6 rounded-xl border border-primary/20 mb-12 text-center">
+              <p className="text-lg font-medium text-foreground">
+                Manual QA & rework for a Data Center stage runs $8 000+ per phase. 
+                <span className="text-primary font-semibold"> Valiblox delivers in 48 h for $990–$2 990.</span>
+              </p>
+            </div>
+
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                 Choose Your QA Package
@@ -256,6 +264,15 @@ const Pricing = () => {
               </Card>
             </div>
 
+            {/* Risk Banner Below Pricing - Desktop */}
+            <div className="glass-effect p-6 rounded-xl border border-destructive/20 mb-12 text-center hidden md:block">
+              <p className="text-lg font-medium text-foreground">
+                A single deliverable error on a $50 M project can cost 1 % of budget—up to 
+                <span className="text-destructive font-semibold"> $500 k in rework and delays.</span>
+                <span className="text-primary font-semibold"> Valiblox nips issues in 48 h.</span>
+              </p>
+            </div>
+
             {/* Custom Package Card */}
             <div className="max-w-4xl mx-auto">
               <Card className="border-2 border-dashed border-muted-foreground/30 hover:border-primary/50 transition-all duration-300">
@@ -270,6 +287,24 @@ const Pricing = () => {
                         Need multi-stage validation or bespoke QA requirements? 
                         Let's tailor a plan that fits your specific project needs and timeline.
                       </p>
+                      
+                      {/* Mobile Banners - Both banners near Custom Package */}
+                      <div className="md:hidden space-y-4 mb-6">
+                        <div className="glass-effect p-4 rounded-lg border border-primary/20 text-center">
+                          <p className="text-sm font-medium text-foreground">
+                            Manual QA & rework runs $8 000+ per phase. 
+                            <span className="text-primary font-semibold"> Valiblox delivers in 48 h for $990–$2 990.</span>
+                          </p>
+                        </div>
+                        <div className="glass-effect p-4 rounded-lg border border-destructive/20 text-center">
+                          <p className="text-sm font-medium text-foreground">
+                            A single error on a $50 M project can cost up to 
+                            <span className="text-destructive font-semibold"> $500 k in rework.</span>
+                            <span className="text-primary font-semibold"> Valiblox nips issues in 48 h.</span>
+                          </p>
+                        </div>
+                      </div>
+                      
                       <Button className="bg-primary hover:bg-primary-hover">
                         Request Custom Quote
                         <ArrowRight className="w-4 h-4 ml-2" />
