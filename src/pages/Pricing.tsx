@@ -104,15 +104,23 @@ const Pricing = () => {
               
               {/* Basic QA Package */}
               <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
+                {/* Re-check Badge */}
+                <div className="absolute -top-3 right-4">
+                  <Badge className="bg-primary text-primary-foreground px-3 py-1 flex items-center gap-1">
+                    <RotateCcw className="w-3 h-3" />
+                    Includes 1 Free Re-check
+                  </Badge>
+                </div>
+                
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="secondary" className="text-xs">Stage 2</Badge>
                     <div className="text-right">
-                      <div className="text-3xl font-bold text-foreground">$990</div>
+                      <div className="text-3xl font-bold text-primary">$990</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">Basic QA</CardTitle>
-                  <p className="text-muted-foreground">Drawings & specs only</p>
+                  <CardTitle className="text-xl text-foreground">Stage 2 – Concept QA</CardTitle>
+                  <p className="text-muted-foreground">Drawings & specs validation</p>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
@@ -126,16 +134,16 @@ const Pricing = () => {
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <FileText className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Drawing review & validation</span>
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Enforce naming & version rules</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Specification compliance check</span>
+                      <span className="text-sm">Validate drawing list instantly</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <RotateCcw className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">One free re-check included</span>
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm">Ensure title-block accuracy</span>
                     </div>
                   </div>
                   
@@ -146,7 +154,7 @@ const Pricing = () => {
                   </div>
                   
                   <Button className="w-full" variant="outline">
-                    Select Basic QA
+                    Secure Stage 2 QA
                   </Button>
                 </CardContent>
               </Card>
@@ -159,15 +167,23 @@ const Pricing = () => {
                   </Badge>
                 </div>
                 
+                {/* Re-check Badge */}
+                <div className="absolute -top-3 right-4">
+                  <Badge className="bg-primary text-primary-foreground px-3 py-1 flex items-center gap-1">
+                    <RotateCcw className="w-3 h-3" />
+                    Includes 1 Free Re-check
+                  </Badge>
+                </div>
+                
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="secondary" className="text-xs">Stage 3</Badge>
                     <div className="text-right">
-                      <div className="text-3xl font-bold text-foreground">$1,990</div>
+                      <div className="text-3xl font-bold text-primary">$1,990</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">Full QA</CardTitle>
-                  <p className="text-muted-foreground">Includes Basic + model LOD, clash summary</p>
+                  <CardTitle className="text-xl text-foreground">Stage 3 – Developed QA</CardTitle>
+                  <p className="text-muted-foreground">Includes Concept + model LOD, clash summary</p>
                 </CardHeader>
                 
                 <CardContent className="pt-0">
@@ -181,20 +197,16 @@ const Pricing = () => {
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <Layers className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-sm">3D model LOD validation</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Zap className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-sm">Comprehensive clash detection</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">All Basic QA features</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <RotateCcw className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">One free re-check included</span>
+                      <span className="text-sm">All Stage 2 QA features</span>
                     </div>
                   </div>
                   
@@ -205,21 +217,29 @@ const Pricing = () => {
                   </div>
                   
                   <Button className="w-full bg-primary hover:bg-primary-hover">
-                    Select Full QA
+                    Secure Stage 3 QA
                   </Button>
                 </CardContent>
               </Card>
 
               {/* IFC Compliance Validation Package */}
               <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
+                {/* Re-check Badge */}
+                <div className="absolute -top-3 right-4">
+                  <Badge className="bg-primary text-primary-foreground px-3 py-1 flex items-center gap-1">
+                    <RotateCcw className="w-3 h-3" />
+                    Includes 1 Free Re-check
+                  </Badge>
+                </div>
+                
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="secondary" className="text-xs">Stage 4</Badge>
                     <div className="text-right">
-                      <div className="text-3xl font-bold text-foreground">$2,990</div>
+                      <div className="text-3xl font-bold text-primary">$2,990</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">IFC Compliance Validation</CardTitle>
+                  <CardTitle className="text-xl text-foreground">Stage 4 – Technical QA</CardTitle>
                   <p className="text-muted-foreground">Full IFC-ready compliance check</p>
                 </CardHeader>
                 
@@ -234,20 +254,16 @@ const Pricing = () => {
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <Shield className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-sm">IFC compliance validation</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <FileText className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-sm">Final revision review</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-sm">All previous QA features</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <RotateCcw className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">One free re-check included</span>
                     </div>
                   </div>
                   
@@ -258,7 +274,7 @@ const Pricing = () => {
                   </div>
                   
                   <Button className="w-full" variant="outline">
-                    Select IFC Compliance
+                    Secure Stage 4 QA
                   </Button>
                 </CardContent>
               </Card>
@@ -281,7 +297,10 @@ const Pricing = () => {
                     <div>
                       <div className="flex items-center gap-3 mb-4">
                         <Settings className="w-8 h-8 text-primary" />
-                        <h3 className="text-2xl font-bold text-foreground">Custom QA Package</h3>
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground">Custom QA Package</h3>
+                          <p className="text-sm text-muted-foreground">Tailored multi-stage QA & enterprise integrations</p>
+                        </div>
                       </div>
                       <p className="text-muted-foreground mb-6 leading-relaxed">
                         Need multi-stage validation or bespoke QA requirements? 
@@ -306,7 +325,7 @@ const Pricing = () => {
                       </div>
                       
                       <Button className="bg-primary hover:bg-primary-hover">
-                        Request Custom Quote
+                        Discuss Custom QA
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </div>
