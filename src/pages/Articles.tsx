@@ -100,7 +100,11 @@ const Articles = () => {
   });
 
   const handleReadMore = (articleId: number) => {
-    navigate(`/articles/${articleId}`);
+    if (articleId === 1) {
+      navigate('/articles/hidden-costs-design-errors');
+    } else {
+      navigate(`/articles/${articleId}`);
+    }
   };
 
   const filteredArticles = selectedCategory === "All" 
