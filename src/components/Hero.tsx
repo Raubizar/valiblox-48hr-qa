@@ -4,13 +4,34 @@ import heroImage from "@/assets/hero-professional-sidebyside.webp";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 import { DecorativeCheck } from "@/components/ui/decorative-check";
+import { useState, useEffect } from "react";
+import { processHeroImageBackground } from "@/utils/processHeroImage";
 
 export const Hero = () => {
+  const [processedImageUrl, setProcessedImageUrl] = useState<string>(heroImage);
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const qaReportWebhook = useWebhook({
     source: "hero-qa-report",
     title: "Get Your 48 h QA Report",
     description: "Request your comprehensive QA validation report for data center deliverables."
   });
+
+  useEffect(() => {
+    const processImage = async () => {
+      setIsProcessing(true);
+      try {
+        const processedUrl = await processHeroImageBackground();
+        setProcessedImageUrl(processedUrl);
+      } catch (error) {
+        console.error('Failed to process hero image:', error);
+      } finally {
+        setIsProcessing(false);
+      }
+    };
+
+    processImage();
+  }, []);
 
   return (
     <section className="py-20 bg-[#F3F6F8]">
@@ -75,13 +96,18 @@ export const Hero = () => {
               <DecorativeCheck />
               
               {/* Image card */}
-              <div className="relative bg-background rounded-xl shadow-[0_0_12px_rgba(0,0,0,0.06)] hover:scale-[1.02] transition-transform duration-300 overflow-hidden">
+              <div className="relative bg-gradient-to-br from-background to-muted/20 rounded-xl shadow-[0_0_12px_rgba(0,0,0,0.06)] hover:scale-[1.02] transition-transform duration-300 overflow-hidden">
                 <img 
-                  src={heroImage} 
+                  src={processedImageUrl} 
                   alt="Confident business professional with laptop and ceramic coffee mug, representing trust and control in QA validation" 
-                  className="w-full h-auto"
+                  className={`w-full h-auto transition-opacity duration-300 ${isProcessing ? 'opacity-50' : 'opacity-100'}`}
                   loading="lazy"
                 />
+                {isProcessing && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-background/20">
+                    <div className="text-xs text-muted-foreground">Processing...</div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
