@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/hero-relaxed-pm.jpg";
+import heroImage from "@/assets/hero-confident-professional.webp";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 
@@ -17,8 +17,9 @@ export const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="Relaxed project manager in suit with coffee and tablet, representing QA control" 
+          alt="Confident business professional with laptop and coffee, representing peace of mind through QA validation" 
           className="w-full h-full object-cover opacity-15"
+          loading="lazy"
         />
       </div>
       
