@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/hero-professional-sidebyside.webp";
+import heroImage from "@/assets/hero-confident-professional.webp";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 import { DecorativeCheck } from "@/components/ui/decorative-check";
@@ -78,8 +78,8 @@ export const Hero = () => {
               <div className="relative bg-background rounded-xl shadow-[0_0_12px_rgba(0,0,0,0.06)] hover:scale-[1.02] transition-transform duration-300 overflow-hidden">
                 <img 
                   src={heroImage} 
-                  alt="Confident business professional with laptop and ceramic coffee mug, representing trust and control in QA validation" 
-                  className="w-full h-auto"
+                  alt="Confident mid-40s business professional holding laptop and ceramic coffee mug, direct eye contact, representing trust and control in QA validation" 
+                  className="w-full h-auto opacity-100"
                   loading="lazy"
                 />
               </div>
