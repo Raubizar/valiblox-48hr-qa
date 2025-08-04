@@ -33,6 +33,12 @@ export const TrustStrip = () => {
             </div>
           ))}
         </div>
+        
+        <div className="text-center mt-6">
+          <p className="text-sm text-muted-foreground font-medium">
+            Proven on multiple European data-center projects (98.7% issue-detection accuracy, all engagements under strict NDA).
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -149,7 +149,7 @@ const Pricing = () => {
                   </div>
                   
                   {/* Trust Icons */}
-                  <div className="flex justify-center items-center gap-4 mb-6">
+                  <div className="flex justify-center items-center gap-4 mb-4">
                     <div className="flex items-center gap-1">
                       <Shield className="w-4 h-4 text-primary" />
                       <span className="text-xs text-muted-foreground">NDA</span>
@@ -162,6 +162,12 @@ const Pricing = () => {
                       <Zap className="w-4 h-4 text-primary" />
                       <span className="text-xs text-muted-foreground">Expert</span>
                     </div>
+                  </div>
+                  
+                  <div className="text-center mb-6">
+                    <p className="text-xs text-muted-foreground italic">
+                      Independent QA workflow already deployed across several hyperscale and colocation builds in Europe—client details protected by NDA.
+                    </p>
                   </div>
                   
                   <div className="p-4 bg-primary-light rounded-lg mb-6">
@@ -233,7 +239,7 @@ const Pricing = () => {
                   </div>
                   
                   {/* Trust Icons */}
-                  <div className="flex justify-center items-center gap-4 mb-6">
+                  <div className="flex justify-center items-center gap-4 mb-4">
                     <div className="flex items-center gap-1">
                       <Shield className="w-4 h-4 text-primary" />
                       <span className="text-xs text-muted-foreground">NDA</span>
@@ -246,6 +252,12 @@ const Pricing = () => {
                       <Zap className="w-4 h-4 text-primary" />
                       <span className="text-xs text-muted-foreground">Expert</span>
                     </div>
+                  </div>
+                  
+                  <div className="text-center mb-6">
+                    <p className="text-xs text-muted-foreground italic">
+                      Independent QA workflow already deployed across several hyperscale and colocation builds in Europe—client details protected by NDA.
+                    </p>
                   </div>
                   
                   <div className="p-4 bg-primary-light rounded-lg mb-6">
@@ -311,7 +323,7 @@ const Pricing = () => {
                   </div>
                   
                   {/* Trust Icons */}
-                  <div className="flex justify-center items-center gap-4 mb-6">
+                  <div className="flex justify-center items-center gap-4 mb-4">
                     <div className="flex items-center gap-1">
                       <Shield className="w-4 h-4 text-primary" />
                       <span className="text-xs text-muted-foreground">NDA</span>
@@ -324,6 +336,12 @@ const Pricing = () => {
                       <Zap className="w-4 h-4 text-primary" />
                       <span className="text-xs text-muted-foreground">Expert</span>
                     </div>
+                  </div>
+                  
+                  <div className="text-center mb-6">
+                    <p className="text-xs text-muted-foreground italic">
+                      Independent QA workflow already deployed across several hyperscale and colocation builds in Europe—client details protected by NDA.
+                    </p>
                   </div>
                   
                   <div className="p-4 bg-primary-light rounded-lg mb-6">

@@ -26,14 +26,6 @@ export const ValueSnapshot = () => {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             Value Snapshot
           </h2>
-          <div className="glass-effect p-4 rounded-xl border border-primary/20 max-w-md mx-auto mb-6">
-            <div className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">
-              Pilot Proof
-            </div>
-            <p className="text-sm font-medium text-foreground">
-              27 errors spotted in 48 h, saving 10 days of rework.
-            </p>
-          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
