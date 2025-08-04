@@ -19,6 +19,20 @@ export const Hero = () => {
           
           {/* Left Column - Text Content */}
           <div className="space-y-8">
+            {/* Main Headline */}
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-foreground leading-tight tracking-tight">
+              <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
+                Spot Every Deliverable Error in 48 h
+              </span>
+              —Independent QA for Data Center Projects
+            </h1>
+
+            {/* Subheadline */}
+            <div className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed font-normal space-y-2">
+              <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
+              <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
+            </div>
+
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center gap-3">
               <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
@@ -33,20 +47,6 @@ export const Hero = () => {
                 <CheckCircle className="w-3 h-3 text-primary" />
                 Zero Software Install
               </div>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-foreground leading-tight tracking-tight">
-              <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-                Spot Every Deliverable Error in 48 h
-              </span>
-              —Independent QA for Data Center Projects
-            </h1>
-
-            {/* Subheadline */}
-            <div className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed font-normal space-y-2">
-              <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
-              <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
             </div>
 
             {/* CTA Button */}
