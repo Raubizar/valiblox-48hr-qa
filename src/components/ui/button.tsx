@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         premium: "bg-primary text-primary-foreground hover:bg-primary-hover rounded-xl shadow-apple-lg font-semibold transform hover:-translate-y-0.5",
         "outline-premium": "border border-primary/20 text-primary bg-primary-light hover:bg-primary hover:text-primary-foreground rounded-xl shadow-apple font-semibold backdrop-blur-sm",
-        cta: "bg-gradient-to-r from-primary to-primary-hover text-primary-foreground hover:shadow-apple-xl transform hover:-translate-y-1 font-bold rounded-2xl",
+        cta: "bg-gradient-to-r from-primary to-primary-hover text-primary-foreground hover:shadow-apple-xl hover:border-[#00B3A4] transform hover:-translate-y-1 font-bold rounded-2xl border border-transparent",
       },
       size: {
         default: "h-9 px-3 py-2",

@@ -3,6 +3,7 @@ import { Shield, Clock, CheckCircle } from "lucide-react";
 import heroImage from "@/assets/hero-professional-sidebyside.webp";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
+import { DecorativeCheck } from "@/components/ui/decorative-check";
 
 export const Hero = () => {
   const qaReportWebhook = useWebhook({
@@ -12,7 +13,7 @@ export const Hero = () => {
   });
 
   return (
-    <section className="py-12 lg:py-20 bg-background">
+    <section className="py-20 bg-[#F3F6F8]">
       <div className="max-w-7xl mx-auto px-4">
         {/* Two Column Grid */}
         <div className="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-12 items-center">
@@ -69,13 +70,19 @@ export const Hero = () => {
 
           {/* Right Column - Image */}
           <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-md lg:max-w-lg">
-              <img 
-                src={heroImage} 
-                alt="Confident business professional with laptop and ceramic coffee mug, representing trust and control in QA validation" 
-                className="w-full h-auto rounded-lg shadow-lg"
-                loading="lazy"
-              />
+            <div className="w-full max-w-md lg:max-w-lg relative">
+              {/* Decorative accent behind image */}
+              <DecorativeCheck />
+              
+              {/* Image card */}
+              <div className="relative bg-background rounded-xl shadow-[0_0_12px_rgba(0,0,0,0.06)] hover:scale-[1.02] transition-transform duration-300 overflow-hidden">
+                <img 
+                  src={heroImage} 
+                  alt="Confident business professional with laptop and ceramic coffee mug, representing trust and control in QA validation" 
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
