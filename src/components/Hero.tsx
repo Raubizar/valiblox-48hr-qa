@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/hero-confident-professional.webp";
+import heroImage from "@/assets/hero-professional-sidebyside.webp";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 
@@ -12,72 +12,71 @@ export const Hero = () => {
   });
 
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center gradient-hero overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="Confident business professional with laptop and coffee, representing peace of mind through QA validation" 
-          className="w-full h-full object-cover opacity-15"
-          loading="lazy"
-        />
-      </div>
-      
-      {/* Floating background elements */}
-      <div className="absolute inset-0 z-5">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary/3 rounded-full blur-3xl"></div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
-        <div className="max-w-3xl mx-auto text-center">
+    <section className="py-12 lg:py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Two Column Grid */}
+        <div className="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-12 items-center">
           
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
-            <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
-              <Shield className="w-3 h-3 text-primary" />
-              NDA-Covered
+          {/* Left Column - Text Content */}
+          <div className="space-y-8">
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                <Shield className="w-3 h-3 text-primary" />
+                NDA-Covered
+              </div>
+              <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                <Clock className="w-3 h-3 text-primary" />
+                48h Delivery
+              </div>
+              <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                <CheckCircle className="w-3 h-3 text-primary" />
+                Zero Software Install
+              </div>
             </div>
-            <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
-              <Clock className="w-3 h-3 text-primary" />
-              48h Delivery
+
+            {/* Main Headline */}
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-foreground leading-tight tracking-tight">
+              <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
+                Spot Every Deliverable Error in 48 h
+              </span>
+              —Independent QA for Data Center Projects
+            </h1>
+
+            {/* Subheadline */}
+            <div className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed font-normal space-y-2">
+              <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
+              <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
             </div>
-            <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
-              <CheckCircle className="w-3 h-3 text-primary" />
-              Zero Software Install
+
+            {/* CTA Button */}
+            <div className="flex">
+              <Button variant="cta" size="lg" onClick={qaReportWebhook.openModal}>
+                Get Your 48 h QA Report
+              </Button>
+            </div>
+
+            {/* Value Proposition */}
+            <div className="glass-effect p-4 rounded-xl max-w-xl">
+              <p className="text-sm text-foreground mb-1 font-medium">
+                We validate the information before it becomes a costly problem
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Helping PMs and Owners prevent delays, RFIs, rework, and budget overruns
+              </p>
             </div>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight tracking-tight">
-            <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              Spot Every Deliverable Error in 48 h
-            </span>
-            —Independent QA for Data Center Projects
-          </h1>
-
-          {/* Subheadline */}
-          <div className="text-sm md:text-base text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed font-normal space-y-1">
-            <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
-            <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
-          </div>
-
-          {/* CTA Button */}
-          <div className="flex justify-center mb-10">
-            <Button variant="cta" size="sm" className="w-full sm:w-auto" onClick={qaReportWebhook.openModal}>
-              Get Your 48 h QA Report
-            </Button>
-          </div>
-
-          {/* Value Proposition */}
-          <div className="glass-effect p-4 rounded-xl max-w-xl mx-auto">
-            <p className="text-sm text-foreground mb-1 font-medium">
-              We validate the information before it becomes a costly problem
-            </p>
-            <p className="text-xs text-muted-foreground">
-              Helping PMs and Owners prevent delays, RFIs, rework, and budget overruns
-            </p>
+          {/* Right Column - Image */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-md lg:max-w-lg">
+              <img 
+                src={heroImage} 
+                alt="Confident business professional with laptop and ceramic coffee mug, representing trust and control in QA validation" 
+                className="w-full h-auto rounded-lg shadow-lg"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>
