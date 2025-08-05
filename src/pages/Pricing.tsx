@@ -34,6 +34,12 @@ const Pricing = () => {
     description: "Tell us about your project and we'll provide professional QA validation that prevents costly rework and schedule delays."
   });
 
+  const downloadSampleWebhook = useWebhook({
+    source: "pricing-download-sample",
+    title: "Download Sample Report",
+    description: "Get a sample QA report to see the quality and detail of our analysis."
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
@@ -491,7 +497,7 @@ const Pricing = () => {
                     Get Your 48 h QA Report
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
-                  <Button size="lg" variant="outline">
+                  <Button size="lg" variant="outline" onClick={downloadSampleWebhook.openModal}>
                     <Download className="w-4 h-4 mr-2" />
                     Download Sample Report
                   </Button>
@@ -511,12 +517,18 @@ const Pricing = () => {
 
       <Footer />
 
-      {/* Webhook Modal */}
+      {/* Webhook Modals */}
       <WebhookModal
         isOpen={submitPackageWebhook.isModalOpen}
         onClose={submitPackageWebhook.closeModal}
         onSubmit={submitPackageWebhook.handleSubmit}
         {...submitPackageWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={downloadSampleWebhook.isModalOpen}
+        onClose={downloadSampleWebhook.closeModal}
+        onSubmit={downloadSampleWebhook.handleSubmit}
+        {...downloadSampleWebhook.modalProps}
       />
     </main>
   );
