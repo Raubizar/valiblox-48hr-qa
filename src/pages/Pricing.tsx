@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // Import images
-import pricingChart from "@/assets/pricing-comparison-chart.jpg";
+import pricingChart from "@/assets/ChatGPT Image Aug 5, 2025, 11_29_30 AM.png";
 import blueprintImage from "@/assets/pricing/blueprint-validated.jpg";
 import modelImage from "@/assets/pricing/3d-model-annotated.jpg";
 import stampImage from "@/assets/pricing/validated-stamp.jpg";
@@ -48,35 +48,53 @@ const Pricing = () => {
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                  Pricing Aligned to <span className="text-primary">Real QA Costs</span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="space-y-8">
+                {/* Main Headline */}
+                <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground leading-tight tracking-tight">
+                  <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
+                    Pricing Aligned to Real QA Costs
+                  </span>
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  Compare manual QA time & risk vs our 48h independent validation. 
-                  Stop burning weeks on coordination—get professional results in 2 days.
-                </p>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-primary" />
-                    <span>48h delivery</span>
+
+                {/* Subheadline */}
+                <div className="text-sm md:text-sm lg:text-base text-muted-foreground leading-relaxed font-normal space-y-2">
+                  <p>Compare manual QA time & risk vs our 48h independent validation.</p>
+                  <p>Stop burning weeks on coordination—get professional results in 2 days.</p>
+                </div>
+
+                {/* Trust Indicators */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                    <Clock className="w-3 h-3 text-primary" />
+                    48h delivery
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-primary" />
-                    <span>One free re-check</span>
+                  <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                    <Shield className="w-3 h-3 text-primary" />
+                    One free re-check
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    <span>Professional validation</span>
+                  <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                    <CheckCircle className="w-3 h-3 text-primary" />
+                    Professional validation
                   </div>
                 </div>
+
+                {/* Cost Banner */}
+                <div className="glass-effect p-4 rounded-xl max-w-xl">
+                  <p className="text-sm text-foreground mb-1 font-medium">
+                    Manual QA & rework for a Data Center stage runs $8 000+ per phase. 
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    <span className="text-primary font-semibold">Valiblox delivers in 48 h for $990–$2 990.</span>
+                  </p>
+                </div>
               </div>
+              
               <div className="flex justify-center">
                 <img 
                   src={pricingChart} 
                   alt="Cost comparison: Manual QA vs Valiblox" 
-                  className="max-w-full h-auto rounded-lg shadow-apple-lg"
+                  className="w-full max-w-xs lg:max-w-sm h-auto rounded-lg shadow-apple-lg"
                 />
               </div>
             </div>
@@ -88,13 +106,7 @@ const Pricing = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
-            {/* Cost Banner Above Pricing */}
-            <div className="glass-effect p-6 rounded-xl border border-primary/20 mb-12 text-center">
-              <p className="text-lg font-medium text-foreground">
-                Manual QA & rework for a Data Center stage runs $8 000+ per phase. 
-                <span className="text-primary font-semibold"> Valiblox delivers in 48 h for $990–$2 990.</span>
-              </p>
-            </div>
+
 
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
