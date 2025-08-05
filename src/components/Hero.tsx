@@ -16,7 +16,7 @@ export const Hero = () => {
     <section className="py-20 bg-[#F3F6F8]">
       <div className="max-w-[1600px] mx-auto px-8 lg:px-16 xl:px-20">
         {/* Two Column Grid */}
-        <div className="grid lg:grid-cols-[40%_60%] gap-8 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-[50%_50%] gap-8 lg:gap-12 items-start">
           
           {/* Left Column - Text Content */}
           <div className="space-y-8">
