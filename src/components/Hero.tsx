@@ -14,9 +14,9 @@ export const Hero = () => {
 
   return (
     <section className="py-20 bg-[#F3F6F8]">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1600px] mx-auto px-8 lg:px-16 xl:px-20">
         {/* Two Column Grid */}
-        <div className="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-[40%_60%] gap-8 lg:gap-12 items-start">
           
           {/* Left Column - Text Content */}
           <div className="space-y-8">
@@ -69,13 +69,13 @@ export const Hero = () => {
           </div>
 
           {/* Right Column - Image */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-md lg:max-w-lg relative">
+          <div className="flex justify-center lg:justify-end items-start lg:items-center">
+            <div className="w-full max-w-lg lg:max-w-2xl relative lg:mt-8">
               {/* Decorative accent behind image */}
               <DecorativeCheck />
               
               {/* Image card */}
-              <div className="relative bg-background rounded-xl shadow-[0_0_12px_rgba(0,0,0,0.06)] hover:scale-[1.02] transition-transform duration-300 overflow-hidden">
+              <div className="relative hover:scale-[1.02] transition-transform duration-300">
                 <img 
                   src={heroImage} 
                   alt="Confident business professional with laptop and ceramic coffee mug, representing trust and control in QA validation" 
