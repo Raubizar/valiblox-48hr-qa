@@ -16,12 +16,12 @@ export const Hero = () => {
     <section className="py-20 bg-[#F3F6F8]">
       <div className="max-w-[1600px] mx-auto px-8 lg:px-16 xl:px-20">
         {/* Two Column Grid */}
-        <div className="grid lg:grid-cols-[50%_50%] gap-8 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-[60%_40%] gap-8 lg:gap-12 items-start">
           
           {/* Left Column - Text Content */}
           <div className="space-y-8">
             {/* Main Headline */}
-            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-foreground leading-tight tracking-tight">
+            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground leading-tight tracking-tight">
               <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
                 Spot Every Deliverable Error in 48 h
               </span>
@@ -29,7 +29,7 @@ export const Hero = () => {
             </h1>
 
             {/* Subheadline */}
-            <div className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed font-normal space-y-2">
+            <div className="text-sm md:text-sm lg:text-base text-muted-foreground leading-relaxed font-normal space-y-2">
               <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
               <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
             </div>
@@ -69,8 +69,8 @@ export const Hero = () => {
           </div>
 
           {/* Right Column - Image */}
-          <div className="flex justify-center lg:justify-end items-start lg:items-center">
-            <div className="w-full max-w-lg lg:max-w-2xl relative lg:mt-8">
+          <div className="flex justify-center lg:justify-end items-start">
+            <div className="w-full max-w-lg lg:max-w-2xl relative">
               {/* Decorative accent behind image */}
               <DecorativeCheck />
               
