@@ -112,90 +112,72 @@ const Pricing = () => {
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                 Choose Your QA Package
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Each package builds on the previous, delivering comprehensive validation 
                 at every stage of your data center project.
               </p>
+              
+              {/* Global Trust Indicators */}
+              <div className="flex justify-center items-center gap-6 mb-8">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-primary" />
+                  <span className="text-sm text-muted-foreground">NDA Protected</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
+                  <span className="text-sm text-muted-foreground">48h Delivery</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-primary" />
+                  <span className="text-sm text-muted-foreground">Expert Review</span>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               
               {/* Basic QA Package */}
               <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
-                {/* Re-check Badge */}
-                <div className="absolute -top-3 right-4">
-                  <Badge className="bg-primary text-primary-foreground px-3 py-1 flex items-center gap-1">
-                    <RotateCcw className="w-3 h-3" />
-                    Includes 1 Free Re-check
-                  </Badge>
-                </div>
-                
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-2">
+                <CardHeader className="pb-6">
+                  <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 2</Badge>
                     <div className="text-right">
                       <div className="text-3xl font-bold text-primary">$990</div>
+                      <div className="text-xs text-muted-foreground">+ 1 free re-check</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">Stage 2 – Concept QA</CardTitle>
-                  <p className="text-muted-foreground">Drawings & specs validation</p>
-                  <p className="text-sm text-primary font-medium mt-2">We inspect & report—your consultants handle fixes</p>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
+                  <CardTitle className="text-xl text-foreground mb-2">Stage 2 – Concept QA</CardTitle>
+                  <p className="text-muted-foreground mb-4">Drawings & specs validation</p>
+                  
                   <div className="mb-6">
                     <img 
                       src={blueprintImage} 
                       alt="Blueprint with validation checkmarks" 
-                      className="w-full h-40 object-cover rounded-lg"
+                      className="w-full h-32 object-cover rounded-lg"
                     />
                   </div>
-                  
+                </CardHeader>
+                
+                <CardContent className="pt-0">
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Enforce naming & version rules</span>
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">Drawing list validation</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Validate drawing list instantly</span>
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">Naming & version control</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Ensure title-block accuracy</span>
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">Title-block accuracy</span>
                     </div>
                   </div>
                   
-                  {/* Trust Icons */}
-                  <div className="flex justify-center items-center gap-4 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Shield className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">NDA</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">48h</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Zap className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">Expert</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center mb-6">
-                    <p className="text-xs text-muted-foreground italic">
-                      Independent QA workflow already deployed across several hyperscale and colocation builds in Europe—client details protected by NDA.
+                  <div className="p-3 bg-muted rounded-lg mb-6 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      Save 5–8 days of manual QA
                     </p>
-                  </div>
-                  
-                  <div className="p-4 bg-primary-light rounded-lg mb-6">
-                    <p className="text-sm font-medium text-primary">
-                      Save 5–8 days of manual QA & avoid rework costs
-                    </p>
-                  </div>
-                  
-                  <div className="text-center mb-4">
-                    <p className="text-xs text-muted-foreground font-medium">Includes 1 Free Re-Check</p>
                   </div>
                   
                   <Button className="w-full" variant="outline">
@@ -212,80 +194,46 @@ const Pricing = () => {
                   </Badge>
                 </div>
                 
-                {/* Re-check Badge */}
-                <div className="absolute -top-3 right-4">
-                  <Badge className="bg-primary text-primary-foreground px-3 py-1 flex items-center gap-1">
-                    <RotateCcw className="w-3 h-3" />
-                    Includes 1 Free Re-check
-                  </Badge>
-                </div>
-                
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-2">
+                <CardHeader className="pb-6">
+                  <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 3</Badge>
                     <div className="text-right">
                       <div className="text-3xl font-bold text-primary">$1,990</div>
+                      <div className="text-xs text-muted-foreground">+ 1 free re-check</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">Stage 3 – Developed QA</CardTitle>
-                  <p className="text-muted-foreground">Includes Concept + model LOD, clash summary</p>
-                  <p className="text-sm text-primary font-medium mt-2">We inspect & report—your consultants handle fixes</p>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
+                  <CardTitle className="text-xl text-foreground mb-2">Stage 3 – Developed QA</CardTitle>
+                  <p className="text-muted-foreground mb-4">Concept + model LOD + clash summary</p>
+                  
                   <div className="mb-6">
                     <img 
                       src={modelImage} 
                       alt="3D model with professional annotations" 
-                      className="w-full h-40 object-cover rounded-lg"
+                      className="w-full h-32 object-cover rounded-lg"
                     />
                   </div>
-                  
+                </CardHeader>
+                
+                <CardContent className="pt-0">
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">Model LOD/LOI compliance</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">Clash-risk summary</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">All Stage 2 items</span>
                     </div>
                   </div>
                   
-                  {/* Trust Icons */}
-                  <div className="flex justify-center items-center gap-4 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Shield className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">NDA</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">48h</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Zap className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">Expert</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center mb-6">
-                    <p className="text-xs text-muted-foreground italic">
-                      Independent QA workflow already deployed across several hyperscale and colocation builds in Europe—client details protected by NDA.
+                  <div className="p-3 bg-muted rounded-lg mb-6 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      Replace 10+ days of coordination
                     </p>
-                  </div>
-                  
-                  <div className="p-4 bg-primary-light rounded-lg mb-6">
-                    <p className="text-sm font-medium text-primary">
-                      Replace 10+ days of coordination with one 48h report
-                    </p>
-                  </div>
-                  
-                  <div className="text-center mb-4">
-                    <p className="text-xs text-muted-foreground font-medium">Includes 1 Free Re-Check</p>
                   </div>
                   
                   <Button className="w-full bg-primary hover:bg-primary-hover">
@@ -296,80 +244,46 @@ const Pricing = () => {
 
               {/* IFC Compliance Validation Package */}
               <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
-                {/* Re-check Badge */}
-                <div className="absolute -top-3 right-4">
-                  <Badge className="bg-primary text-primary-foreground px-3 py-1 flex items-center gap-1">
-                    <RotateCcw className="w-3 h-3" />
-                    Includes 1 Free Re-check
-                  </Badge>
-                </div>
-                
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-2">
+                <CardHeader className="pb-6">
+                  <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 4</Badge>
                     <div className="text-right">
                       <div className="text-3xl font-bold text-primary">$2,990</div>
+                      <div className="text-xs text-muted-foreground">+ 1 free re-check</div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl text-foreground">Stage 4 – Technical QA</CardTitle>
-                  <p className="text-muted-foreground">Full IFC-ready compliance check</p>
-                  <p className="text-sm text-primary font-medium mt-2">We inspect & report—your consultants handle fixes</p>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
+                  <CardTitle className="text-xl text-foreground mb-2">Stage 4 – Technical QA</CardTitle>
+                  <p className="text-muted-foreground mb-4">Full IFC-ready compliance check</p>
+                  
                   <div className="mb-6">
                     <img 
                       src={stampImage} 
                       alt="Technical drawing with validation stamp" 
-                      className="w-full h-40 object-cover rounded-lg"
+                      className="w-full h-32 object-cover rounded-lg"
                     />
                   </div>
-                  
+                </CardHeader>
+                
+                <CardContent className="pt-0">
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">Revision & metadata control</span>
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">IFC-ready compliance</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-sm">IFC-ready compliance summary</span>
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">Metadata control</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">All Stage 3 items</span>
                     </div>
                   </div>
                   
-                  {/* Trust Icons */}
-                  <div className="flex justify-center items-center gap-4 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Shield className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">NDA</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">48h</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Zap className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">Expert</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center mb-6">
-                    <p className="text-xs text-muted-foreground italic">
-                      Independent QA workflow already deployed across several hyperscale and colocation builds in Europe—client details protected by NDA.
+                  <div className="p-3 bg-muted rounded-lg mb-6 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      Prevent late-stage RFIs
                     </p>
-                  </div>
-                  
-                  <div className="p-4 bg-primary-light rounded-lg mb-6">
-                    <p className="text-sm font-medium text-primary">
-                      Prevent late-stage RFIs and schedule slips
-                    </p>
-                  </div>
-                  
-                  <div className="text-center mb-4">
-                    <p className="text-xs text-muted-foreground font-medium">Includes 1 Free Re-Check</p>
                   </div>
                   
                   <Button className="w-full" variant="outline">

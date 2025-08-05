@@ -30,7 +30,7 @@ export const Hero = () => {
 
             {/* Subheadline */}
             <div className="text-sm md:text-sm lg:text-base text-muted-foreground leading-relaxed font-normal space-y-2">
-              <p>We flag issues in your drawings, models, and specs—then re-check for free until the package passes.</p>
+              <p>We flag issues in your drawings, models, and specs—then re-check until the package passes.</p>
               <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
             </div>
 
