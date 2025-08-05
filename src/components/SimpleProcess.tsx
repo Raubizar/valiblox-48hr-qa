@@ -6,19 +6,19 @@ export const SimpleProcess = () => {
       number: 1,
       icon: Upload,
       title: "Upload files",
-      description: "Share drawings, models & specs through our secure portal"
+      description: "Share deliverables list, PDF, CAD drawings, 3D models, specifications, and design documentation securely"
     },
     {
       number: 2,
       icon: Search,
       title: "We inspect & report",
-      description: "Independent validation identifies every deliverable error"
+      description: "Drawing lists, naming rules, model compliance, clash detection, and metadata validation"
     },
     {
       number: 3,
       icon: ArrowRight,
       title: "You fix & move forward",
-      description: "Act on our findings with confidence—no surprises ahead"
+      description: "Receive detailed report with specific issues and recommendations for resolution"
     }
   ];
 
@@ -30,7 +30,7 @@ export const SimpleProcess = () => {
             Simple 3-Step Process
           </h2>
           <p className="text-sm text-muted-foreground">
-            Professional QA validation delivered in 48 hours — no software, no complexity
+            Comprehensive design validation covering drawings, models, and compliance — delivered in 48 hours
           </p>
         </div>
 
