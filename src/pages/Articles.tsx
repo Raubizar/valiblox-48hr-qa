@@ -22,8 +22,8 @@ const articles = [
     id: 1,
     title: "The Hidden Costs of Design Errors in Data Center Projects",
     excerpt: "Discover how early QA validation can prevent million-dollar mistakes and project delays in critical infrastructure projects.",
-    author: "Sarah Chen",
-    publishDate: "2024-01-15",
+    author: "Team Valiblox",
+    publishDate: "Jan/2025",
     readTime: "8 min read",
     category: "Cost Analysis",
     image: hiddenCostsImage,
@@ -33,8 +33,8 @@ const articles = [
     id: 2,
     title: "BIM Quality Assurance: Best Practices for 2024",
     excerpt: "Essential guidelines for ensuring BIM model accuracy and compliance with the latest industry standards and regulations.",
-    author: "Michael Rodriguez",
-    publishDate: "2024-01-10",
+    author: "Team Valiblox",
+    publishDate: "Feb/2025",
     readTime: "12 min read",
     category: "Best Practices",
     image: bimQaImage
@@ -43,8 +43,8 @@ const articles = [
     id: 3,
     title: "Independent QA vs In-House Validation: A Comprehensive Comparison",
     excerpt: "Analyzing the benefits, costs, and effectiveness of external QA services versus internal validation processes.",
-    author: "Jennifer Liu",
-    publishDate: "2024-01-05",
+    author: "Team Valiblox",
+    publishDate: "Mar/2025",
     readTime: "10 min read",
     category: "Industry Insights",
     image: independentQaImage
@@ -53,8 +53,8 @@ const articles = [
     id: 4,
     title: "Data Security in External QA: What You Need to Know",
     excerpt: "Understanding NDA protocols, data handling procedures, and security measures in third-party QA validation services.",
-    author: "David Thompson",
-    publishDate: "2023-12-28",
+    author: "Team Valiblox",
+    publishDate: "Apr/2025",
     readTime: "6 min read",
     category: "Security",
     image: dataSecurityImage
@@ -63,8 +63,8 @@ const articles = [
     id: 5,
     title: "ROI of Professional QA: Case Studies from Fortune 500 Companies",
     excerpt: "Real-world examples showing how professional QA validation delivers measurable returns on investment.",
-    author: "Lisa Park",
-    publishDate: "2023-12-20",
+    author: "Team Valiblox",
+    publishDate: "May/2025",
     readTime: "15 min read",
     category: "Case Studies",
     image: roiQaImage
@@ -73,8 +73,8 @@ const articles = [
     id: 6,
     title: "Future of Design Validation: AI and Machine Learning Trends",
     excerpt: "Exploring how artificial intelligence is revolutionizing quality assurance in architecture and engineering.",
-    author: "Robert Kim",
-    publishDate: "2023-12-15",
+    author: "Team Valiblox",
+    publishDate: "Jun/2025",
     readTime: "11 min read",
     category: "Technology",
     image: futureAiImage
@@ -259,7 +259,14 @@ const Articles = () => {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-lg border border-border bg-background text-foreground"
               />
-              <Button variant="cta" onClick={subscribeWebhook.openModal}>
+              <Button 
+                variant="cta" 
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  subscribeWebhook.openModal();
+                }}
+              >
                 Subscribe
               </Button>
             </div>
