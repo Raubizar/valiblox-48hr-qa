@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
+import { Helmet } from "react-helmet";
 import { 
   FileText, 
   CheckCircle, 
@@ -42,6 +43,13 @@ const Pricing = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <Helmet>
+        <title>Pricing | Valiblox — 48h Independent QA Validation</title>
+        <meta name="description" content="Transparent pricing for 48-hour independent QA validation. Compare packages and understand ROI vs manual QA for data center projects." />
+        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/pricing"} />
+        <meta property="og:title" content="Pricing | Valiblox" />
+        <meta property="og:description" content="48h independent QA validation pricing and packages." />
+      </Helmet>
       <Header />
       
       {/* Introduction Banner */}

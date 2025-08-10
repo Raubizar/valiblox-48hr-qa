@@ -1,10 +1,16 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
+import { Helmet } from "react-helmet";
 
 export default function Policies() {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Privacy, Terms & Cookie Policy | Valiblox</title>
+        <meta name="description" content="Read Valiblox's Privacy Policy, Terms of Service, and Cookie Policy. Learn how we protect your data and the terms governing our QA services." />
+        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/policies"} />
+      </Helmet>
       <Header />
       
       <main className="container mx-auto px-4 py-16">

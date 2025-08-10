@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Footer } from "@/components/Footer";
+import { Helmet } from "react-helmet";
 
 const NotFound = () => {
   const location = useLocation();
@@ -14,6 +15,10 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>404 Not Found | Valiblox</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="flex-1 flex items-center justify-center bg-gray-100">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">404</h1>

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, AlertTriangle, DollarSign, Clock, Wrench, TrendingDown, Calculator } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import hiddenCostsImage from "@/assets/articles/hidden-costs-design-errors.jpg";
+import { Helmet } from "react-helmet";
 
 const toCurrency = (n, currency = "USD") =>
   new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 }).format(isFinite(n) ? n : 0);
@@ -85,6 +86,22 @@ const HiddenCostsArticle = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>The Hidden Costs of Design Errors in Data Center Projects | Valiblox</title>
+        <meta name="description" content="Discover how early QA validation can prevent million-dollar mistakes and project delays in critical infrastructure projects." />
+        <link rel="canonical" href="https://valiblox.com/articles/hidden-costs-design-errors" />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'The Hidden Costs of Design Errors in Data Center Projects',
+            author: { '@type': 'Organization', name: 'Valiblox' },
+            datePublished: '2024-01-15',
+            image: 'https://valiblox.com' + (typeof window!=="undefined" ? '' : '')
+          })}
+        </script>
+      </Helmet>
       <Header />
 
       <main className="container mx-auto px-4 py-12 max-w-4xl">

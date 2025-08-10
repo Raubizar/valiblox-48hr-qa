@@ -12,3 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Point to sitemap (update domain in sitemap.xml generation)
+Sitemap: https://valiblox.com/sitemap.xml

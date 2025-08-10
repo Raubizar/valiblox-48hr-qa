@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Helmet } from "react-helmet";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -61,6 +62,22 @@ const ROIQAArticle = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>ROI of Professional QA: Case Studies from Fortune 500 Companies | Valiblox</title>
+        <meta name="description" content="Real-world examples showing how professional QA validation delivers measurable returns on investment." />
+        <link rel="canonical" href="https://valiblox.com/articles/roi-professional-qa" />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'ROI of Professional QA: Case Studies from Fortune 500 Companies',
+            author: { '@type': 'Organization', name: 'Valiblox' },
+            datePublished: '2025-02-01',
+            image: 'https://valiblox.com' + (typeof window!=="undefined" ? '' : '')
+          })}
+        </script>
+      </Helmet>
       <Header />
 
       <main className="container mx-auto px-4 py-12 max-w-4xl">

@@ -8,6 +8,7 @@ import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
+import { Helmet } from "react-helmet";
 
 // Import article images
 import hiddenCostsImage from "@/assets/articles/hidden-costs-design-errors.jpg";
@@ -115,6 +116,11 @@ const Articles = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <Helmet>
+        <title>Articles & Insights | Valiblox</title>
+        <meta name="description" content="Industry insights, best practices, and case studies on QA validation for data center projects." />
+        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/articles"} />
+      </Helmet>
       <Header />
       {/* Header */}
       <section className="bg-gradient-subtle py-20">

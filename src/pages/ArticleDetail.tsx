@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowLeft, Share2 } from "lucide-react";
 import { toast } from "sonner";
+import { Helmet } from "react-helmet";
 
 // Import article images
 import hiddenCostsImage from "@/assets/articles/hidden-costs-design-errors.jpg";
@@ -1021,6 +1022,23 @@ const ArticleDetail = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <Helmet>
+        <title>{`${article.title} | Valiblox`}</title>
+        <meta name="description" content={article.excerpt} />
+        <link rel="canonical" href={`https://valiblox.com/articles/${article.id}`} />
+        <meta property="og:title" content={`${article.title} | Valiblox`} />
+        <meta property="og:description" content={article.excerpt} />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: article.title,
+            author: { '@type': 'Organization', name: 'Valiblox' },
+            datePublished: '2025-01-01'
+          })}
+        </script>
+      </Helmet>
       <Header />
       
       {/* Article Header */}
