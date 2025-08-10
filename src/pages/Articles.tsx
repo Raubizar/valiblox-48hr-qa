@@ -102,6 +102,8 @@ const Articles = () => {
   const handleReadMore = (articleId: number) => {
     if (articleId === 1) {
       navigate('/articles/hidden-costs-design-errors');
+    } else if (articleId === 5) {
+      navigate('/articles/roi-professional-qa');
     } else {
       navigate(`/articles/${articleId}`);
     }

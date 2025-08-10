@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import Articles from "./pages/Articles";
 import ArticleDetail from "./pages/ArticleDetail";
+import RoiArticle from "./pages/RoiArticle";
 import HiddenCostsArticle from "./pages/HiddenCostsArticle";
 import Pricing from "./pages/Pricing";
 import Policies from "./pages/Policies";
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:id" element={<ArticleDetail />} />
+          <Route path="/articles/roi-professional-qa" element={<RoiArticle />} />
           <Route path="/articles/hidden-costs-design-errors" element={<HiddenCostsArticle />} />
           <Route path="/policies" element={<Policies />} />
           <Route path="/reports/:slug" element={<ReportDetail />} />
