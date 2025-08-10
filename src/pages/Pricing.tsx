@@ -17,7 +17,10 @@ import {
   Clock, 
   DollarSign,
   Download,
-  ArrowRight
+  ArrowRight,
+  File,
+  Box,
+  Database
 } from "lucide-react";
 
 // Import images
@@ -180,12 +183,8 @@ const Pricing = () => {
                   <CardTitle className="text-xl text-foreground mb-2">Stage 2 – Concept QA</CardTitle>
                   <p className="text-muted-foreground mb-4 h-12 flex items-center">Drawings & specs validation</p>
                   
-                  <div className="mb-6">
-                    <img 
-                      src={blueprintImage} 
-                      alt="Blueprint with validation checkmarks" 
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
+                  <div className="mb-6 h-16 flex items-center justify-center">
+                    <File className="w-10 h-10 text-gray-400" />
                   </div>
                 </CardHeader>
                 
@@ -227,12 +226,9 @@ const Pricing = () => {
                   <CardTitle className="text-xl text-foreground mb-2">Stage 3 – Developed QA</CardTitle>
                   <p className="text-muted-foreground mb-4 h-12 flex items-center">Concept + model LOD + clash summary</p>
                   
-                  <div className="mb-6">
-                    <img 
-                      src={modelImage} 
-                      alt="3D model with professional annotations" 
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
+                  <div className="mb-6 h-16 flex items-center justify-center gap-4">
+                    <File className="w-10 h-10 text-gray-500" />
+                    <Box className="w-10 h-10 text-gray-500" />
                   </div>
                 </CardHeader>
                 
@@ -273,12 +269,10 @@ const Pricing = () => {
                   <CardTitle className="text-xl text-foreground mb-2">Stage 4 – Technical QA</CardTitle>
                   <p className="text-muted-foreground mb-4 h-12 flex items-center">Full IFC-ready compliance check</p>
                   
-                  <div className="mb-6">
-                    <img 
-                      src={stampImage} 
-                      alt="Technical drawing with validation stamp" 
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
+                  <div className="mb-6 h-16 flex items-center justify-center gap-3">
+                    <File className="w-10 h-10 text-black" />
+                    <Box className="w-10 h-10 text-black" />
+                    <Database className="w-10 h-10 text-black" />
                   </div>
                 </CardHeader>
                 
