@@ -1029,13 +1029,19 @@ const ArticleDetail = () => {
         <meta property="og:title" content={`${article.title} | Valiblox`} />
         <meta property="og:description" content={article.excerpt} />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://valiblox.com/articles/${article.id}`} />
+        <meta property="og:image" content={`https://valiblox.com${(article.image as string).startsWith('/') ? article.image : '/' + (article.image as string)}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Article',
             headline: article.title,
             author: { '@type': 'Organization', name: 'Valiblox' },
-            datePublished: '2025-01-01'
+            datePublished: article.publishDate,
+            image: `https://valiblox.com${(article.image as string).startsWith('/') ? article.image : '/' + (article.image as string)}`,
+            url: `https://valiblox.com/articles/${article.id}`,
+            mainEntityOfPage: `https://valiblox.com/articles/${article.id}`,
+            publisher: { '@type': 'Organization', name: 'Valiblox' }
           })}
         </script>
       </Helmet>

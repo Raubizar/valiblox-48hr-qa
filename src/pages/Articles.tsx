@@ -119,7 +119,12 @@ const Articles = () => {
       <Helmet>
         <title>Articles & Insights | Valiblox</title>
         <meta name="description" content="Industry insights, best practices, and case studies on QA validation for data center projects." />
-        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/articles"} />
+        <link rel="canonical" href="https://valiblox.com/articles" />
+        <meta property="og:title" content="Articles & Insights | Valiblox" />
+        <meta property="og:description" content="Industry insights, best practices, and case studies on QA validation for data center projects." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://valiblox.com/articles" />
+        <meta property="og:image" content="https://valiblox.com/lovable-uploads/21b98309-c8cb-4502-abb6-3a70b51fd83a.png" />
       </Helmet>
       <Header />
       {/* Header */}

@@ -67,6 +67,8 @@ const ROIQAArticle = () => {
         <meta name="description" content="Real-world examples showing how professional QA validation delivers measurable returns on investment." />
         <link rel="canonical" href="https://valiblox.com/articles/roi-professional-qa" />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://valiblox.com/articles/roi-professional-qa" />
+        <meta property="og:image" content={`https://valiblox.com${roiQaImage.startsWith('/') ? roiQaImage : '/' + roiQaImage}` } />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -74,7 +76,8 @@ const ROIQAArticle = () => {
             headline: 'ROI of Professional QA: Case Studies from Fortune 500 Companies',
             author: { '@type': 'Organization', name: 'Valiblox' },
             datePublished: '2025-02-01',
-            image: 'https://valiblox.com' + (typeof window!=="undefined" ? '' : '')
+            image: `https://valiblox.com${roiQaImage.startsWith('/') ? roiQaImage : '/' + roiQaImage}`,
+            url: 'https://valiblox.com/articles/roi-professional-qa'
           })}
         </script>
       </Helmet>

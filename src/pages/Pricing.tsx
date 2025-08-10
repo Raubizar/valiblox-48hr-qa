@@ -41,14 +41,41 @@ const Pricing = () => {
     description: "Get a sample QA report to see the quality and detail of our analysis."
   });
 
+  const stage2WebhookQA = useWebhook({
+    source: "pricing-stage2-qa",
+    title: "Book Stage 2 QA Consultation",
+    description: "Schedule a consultation to discuss your Stage 2 - Concept QA requirements and get started with professional validation."
+  });
+
+  const stage3WebhookQA = useWebhook({
+    source: "pricing-stage3-qa", 
+    title: "Book Stage 3 QA Consultation",
+    description: "Schedule a consultation to discuss your Stage 3 - Developed QA requirements and get started with comprehensive validation."
+  });
+
+  const stage4WebhookQA = useWebhook({
+    source: "pricing-stage4-qa",
+    title: "Book Stage 4 QA Consultation", 
+    description: "Schedule a consultation to discuss your Stage 4 - Technical QA requirements and get started with IFC-ready compliance validation."
+  });
+
+  const customQAWebhook = useWebhook({
+    source: "pricing-custom-qa",
+    title: "Book Custom QA Consultation",
+    description: "Schedule a consultation to discuss your custom QA requirements and tailored multi-stage validation needs."
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Helmet>
         <title>Pricing | Valiblox — 48h Independent QA Validation</title>
         <meta name="description" content="Transparent pricing for 48-hour independent QA validation. Compare packages and understand ROI vs manual QA for data center projects." />
-        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/pricing"} />
+        <link rel="canonical" href="https://valiblox.com/pricing" />
         <meta property="og:title" content="Pricing | Valiblox" />
         <meta property="og:description" content="48h independent QA validation pricing and packages." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://valiblox.com/pricing" />
+        <meta property="og:image" content="https://valiblox.com/lovable-uploads/21b98309-c8cb-4502-abb6-3a70b51fd83a.png" />
       </Helmet>
       <Header />
       
@@ -79,7 +106,7 @@ const Pricing = () => {
                   </div>
                   <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
                     <Shield className="w-3 h-3 text-primary" />
-                    One free re-check
+                    NDA protected
                   </div>
                   <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
                     <CheckCircle className="w-3 h-3 text-primary" />
@@ -93,7 +120,7 @@ const Pricing = () => {
                     Manual QA & rework for a Data Center stage runs $8 000+ per phase. 
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    <span className="text-primary font-semibold">Valiblox delivers in 48 h for $990–$2 990.</span>
+                    <span className="text-primary font-semibold">Valiblox delivers professional validation in 48 h.</span>
                   </p>
                 </div>
               </div>
@@ -149,10 +176,6 @@ const Pricing = () => {
                 <CardHeader className="pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 2</Badge>
-                    <div className="text-right">
-                      <div className="text-3xl font-bold text-primary">$990</div>
-                      <div className="text-xs text-muted-foreground">+ 1 free re-check</div>
-                    </div>
                   </div>
                   <CardTitle className="text-xl text-foreground mb-2">Stage 2 – Concept QA</CardTitle>
                   <p className="text-muted-foreground mb-4">Drawings & specs validation</p>
@@ -188,7 +211,7 @@ const Pricing = () => {
                     </p>
                   </div>
                   
-                  <Button className="w-full" variant="outline">
+                  <Button className="w-full" variant="outline" onClick={stage2WebhookQA.openModal}>
                     Secure Stage 2 QA
                   </Button>
                 </CardContent>
@@ -205,10 +228,6 @@ const Pricing = () => {
                 <CardHeader className="pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 3</Badge>
-                    <div className="text-right">
-                      <div className="text-3xl font-bold text-primary">$1,990</div>
-                      <div className="text-xs text-muted-foreground">+ 1 free re-check</div>
-                    </div>
                   </div>
                   <CardTitle className="text-xl text-foreground mb-2">Stage 3 – Developed QA</CardTitle>
                   <p className="text-muted-foreground mb-4">Concept + model LOD + clash summary</p>
@@ -244,7 +263,7 @@ const Pricing = () => {
                     </p>
                   </div>
                   
-                  <Button className="w-full bg-primary hover:bg-primary-hover">
+                  <Button className="w-full bg-primary hover:bg-primary-hover" onClick={stage3WebhookQA.openModal}>
                     Secure Stage 3 QA
                   </Button>
                 </CardContent>
@@ -255,10 +274,6 @@ const Pricing = () => {
                 <CardHeader className="pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 4</Badge>
-                    <div className="text-right">
-                      <div className="text-3xl font-bold text-primary">$2,990</div>
-                      <div className="text-xs text-muted-foreground">+ 1 free re-check</div>
-                    </div>
                   </div>
                   <CardTitle className="text-xl text-foreground mb-2">Stage 4 – Technical QA</CardTitle>
                   <p className="text-muted-foreground mb-4">Full IFC-ready compliance check</p>
@@ -294,7 +309,7 @@ const Pricing = () => {
                     </p>
                   </div>
                   
-                  <Button className="w-full" variant="outline">
+                  <Button className="w-full" variant="outline" onClick={stage4WebhookQA.openModal}>
                     Secure Stage 4 QA
                   </Button>
                 </CardContent>
@@ -333,7 +348,7 @@ const Pricing = () => {
                         <div className="glass-effect p-4 rounded-lg border border-primary/20 text-center">
                           <p className="text-sm font-medium text-foreground">
                             Manual QA & rework runs $8 000+ per phase. 
-                            <span className="text-primary font-semibold"> Valiblox delivers in 48 h for $990–$2 990.</span>
+                            <span className="text-primary font-semibold"> Valiblox delivers professional validation in 48 h.</span>
                           </p>
                         </div>
                         <div className="glass-effect p-4 rounded-lg border border-destructive/20 text-center">
@@ -345,7 +360,7 @@ const Pricing = () => {
                         </div>
                       </div>
                       
-                      <Button className="bg-primary hover:bg-primary-hover">
+                      <Button className="bg-primary hover:bg-primary-hover" onClick={customQAWebhook.openModal}>
                         Discuss Custom QA
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
@@ -374,7 +389,7 @@ const Pricing = () => {
             </h3>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               Manual QA for a Data Center stage can cost $3,000–10,000 in labour, coordination, 
-              and rework—Valiblox delivers professional validation in 48h and includes one free re-check 
+              and rework—Valiblox delivers professional validation in 48h with guaranteed quality 
               to ensure you get exactly what you need.
             </p>
             
@@ -405,7 +420,7 @@ const Pricing = () => {
                 </div>
                 <div className="text-center">
                   <div className="font-semibold text-foreground">Guaranteed</div>
-                  <div className="text-sm text-muted-foreground">One free re-check</div>
+                  <div className="text-sm text-muted-foreground">Quality assurance</div>
                 </div>
               </div>
             </div>
@@ -463,6 +478,30 @@ const Pricing = () => {
         onClose={downloadSampleWebhook.closeModal}
         onSubmit={downloadSampleWebhook.handleSubmit}
         {...downloadSampleWebhook.modalProps}
+      />
+      <WebhookModal
+        isOpen={stage2WebhookQA.isModalOpen}
+        onClose={stage2WebhookQA.closeModal}
+        onSubmit={stage2WebhookQA.handleSubmit}
+        {...stage2WebhookQA.modalProps}
+      />
+      <WebhookModal
+        isOpen={stage3WebhookQA.isModalOpen}
+        onClose={stage3WebhookQA.closeModal}
+        onSubmit={stage3WebhookQA.handleSubmit}
+        {...stage3WebhookQA.modalProps}
+      />
+      <WebhookModal
+        isOpen={stage4WebhookQA.isModalOpen}
+        onClose={stage4WebhookQA.closeModal}
+        onSubmit={stage4WebhookQA.handleSubmit}
+        {...stage4WebhookQA.modalProps}
+      />
+      <WebhookModal
+        isOpen={customQAWebhook.isModalOpen}
+        onClose={customQAWebhook.closeModal}
+        onSubmit={customQAWebhook.handleSubmit}
+        {...customQAWebhook.modalProps}
       />
     </main>
   );

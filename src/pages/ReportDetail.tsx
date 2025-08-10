@@ -222,6 +222,23 @@ export default function ReportDetail() {
         <title>{report.title} - Detailed Report Analysis | Valiblox</title>
         <meta name="description" content={`Learn about our ${report.title} - ${report.description}. Detailed scope, results, and value proposition for your construction project.`} />
         <meta name="keywords" content={`${report.title}, QA validation, construction reports, BIM analysis, ${report.stage}`} />
+        <link rel="canonical" href={`https://valiblox.com/reports/${slug}`} />
+        <meta property="og:title" content={`${report.title} | Valiblox`} />
+        <meta property="og:description" content={report.description} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://valiblox.com/reports/${slug}`} />
+        <meta property="og:image" content={`https://valiblox.com/lovable-uploads/21b98309-c8cb-4502-abb6-3a70b51fd83a.png`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: report.title,
+            description: report.description,
+            areaServed: 'US',
+            provider: { '@type': 'Organization', name: 'Valiblox' },
+            url: `https://valiblox.com/reports/${slug}`
+          })}
+        </script>
       </Helmet>
       
       <Header />

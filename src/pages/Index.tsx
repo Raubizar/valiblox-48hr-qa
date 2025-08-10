@@ -15,11 +15,12 @@ const Index = () => {
       <Helmet>
         <title>Valiblox — Independent QA Validation for Data Center Deliverables in 48 Hours</title>
         <meta name="description" content="Independent QA validation of Data Center design deliverables in 48 hours. Machine-precision checks with expert review. Zero software install, NDA-covered, built for US clients." />
-        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/"} />
+        <link rel="canonical" href="https://valiblox.com/" />
         <meta property="og:title" content="Valiblox — Independent QA Validation in 48 Hours" />
         <meta property="og:description" content="Machine-precision checks with expert review. Zero software install, NDA-covered, built for US clients." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={(typeof window!=="undefined"?window.location.href:"")} />
+        <meta property="og:url" content="https://valiblox.com/" />
+        <meta property="og:image" content="https://valiblox.com/lovable-uploads/21b98309-c8cb-4502-abb6-3a70b51fd83a.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">
           {JSON.stringify({

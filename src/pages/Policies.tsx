@@ -9,7 +9,12 @@ export default function Policies() {
       <Helmet>
         <title>Privacy, Terms & Cookie Policy | Valiblox</title>
         <meta name="description" content="Read Valiblox's Privacy Policy, Terms of Service, and Cookie Policy. Learn how we protect your data and the terms governing our QA services." />
-        <link rel="canonical" href={(typeof window!=="undefined"?window.location.origin:"") + "/policies"} />
+        <link rel="canonical" href="https://valiblox.com/policies" />
+        <meta property="og:title" content="Privacy, Terms & Cookie Policy | Valiblox" />
+        <meta property="og:description" content="Read Valiblox's Privacy Policy, Terms of Service, and Cookie Policy. Learn how we protect your data and the terms governing our QA services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://valiblox.com/policies" />
+        <meta property="og:image" content="https://valiblox.com/lovable-uploads/21b98309-c8cb-4502-abb6-3a70b51fd83a.png" />
       </Helmet>
       <Header />
       

@@ -91,6 +91,8 @@ const HiddenCostsArticle = () => {
         <meta name="description" content="Discover how early QA validation can prevent million-dollar mistakes and project delays in critical infrastructure projects." />
         <link rel="canonical" href="https://valiblox.com/articles/hidden-costs-design-errors" />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://valiblox.com/articles/hidden-costs-design-errors" />
+        <meta property="og:image" content={`https://valiblox.com${hiddenCostsImage.startsWith('/') ? hiddenCostsImage : '/' + hiddenCostsImage}` } />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -98,7 +100,8 @@ const HiddenCostsArticle = () => {
             headline: 'The Hidden Costs of Design Errors in Data Center Projects',
             author: { '@type': 'Organization', name: 'Valiblox' },
             datePublished: '2024-01-15',
-            image: 'https://valiblox.com' + (typeof window!=="undefined" ? '' : '')
+            image: `https://valiblox.com${hiddenCostsImage.startsWith('/') ? hiddenCostsImage : '/' + hiddenCostsImage}`,
+            url: 'https://valiblox.com/articles/hidden-costs-design-errors'
           })}
         </script>
       </Helmet>
