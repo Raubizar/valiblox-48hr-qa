@@ -172,13 +172,13 @@ const Pricing = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               
               {/* Basic QA Package */}
-              <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
+              <Card className="relative border-2 border-gray-200 hover:border-primary/50 transition-all duration-300 h-full">
                 <CardHeader className="pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 2</Badge>
                   </div>
                   <CardTitle className="text-xl text-foreground mb-2">Stage 2 – Concept QA</CardTitle>
-                  <p className="text-muted-foreground mb-4">Drawings & specs validation</p>
+                  <p className="text-muted-foreground mb-4 h-12 flex items-center">Drawings & specs validation</p>
                   
                   <div className="mb-6">
                     <img 
@@ -190,7 +190,7 @@ const Pricing = () => {
                 </CardHeader>
                 
                 <CardContent className="pt-0">
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-3 mb-6 h-24 flex flex-col justify-between">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">Drawing list validation</span>
@@ -205,32 +205,27 @@ const Pricing = () => {
                     </div>
                   </div>
                   
-                  <div className="p-3 bg-muted rounded-lg mb-6 text-center">
+                  <div className="p-3 bg-muted rounded-lg mb-6 text-center h-12 flex items-center justify-center">
                     <p className="text-sm text-muted-foreground">
                       Save 5–8 days of manual QA
                     </p>
                   </div>
                   
-                  <Button className="w-full" variant="outline" onClick={stage2WebhookQA.openModal}>
-                    Secure Stage 2 QA
+                  <Button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 border-gray-200 hover:border-gray-300" onClick={stage2WebhookQA.openModal}>
+                    Get a Quote
                   </Button>
                 </CardContent>
               </Card>
 
               {/* Full QA Package */}
-              <Card className="relative border-2 border-primary hover:border-primary transition-all duration-300 h-full">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground px-4 py-1">
-                    Most Popular
-                  </Badge>
-                </div>
+              <Card className="relative border-2 border-gray-500 hover:border-primary transition-all duration-300 h-full">
                 
                 <CardHeader className="pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 3</Badge>
                   </div>
                   <CardTitle className="text-xl text-foreground mb-2">Stage 3 – Developed QA</CardTitle>
-                  <p className="text-muted-foreground mb-4">Concept + model LOD + clash summary</p>
+                  <p className="text-muted-foreground mb-4 h-12 flex items-center">Concept + model LOD + clash summary</p>
                   
                   <div className="mb-6">
                     <img 
@@ -242,7 +237,7 @@ const Pricing = () => {
                 </CardHeader>
                 
                 <CardContent className="pt-0">
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-3 mb-6 h-24 flex flex-col justify-between">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">Model LOD/LOI compliance</span>
@@ -257,26 +252,26 @@ const Pricing = () => {
                     </div>
                   </div>
                   
-                  <div className="p-3 bg-muted rounded-lg mb-6 text-center">
+                  <div className="p-3 bg-muted rounded-lg mb-6 text-center h-12 flex items-center justify-center">
                     <p className="text-sm text-muted-foreground">
                       Replace 10+ days of coordination
                     </p>
                   </div>
                   
-                  <Button className="w-full bg-primary hover:bg-primary-hover" onClick={stage3WebhookQA.openModal}>
-                    Secure Stage 3 QA
+                  <Button className="w-full bg-gray-500 hover:bg-gray-600 text-white border-gray-500 hover:border-gray-600" onClick={stage3WebhookQA.openModal}>
+                    Get a Quote
                   </Button>
                 </CardContent>
               </Card>
 
               {/* IFC Compliance Validation Package */}
-              <Card className="relative border-2 hover:border-primary/50 transition-all duration-300 h-full">
+              <Card className="relative border-2 border-black hover:border-primary/50 transition-all duration-300 h-full">
                 <CardHeader className="pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="text-xs">Stage 4</Badge>
                   </div>
                   <CardTitle className="text-xl text-foreground mb-2">Stage 4 – Technical QA</CardTitle>
-                  <p className="text-muted-foreground mb-4">Full IFC-ready compliance check</p>
+                  <p className="text-muted-foreground mb-4 h-12 flex items-center">Full IFC-ready compliance check</p>
                   
                   <div className="mb-6">
                     <img 
@@ -288,7 +283,7 @@ const Pricing = () => {
                 </CardHeader>
                 
                 <CardContent className="pt-0">
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-3 mb-6 h-24 flex flex-col justify-between">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm">IFC-ready compliance</span>
@@ -303,14 +298,14 @@ const Pricing = () => {
                     </div>
                   </div>
                   
-                  <div className="p-3 bg-muted rounded-lg mb-6 text-center">
+                  <div className="p-3 bg-muted rounded-lg mb-6 text-center h-12 flex items-center justify-center">
                     <p className="text-sm text-muted-foreground">
                       Prevent late-stage RFIs
                     </p>
                   </div>
                   
-                  <Button className="w-full" variant="outline" onClick={stage4WebhookQA.openModal}>
-                    Secure Stage 4 QA
+                  <Button className="w-full bg-black hover:bg-gray-800 text-white border-black hover:border-gray-800" onClick={stage4WebhookQA.openModal}>
+                    Get a Quote
                   </Button>
                 </CardContent>
               </Card>
