@@ -23,29 +23,10 @@ export const FileUpload = ({
   description,
   icon
 }: FileUploadProps) => {
-  const [isDragOver, setIsDragOver] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    
-    const files = Array.from(e.dataTransfer.files);
-    processFiles(files);
-  };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -91,6 +72,10 @@ export const FileUpload = ({
     onFilesSelected([]);
   };
 
+  const handleButtonClick = () => {
+    fileInputRef.current?.click();
+  };
+
   const getStatusIcon = () => {
     switch (status) {
       case 'success':
@@ -102,101 +87,52 @@ export const FileUpload = ({
     }
   };
 
-  const getStatusColor = () => {
-    switch (status) {
-      case 'success':
-        return 'border-green-200 bg-green-50';
-      case 'error':
-        return 'border-red-200 bg-red-50';
-      case 'processing':
-        return 'border-blue-200 bg-blue-50';
-      default:
-        return isDragOver ? 'border-primary bg-primary/5' : 'border-dashed border-gray-300 bg-gray-50';
-    }
-  };
-
   return (
     <Card className="w-full glass-effect">
-      <CardContent className="p-6">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            {icon || <FolderOpen className="w-5 h-5 text-primary" />}
+      <CardContent className="p-4">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            {icon || <FolderOpen className="w-4 h-4 text-primary" />}
             <div>
               <h3 className="font-semibold text-foreground text-sm">{title}</h3>
               <p className="text-xs text-muted-foreground">{description}</p>
             </div>
           </div>
 
-          <div
-            className={`relative border-2 rounded-lg p-8 text-center transition-all duration-200 ${getStatusColor()}`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
+          <input
+            ref={fileInputRef}
+            type="file"
+            onChange={handleFileSelect}
+            accept={accept}
+            multiple={multiple}
+            {...(webkitdirectory ? { webkitdirectory: 'true' } : {})}
+            className="hidden"
+          />
+          
+          <Button
+            onClick={handleButtonClick}
+            variant="outline"
+            className="w-full h-10 text-sm"
+            disabled={status === 'processing'}
           >
-            <input
-              ref={fileInputRef}
-              type="file"
-              onChange={handleFileSelect}
-              accept={accept}
-              multiple={multiple}
-              {...(webkitdirectory ? { webkitdirectory: 'true' } : {})}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            />
-            
-            <div className="space-y-4">
-              <div className="flex justify-center">
-                {getStatusIcon()}
-              </div>
-              
-              {selectedFiles.length === 0 ? (
-                <div>
-                  <p className="text-sm font-medium text-foreground">
-                    {webkitdirectory ? 'Click to select folder or drag folder here' : 'Click to select files or drag files here'}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {accept ? `Supported formats: ${accept}` : 'All file types supported'}
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-foreground">
-                    {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected
-                  </p>
-                  {selectedFiles.length <= 5 && (
-                    <div className="space-y-1">
-                      {selectedFiles.map((file, index) => (
-                        <div key={index} className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                          <FileText className="w-3 h-3" />
-                          <span className="truncate max-w-xs">{file.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
+            <div className="flex items-center gap-2">
+              {getStatusIcon()}
+              <span>
+                {status === 'processing' ? 'Processing...' :
+                 selectedFiles.length > 0 ? `${selectedFiles.length} file${selectedFiles.length !== 1 ? 's' : ''} selected` :
+                 webkitdirectory ? 'Select Folder' : 'Select File'}
+              </span>
             </div>
-          </div>
+          </Button>
 
           {statusMessage && (
-            <div className={`p-3 rounded-lg text-xs ${
-              status === 'success' ? 'bg-primary/10 text-primary border border-primary/20' :
-              status === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
-              'bg-blue-50 text-blue-700 border border-blue-200'
+            <div className={`p-2 rounded text-xs ${
+              status === 'success' ? 'bg-primary/10 text-primary' :
+              status === 'error' ? 'bg-red-50 text-red-700' :
+              'bg-blue-50 text-blue-700'
             }`}>
               {statusMessage}
             </div>
-          )}
-
-          {selectedFiles.length > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={clearFiles}
-              className="w-full"
-            >
-              <X className="w-4 h-4 mr-2" />
-              Clear Selection
-            </Button>
           )}
         </div>
       </CardContent>

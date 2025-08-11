@@ -232,25 +232,24 @@ export default function DrawingListCheck() {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-20 bg-[#F3F6F8]">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground leading-tight tracking-tight mb-6">
+      <section className="py-8 bg-[#F3F6F8]">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground leading-tight tracking-tight mb-3">
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
               Free Check: Are Your Design Deliverables Complete?
             </span>
           </h1>
-          <div className="text-sm md:text-sm lg:text-base text-muted-foreground leading-relaxed font-normal space-y-2 max-w-3xl mx-auto">
-            <p>Upload your drawing register and delivered files to instantly check completeness.</p>
-            <p>Get a detailed analysis of what's delivered, what's missing, and what's extra.</p>
+          <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto">
+            <p>Upload your drawing register and delivered files to instantly check completeness and get a detailed analysis.</p>
           </div>
         </div>
       </section>
 
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-6xl mx-auto px-4 py-6">
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6">
           {/* Input Section */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-4">
             {/* File Uploads */}
             <FileUpload
               title="1. Upload Delivered Files"
@@ -272,66 +271,81 @@ export default function DrawingListCheck() {
             {/* Excel Configuration */}
             {sheets.length > 0 && (
               <Card className="glass-effect">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-base font-semibold">3. Configure Analysis</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-2 block uppercase tracking-wider">
-                      Sheet Selection
-                    </label>
-                    <Select value={selectedSheet} onValueChange={handleSheetChange}>
-                      <SelectTrigger className="text-sm">
-                        <SelectValue placeholder="Select sheet" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {sheets.map((sheet) => (
-                          <SelectItem key={sheet.name} value={sheet.name}>
-                            {sheet.name} ({sheet.rowCount} rows)
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {headerDetection && (
-                    <div>
-                      <label className="text-xs font-medium text-muted-foreground mb-2 block uppercase tracking-wider">
-                        File Name Column
-                      </label>
-                      <Select value={selectedColumn} onValueChange={handleColumnChange}>
-                        <SelectTrigger className="text-sm">
-                          <SelectValue placeholder="Select column" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {headerDetection.headerRow.map((header, index) => (
-                            <SelectItem key={index} value={index.toString()}>
-                              {String.fromCharCode(65 + index)} - {header || `Column ${index + 1}`}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      
-                      {columnDetection && selectedColumn === columnDetection.columnIndex.toString() && (
-                        <div className="space-y-2">
-                          <p className="text-xs text-primary mt-2 font-medium">
-                            ✓ Auto-detected with {columnDetection.confidence}% confidence
-                          </p>
-                          {folderFiles.length > 0 && extractedFileNames.length > 0 && (
-                            <p className="text-xs text-green-600 font-medium">
-                              🚀 Analysis will run automatically
-                            </p>
-                          )}
-                        </div>
-                      )}
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <FileSpreadsheet className="w-4 h-4 text-primary" />
+                      <div>
+                        <h3 className="font-semibold text-foreground text-sm">3. Configure Analysis</h3>
+                        <p className="text-xs text-muted-foreground">
+                          {columnDetection && folderFiles.length > 0 && extractedFileNames.length > 0 
+                            ? "Auto-configured and ready" 
+                            : "Select sheet and column"}
+                        </p>
+                      </div>
                     </div>
-                  )}
+                    
+                    {/* Show manual configuration only if not running automatically */}
+                    {!(columnDetection && folderFiles.length > 0 && extractedFileNames.length > 0) && (
+                      <>
+                        <div>
+                          <label className="text-xs font-medium text-muted-foreground mb-1 block uppercase tracking-wider">
+                            Sheet Selection
+                          </label>
+                          <Select value={selectedSheet} onValueChange={handleSheetChange}>
+                            <SelectTrigger className="text-sm h-10">
+                              <SelectValue placeholder="Select sheet" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {sheets.map((sheet) => (
+                                <SelectItem key={sheet.name} value={sheet.name}>
+                                  {sheet.name} ({sheet.rowCount} rows)
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {headerDetection && (
+                          <div>
+                            <label className="text-xs font-medium text-muted-foreground mb-1 block uppercase tracking-wider">
+                              File Name Column
+                            </label>
+                            <Select value={selectedColumn} onValueChange={handleColumnChange}>
+                              <SelectTrigger className="text-sm h-10">
+                                <SelectValue placeholder="Select column" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {headerDetection.headerRow.map((header, index) => (
+                                  <SelectItem key={index} value={index.toString()}>
+                                    {String.fromCharCode(65 + index)} - {header || `Column ${index + 1}`}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    
+                    {/* Show auto-detection status when running automatically */}
+                    {columnDetection && folderFiles.length > 0 && extractedFileNames.length > 0 && (
+                      <div className="bg-primary/10 p-3 rounded-lg">
+                        <p className="text-xs text-primary font-medium mb-1">
+                          ✓ Auto-detected: Sheet "{selectedSheet}", Column {String.fromCharCode(65 + parseInt(selectedColumn))}
+                        </p>
+                        <p className="text-xs text-green-600 font-medium">
+                          🚀 Analysis ready to run automatically
+                        </p>
+                      </div>
+                    )}
 
                   {extractedFileNames.length > 0 && (
-                    <div className="text-xs text-muted-foreground bg-muted/30 p-3 rounded-lg">
+                    <div className="text-xs text-muted-foreground bg-muted/30 p-2 rounded">
                       <strong className="text-foreground">{extractedFileNames.length}</strong> drawing entries found
                     </div>
                   )}
+                  </div>
                 </CardContent>
               </Card>
             )}
@@ -410,21 +424,22 @@ export default function DrawingListCheck() {
 
                 {/* Lead Capture CTA */}
                 <Card className="glass-effect border-primary/20 bg-primary/5">
-                  <CardContent className="p-6">
-                    <div className="text-center space-y-4">
-                      <h3 className="text-lg md:text-xl font-semibold text-foreground">
+                  <CardContent className="p-4">
+                    <div className="text-center space-y-3">
+                      <h3 className="text-base font-semibold text-foreground">
                         Get Your Complete QA Report
                       </h3>
-                      <div className="text-sm text-muted-foreground leading-relaxed space-y-1">
+                      <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
                         <p>This quick check found <strong className="text-foreground">{analysisResult.summary.todo} missing files</strong> and <strong className="text-foreground">{analysisResult.summary.extra} extra files</strong>.</p>
                         <p>Get a comprehensive 48-hour QA validation report for your complete project deliverables.</p>
                       </div>
                       <Button 
                         onClick={leadCaptureWebhook.openModal}
-                        size="lg"
+                        size="default"
                         variant="cta"
+                        className="h-9"
                       >
-                        <Download className="w-4 h-4 mr-2" />
+                        <Download className="w-3 h-3 mr-2" />
                         Get Full QA Report (Free)
                       </Button>
                     </div>
