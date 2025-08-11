@@ -116,14 +116,14 @@ export const FileUpload = ({
   };
 
   return (
-    <Card className="w-full">
+    <Card className="w-full glass-effect">
       <CardContent className="p-6">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             {icon || <FolderOpen className="w-5 h-5 text-primary" />}
             <div>
-              <h3 className="font-semibold text-gray-900">{title}</h3>
-              <p className="text-sm text-gray-600">{description}</p>
+              <h3 className="font-semibold text-foreground text-sm">{title}</h3>
+              <p className="text-xs text-muted-foreground">{description}</p>
             </div>
           </div>
 
@@ -150,22 +150,22 @@ export const FileUpload = ({
               
               {selectedFiles.length === 0 ? (
                 <div>
-                  <p className="text-sm font-medium text-gray-700">
+                  <p className="text-sm font-medium text-foreground">
                     {webkitdirectory ? 'Click to select folder or drag folder here' : 'Click to select files or drag files here'}
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     {accept ? `Supported formats: ${accept}` : 'All file types supported'}
                   </p>
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-700">
+                  <p className="text-sm font-medium text-foreground">
                     {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected
                   </p>
                   {selectedFiles.length <= 5 && (
                     <div className="space-y-1">
                       {selectedFiles.map((file, index) => (
-                        <div key={index} className="flex items-center justify-center gap-2 text-xs text-gray-600">
+                        <div key={index} className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                           <FileText className="w-3 h-3" />
                           <span className="truncate max-w-xs">{file.name}</span>
                         </div>
@@ -178,10 +178,10 @@ export const FileUpload = ({
           </div>
 
           {statusMessage && (
-            <div className={`p-3 rounded-md text-sm ${
-              status === 'success' ? 'bg-green-50 text-green-700' :
-              status === 'error' ? 'bg-red-50 text-red-700' :
-              'bg-blue-50 text-blue-700'
+            <div className={`p-3 rounded-lg text-xs ${
+              status === 'success' ? 'bg-primary/10 text-primary border border-primary/20' :
+              status === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
+              'bg-blue-50 text-blue-700 border border-blue-200'
             }`}>
               {statusMessage}
             </div>
