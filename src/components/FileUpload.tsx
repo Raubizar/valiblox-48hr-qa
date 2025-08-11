@@ -42,8 +42,12 @@ export const FileUpload = ({
       
       // If this is for drawing files (folder upload), filter them
       if (webkitdirectory) {
+        // Log subdirectory information
+        const filesInSubdirs = files.filter(f => (f.webkitRelativePath || f.name).includes('/'));
+        console.log(`🔍 Processing folder with ${files.length} total files (${filesInSubdirs.length} in subdirectories)`);
+        
         processedFiles = filterValidDrawingFiles(files);
-        setStatusMessage(`Found ${processedFiles.length} valid drawing files out of ${files.length} total files`);
+        setStatusMessage(`Found ${processedFiles.length} valid drawing files out of ${files.length} total files (including subdirectories)`);
       } else {
         setStatusMessage(`Selected ${files.length} file${files.length !== 1 ? 's' : ''}`);
       }
@@ -52,7 +56,7 @@ export const FileUpload = ({
       setStatus(processedFiles.length > 0 ? 'success' : 'error');
       
       if (processedFiles.length === 0 && webkitdirectory) {
-        setStatusMessage('No valid drawing files found. Files must follow structured naming patterns (e.g., ABC-DEF-123).');
+        setStatusMessage('No valid drawing files found in folder or subdirectories. Files must follow structured naming patterns (e.g., ABC-DEF-123).');
       }
       
       onFilesSelected(processedFiles);

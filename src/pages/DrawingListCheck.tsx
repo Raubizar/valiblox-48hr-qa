@@ -55,6 +55,15 @@ export default function DrawingListCheck() {
   });
 
   const handleFolderUpload = (files: File[]) => {
+    console.log('📁 Folder upload received:', files.length, 'files');
+    
+    // Log file paths to verify subdirectories are included
+    console.log('📋 File paths:', files.map(f => f.webkitRelativePath || f.name));
+    
+    // Log which files have subdirectory paths
+    const filesInSubdirs = files.filter(f => (f.webkitRelativePath || f.name).includes('/'));
+    console.log('📂 Files in subdirectories:', filesInSubdirs.length);
+    
     setFolderFiles(files);
     setAnalysisResult(null);
     setAnalysisError('');
