@@ -396,25 +396,25 @@ export default function DrawingListCheck() {
           {/* Results Section */}
           <div className="lg:col-span-2">
             {showResults ? (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {/* Summary Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <Card className="glass-effect">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-2xl md:text-3xl font-semibold text-primary mb-2">
+                    <CardContent className="p-4 text-center">
+                      <div className="text-xl md:text-2xl font-semibold text-primary mb-1">
                         {analysisResult.summary.deliveryPercentage}%
                       </div>
                       <div className="text-xs text-muted-foreground uppercase tracking-wider">Completion Rate</div>
                       <Progress 
                         value={analysisResult.summary.deliveryPercentage} 
-                        className="mt-3"
+                        className="mt-2 h-1"
                       />
                     </CardContent>
                   </Card>
 
                   <Card className="glass-effect">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-xl md:text-2xl font-semibold text-foreground mb-2">
+                    <CardContent className="p-4 text-center">
+                      <div className="text-lg md:text-xl font-semibold text-foreground mb-1">
                         {analysisResult.summary.done} / {analysisResult.summary.total}
                       </div>
                       <div className="text-xs text-muted-foreground uppercase tracking-wider">Files Delivered</div>
@@ -422,8 +422,8 @@ export default function DrawingListCheck() {
                   </Card>
 
                   <Card className="glass-effect">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-xl md:text-2xl font-semibold text-yellow-600 mb-2">
+                    <CardContent className="p-4 text-center">
+                      <div className="text-lg md:text-xl font-semibold text-yellow-600 mb-1">
                         {analysisResult.summary.extra}
                       </div>
                       <div className="text-xs text-muted-foreground uppercase tracking-wider">Extra Files</div>
@@ -433,7 +433,7 @@ export default function DrawingListCheck() {
 
                 {/* Detailed Results Table */}
                 <Card className="glass-effect">
-                  <CardHeader className="pb-4">
+                  <CardHeader className="pb-2">
                     <CardTitle className="text-base font-semibold">Detailed Analysis Results</CardTitle>
                   </CardHeader>
                   <CardContent>
