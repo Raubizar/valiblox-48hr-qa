@@ -422,30 +422,6 @@ export default function DrawingListCheck() {
                   </Card>
                 </div>
 
-                {/* Lead Capture CTA */}
-                <Card className="glass-effect border-primary/20 bg-primary/5">
-                  <CardContent className="p-4">
-                    <div className="text-center space-y-3">
-                      <h3 className="text-base font-semibold text-foreground">
-                        Get Your Complete QA Report
-                      </h3>
-                      <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
-                        <p>This quick check found <strong className="text-foreground">{analysisResult.summary.todo} missing files</strong> and <strong className="text-foreground">{analysisResult.summary.extra} extra files</strong>.</p>
-                        <p>Get a comprehensive 48-hour QA validation report for your complete project deliverables.</p>
-                      </div>
-                      <Button 
-                        onClick={leadCaptureWebhook.openModal}
-                        size="default"
-                        variant="cta"
-                        className="h-9"
-                      >
-                        <Download className="w-3 h-3 mr-2" />
-                        Get Full QA Report (Free)
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
                 {/* Detailed Results Table */}
                 <Card className="glass-effect">
                   <CardHeader className="pb-4">
@@ -468,7 +444,7 @@ export default function DrawingListCheck() {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {analysisResult.results.map((result, index) => (
+                          {analysisResult.results.slice(0, 4).map((result, index) => (
                             <TableRow key={index} className="hover:bg-muted/20">
                               <TableCell className="font-medium text-xs px-3 py-2 max-w-0">
                                 <div className="truncate" title={result.excelName}>
@@ -510,7 +486,7 @@ export default function DrawingListCheck() {
 
                     {/* Mobile Card View */}
                     <div className="sm:hidden space-y-2">
-                      {analysisResult.results.map((result, index) => (
+                      {analysisResult.results.slice(0, 4).map((result, index) => (
                         <div key={index} className="bg-muted/10 rounded-lg p-3 space-y-2">
                           <div className="flex items-center justify-between">
                             <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Expected</div>
@@ -537,6 +513,42 @@ export default function DrawingListCheck() {
                           </div>
                         </div>
                       ))}
+                    </div>
+
+                    {/* Show continuation indicator if there are more than 4 results */}
+                    {analysisResult.results.length > 4 && (
+                      <div className="mt-3 pt-3 border-t border-border/50 text-center">
+                        <p className="text-xs text-muted-foreground">
+                          ... and {analysisResult.results.length - 4} more results
+                        </p>
+                        <p className="text-xs text-primary font-medium mt-1">
+                          Get the complete report to see all results
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* CTA Card - Moved below table */}
+                <Card className="glass-effect border-primary/20 bg-primary/5 mt-4">
+                  <CardContent className="p-4">
+                    <div className="text-center space-y-3">
+                      <h3 className="text-base font-semibold text-foreground">
+                        Get Your Complete QA Report
+                      </h3>
+                      <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
+                        <p>This quick check found <strong className="text-foreground">{analysisResult.summary.todo} missing files</strong> and <strong className="text-foreground">{analysisResult.summary.extra} extra files</strong>.</p>
+                        <p>Get a comprehensive 48-hour QA validation report for your complete project deliverables.</p>
+                      </div>
+                      <Button 
+                        onClick={leadCaptureWebhook.openModal}
+                        size="default"
+                        variant="cta"
+                        className="h-9"
+                      >
+                        <Download className="w-3 h-3 mr-2" />
+                        Get Full QA Report (Free)
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
