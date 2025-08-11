@@ -12,6 +12,7 @@ import HiddenCostsArticle from "./pages/HiddenCostsArticle";
 import Pricing from "./pages/Pricing";
 import Policies from "./pages/Policies";
 import ReportDetail from "./pages/ReportDetail";
+import DrawingListCheck from "./pages/DrawingListCheck";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/check" element={<DrawingListCheck />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/articles/roi-professional-qa" element={<RoiArticle />} />

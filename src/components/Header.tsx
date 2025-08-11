@@ -72,6 +72,9 @@ export const Header = () => {
           <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Pricing
           </a>
+          <a href="/check" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium">
+            Free Check
+          </a>
           <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Articles
           </a>
@@ -123,6 +126,13 @@ export const Header = () => {
                 className="text-muted-foreground hover:text-foreground transition-colors py-2"
               >
                 Pricing
+              </a>
+              <a 
+                href="/check" 
+                onClick={handleLinkClick}
+                className="text-primary hover:text-primary/80 transition-colors py-2 font-medium"
+              >
+                Free Check
               </a>
               <a 
                 href="/articles" 
