@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FileUpload } from '@/components/FileUpload';
+import { DonutChart } from '@/components/DonutChart';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { FileSpreadsheet, FolderOpen, CheckCircle, XCircle, AlertTriangle, Play, Download } from 'lucide-react';
@@ -401,14 +401,10 @@ export default function DrawingListCheck() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <Card className="glass-effect">
                     <CardContent className="p-4 text-center">
-                      <div className="text-xl md:text-2xl font-semibold text-primary mb-1">
-                        {analysisResult.summary.deliveryPercentage}%
+                      <div className="flex flex-col items-center space-y-2">
+                        <DonutChart percentage={analysisResult.summary.deliveryPercentage} />
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider">Completion Rate</div>
                       </div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider">Completion Rate</div>
-                      <Progress 
-                        value={analysisResult.summary.deliveryPercentage} 
-                        className="mt-2 h-1"
-                      />
                     </CardContent>
                   </Card>
 
