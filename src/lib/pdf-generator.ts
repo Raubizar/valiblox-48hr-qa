@@ -354,106 +354,105 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     yPosition += rowHeight; // Use dynamic row height
   });
 
-  // QA Services section with improved layout
-  yPosition += 30; // Increased spacing to avoid overlap
+  // QA Services section with compelling sales pitch
+  yPosition += 30;
   
-  // Section title with background
+  // Main section title
   pdf.setFillColor(240, 248, 255); // Light blue background
   pdf.rect(25, yPosition - 5, pageWidth - 50, 20, 'F');
   
-  pdf.setTextColor(51, 65, 85); // Dark slate color
-  pdf.setFontSize(14);
+  pdf.setTextColor(51, 65, 85);
+  pdf.setFontSize(16);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('Our Complete QA Validation Services', 30, yPosition + 8);
+  pdf.text('Ready for Full 48h QA Validation?', 30, yPosition + 8);
   
-  yPosition += 25;
+  yPosition += 35;
   
-  // Services list with better formatting and PDF-safe bullets
-  const services = [
-    { icon: '•', text: 'Drawing Register & Naming Convention Compliance', color: [34, 197, 94] }, // Green
-    { icon: '•', text: 'Title Block Standards & Consistency Validation', color: [59, 130, 246] }, // Blue  
-    { icon: '•', text: 'BIM LOD/LOIN Requirements Verification', color: [168, 85, 247] }, // Purple
-    { icon: '•', text: '3D Model Clash Detection & Resolution', color: [245, 101, 101] }, // Red
-    { icon: '•', text: 'Version Control & Drawing Status Verification', color: [251, 146, 60] }, // Orange
-    { icon: '•', text: 'Content Completeness & Quality Assessment', color: [14, 165, 233] }, // Sky blue
-    { icon: '•', text: 'Client-Specific Standard Compliance Check', color: [139, 69, 19] }, // Saddle brown
-    { icon: '•', text: 'Deliverable Package Coordination Review', color: [219, 39, 119] } // Pink
+  // Sales pitch paragraph
+  pdf.setFontSize(11);
+  pdf.setTextColor(75, 85, 99);
+  pdf.setFont('helvetica', 'normal');
+  const salesPitch = [
+    'This V-Check found your deliverable gaps. Now get the complete solution:',
+    'Our 48h QA audit covers naming, title blocks, BIM LOD/LOIN, clashes,',
+    'versions, and content compliance—so you deliver a complete,',
+    'client-ready package on time.'
   ];
   
-  // Create two columns for services with portrait optimization
-  const leftColumnServices = services.slice(0, 4);
-  const rightColumnServices = services.slice(4);
+  salesPitch.forEach((line, index) => {
+    pdf.text(line, 30, yPosition + (index * 6));
+  });
   
-  const leftColumnX = 30; // Standard left margin for portrait
-  const rightColumnX = pageWidth / 2 + 5; // Adjusted spacing for portrait
-  const serviceLineHeight = 8; // Compact spacing for portrait
+  yPosition += 35;
   
-  pdf.setFontSize(9);
+  // Value proposition box
+  pdf.setFillColor(240, 253, 244); // Light green background
+  pdf.setDrawColor(34, 197, 94); // Green border
+  pdf.setLineWidth(1);
+  pdf.rect(25, yPosition, pageWidth - 50, 45, 'FD');
+  
+  pdf.setFontSize(12);
+  pdf.setTextColor(51, 65, 85);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Why Choose Our Complete QA Validation:', 30, yPosition + 15);
+  
+  pdf.setFontSize(10);
   pdf.setFont('helvetica', 'normal');
+  pdf.setTextColor(75, 85, 99);
   
-  // Left column
-  leftColumnServices.forEach((service, index) => {
-    const currentY = yPosition + (index * serviceLineHeight);
-    
-    // Checkmark with color
-    pdf.setTextColor(service.color[0], service.color[1], service.color[2]);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(service.icon, leftColumnX, currentY);
-    
-    // Service text
-    pdf.setTextColor(75, 85, 99); // Gray-600
-    pdf.setFont('helvetica', 'normal');
-    pdf.text(service.text, leftColumnX + 8, currentY);
+  const benefits = [
+    '• NDA-Protected  • 48h Delivery  • Zero Software Install',
+    '• Machine-Precision + Expert Review  • We Re-check Until It Passes'
+  ];
+  
+  benefits.forEach((benefit, index) => {
+    pdf.text(benefit, 30, yPosition + 25 + (index * 8));
   });
   
-  // Right column
-  rightColumnServices.forEach((service, index) => {
-    const currentY = yPosition + (index * serviceLineHeight);
-    
-    // Checkmark with color
-    pdf.setTextColor(service.color[0], service.color[1], service.color[2]);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(service.icon, rightColumnX, currentY);
-    
-    // Service text
-    pdf.setTextColor(75, 85, 99); // Gray-600
-    pdf.setFont('helvetica', 'normal');
-    pdf.text(service.text, rightColumnX + 8, currentY);
-  });
+  yPosition += 60;
   
-  yPosition += leftColumnServices.length * serviceLineHeight + 40; // Increased spacing before button
-  
-  // Add vibrant CTA button with embedded link
+  // Add prominent CTA button with embedded link
   const buttonY = yPosition;
-  const buttonWidth = 120; // Adjusted width for portrait
-  const buttonHeight = 16; // Standard height
+  const buttonWidth = 140; // Larger width for better visibility
+  const buttonHeight = 20; // Taller for better prominence
   const buttonX = (pageWidth - buttonWidth) / 2;
   
-  // Button background with gradient effect (simulate with overlapping rectangles)
-  pdf.setFillColor(59, 130, 246); // Blue-500
-  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight, 3, 3, 'F');
+  // Button shadow for depth
+  pdf.setFillColor(0, 0, 0, 0.1); // Shadow
+  pdf.roundedRect(buttonX + 2, buttonY + 2, buttonWidth, buttonHeight, 4, 4, 'F');
+  
+  // Button background with primary green color
+  pdf.setFillColor(16, 185, 129); // Primary green
+  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight, 4, 4, 'F');
   
   // Button highlight (top gradient effect)
-  pdf.setFillColor(96, 165, 250); // Blue-400
-  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight / 2, 3, 3, 'F');
+  pdf.setFillColor(34, 197, 94); // Lighter green for highlight
+  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight / 2, 4, 4, 'F');
   
   // Button text with embedded link
   pdf.setTextColor(255, 255, 255); // White
-  pdf.setFontSize(10); // Slightly smaller for portrait
+  pdf.setFontSize(11); // Larger font for visibility
   pdf.setFont('helvetica', 'bold');
-  const buttonText = '>> Book Your Free 30-Minute QA Consultation';
+  const buttonText = '📅 Book Your Free 30-Min QA Consultation';
   const buttonTextWidth = pdf.getTextWidth(buttonText);
   const textX = buttonX + (buttonWidth - buttonTextWidth) / 2;
   
   // Add clickable text
-  pdf.text(buttonText, textX, buttonY + 10);
+  pdf.text(buttonText, textX, buttonY + 13);
   
-  // Make the entire button area clickable by adding an invisible link rectangle
+  // Make the entire button area clickable
   pdf.link(buttonX, buttonY, buttonWidth, buttonHeight, { url: 'https://calendly.com/raubizar/30min' });
   
-  // Update yPosition after button (no separate URL line)
-  yPosition += buttonHeight + 20; // Space after button
-  yPosition += 15;
+  // Add urgency text below button
+  yPosition += buttonHeight + 8;
+  pdf.setFontSize(9);
+  pdf.setTextColor(239, 68, 68); // Red for urgency
+  pdf.setFont('helvetica', 'bold');
+  const urgencyText = 'Limited Availability - Book Now to Secure Your Spot';
+  const urgencyWidth = pdf.getTextWidth(urgencyText);
+  pdf.text(urgencyText, (pageWidth - urgencyWidth) / 2, yPosition);
+  
+  yPosition += 25;
 
   // Footer with website elements
   const footerY = pageHeight - 35;
