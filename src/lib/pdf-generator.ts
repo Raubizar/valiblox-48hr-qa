@@ -204,18 +204,24 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
 
   yPosition += 15;
 
-  // Table headers with portrait positioning
+  // Table headers with optimized column widths for portrait
+  const tableX = 25;
+  const tableWidth = pageWidth - 50;
+  const col1Width = tableWidth * 0.5; // 50% for Expected Drawing Name
+  const col2Width = tableWidth * 0.35; // 35% for Delivered File  
+  const col3Width = tableWidth * 0.15; // 15% for Status
+  
   pdf.setFillColor(248, 250, 252); // slate-50
-  pdf.rect(25, yPosition, pageWidth - 50, 12, 'F'); // Full width header
+  pdf.rect(tableX, yPosition, tableWidth, 12, 'F');
   
   pdf.setFontSize(9);
   pdf.setTextColor(darkColor);
   pdf.setFont("helvetica", "bold");
-  pdf.text('Expected Drawing Name', 30, yPosition + 7);
-  pdf.text('Delivered File', 115, yPosition + 7); // Adjusted for portrait
-  pdf.text('Status', 165, yPosition + 7); // Adjusted for portrait
+  pdf.text('Expected Drawing Name', tableX + 5, yPosition + 7);
+  pdf.text('Delivered File', tableX + col1Width + 5, yPosition + 7);
+  pdf.text('Status', tableX + col1Width + col2Width + 5, yPosition + 7);
 
-  yPosition += 14; // Increased spacing to match
+  yPosition += 14;
 
   // Table rows
   pdf.setFont("helvetica", "normal");
@@ -254,7 +260,7 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
 
     pdf.setTextColor(darkColor);
     
-    // Function to wrap text across multiple lines with better width calculation
+    // Improved function to wrap text across multiple lines with better width calculation
     const wrapText = (text: string, maxWidth: number, fontSize: number = 8) => {
       pdf.setFontSize(fontSize);
       
@@ -263,24 +269,46 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
         return [text];
       }
       
-      // Split on common separators for better breaking
-      const parts = text.split(/[\s\-_\/\\]+/);
+      // Split on common separators for technical file names
+      const parts = text.split(/[\s\-_\/\\.]+/);
       const lines = [];
       let currentLine = '';
       
       for (const part of parts) {
+        if (!part) continue; // Skip empty parts
+        
         const testLine = currentLine + (currentLine ? ' ' : '') + part;
         const textWidth = pdf.getTextWidth(testLine);
         
         if (textWidth > maxWidth && currentLine) {
+          // Current line is full, start new line
           lines.push(currentLine);
           currentLine = part;
+          
+          // If single part is still too long, force break it
+          if (pdf.getTextWidth(part) > maxWidth) {
+            // Character-by-character breaking for very long parts
+            let charLine = '';
+            for (const char of part) {
+              const testChar = charLine + char;
+              if (pdf.getTextWidth(testChar) > maxWidth && charLine) {
+                lines.push(charLine);
+                charLine = char;
+              } else {
+                charLine = testChar;
+              }
+            }
+            currentLine = charLine;
+          }
         } else {
           currentLine = testLine;
         }
       }
+      
       if (currentLine) lines.push(currentLine);
-      return lines;
+      
+      // Ensure we don't have empty lines
+      return lines.filter(line => line.trim().length > 0);
     };
     
     // Get full text without truncation
@@ -288,35 +316,39 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     const matchedFile = String(result.matchedFile || 'N/A');
     const statusText = String(displayStatus || 'Unknown');
     
-    // Wrap text for each column with portrait-optimized widths
-    const excelLines = wrapText(excelName, 80); // ~80mm width for first column in portrait
-    const matchedLines = wrapText(matchedFile, 70); // ~70mm width for second column
-    const statusLines = wrapText(statusText, 30); // ~30mm width for status column
+    // Wrap text for each column using the new optimized widths
+    const col1TextWidth = col1Width - 10; // Account for padding
+    const col2TextWidth = col2Width - 10; // Account for padding  
+    const col3TextWidth = col3Width - 10; // Account for padding
+    
+    const excelLines = wrapText(excelName, col1TextWidth, 8);
+    const matchedLines = wrapText(matchedFile, col2TextWidth, 8);
+    const statusLines = wrapText(statusText, col3TextWidth, 8);
     
     // Calculate row height based on maximum lines needed
     const maxLines = Math.max(excelLines.length, matchedLines.length, statusLines.length);
     const lineHeight = 4;
-    const rowHeight = Math.max(12, maxLines * lineHeight + 4);
+    const rowHeight = Math.max(12, maxLines * lineHeight + 6); // Added more padding
     
     // Draw alternating row background
     if (index % 2 === 0) {
       pdf.setFillColor(249, 250, 251);
-      pdf.rect(25, yPosition - 2, pageWidth - 50, rowHeight, 'F');
+      pdf.rect(tableX, yPosition - 2, tableWidth, rowHeight, 'F');
     }
     
-    // Draw wrapped text for each column with portrait positioning
+    // Draw wrapped text for each column using the new positioning
     pdf.setTextColor(darkColor);
     excelLines.forEach((line, lineIndex) => {
-      pdf.text(line, 30, yPosition + 6 + (lineIndex * lineHeight));
+      pdf.text(line, tableX + 5, yPosition + 6 + (lineIndex * lineHeight));
     });
     
     matchedLines.forEach((line, lineIndex) => {
-      pdf.text(line, 115, yPosition + 6 + (lineIndex * lineHeight)); // Adjusted for portrait
+      pdf.text(line, tableX + col1Width + 5, yPosition + 6 + (lineIndex * lineHeight));
     });
     
     pdf.setTextColor(statusColor);
     statusLines.forEach((line, lineIndex) => {
-      pdf.text(line, 165, yPosition + 6 + (lineIndex * lineHeight)); // Adjusted for portrait
+      pdf.text(line, tableX + col1Width + col2Width + 5, yPosition + 6 + (lineIndex * lineHeight));
     });
 
     yPosition += rowHeight; // Use dynamic row height
