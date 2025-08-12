@@ -63,20 +63,14 @@ export const Header = () => {
           >
             Process
           </button>
-          <button 
-            onClick={() => handleNavigation('value')}
-            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-          >
-            Value
-          </button>
-          <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-            Pricing
-          </a>
           <a href="/check" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium">
-            Free Check
+            V-Check
           </a>
           <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
             Articles
+          </a>
+          <a href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+            Pricing
           </a>
         </nav>
         
@@ -114,25 +108,12 @@ export const Header = () => {
               >
                 Process
               </button>
-              <button 
-                onClick={() => handleNavigation('value')}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-              >
-                Value
-              </button>
-              <a 
-                href="/pricing" 
-                onClick={handleLinkClick}
-                className="text-muted-foreground hover:text-foreground transition-colors py-2"
-              >
-                Pricing
-              </a>
               <a 
                 href="/check" 
                 onClick={handleLinkClick}
                 className="text-primary hover:text-primary/80 transition-colors py-2 font-medium"
               >
-                Free Check
+                V-Check
               </a>
               <a 
                 href="/articles" 
@@ -140,6 +121,13 @@ export const Header = () => {
                 className="text-muted-foreground hover:text-foreground transition-colors py-2"
               >
                 Articles
+              </a>
+              <a 
+                href="/pricing" 
+                onClick={handleLinkClick}
+                className="text-muted-foreground hover:text-foreground transition-colors py-2"
+              >
+                Pricing
               </a>
               
               {/* Mobile CTA Buttons */}
