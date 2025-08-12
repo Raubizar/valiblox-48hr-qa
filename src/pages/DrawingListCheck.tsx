@@ -29,6 +29,7 @@ import {
 
 export default function DrawingListCheck() {
   // File upload states
+  const [currentStep, setCurrentStep] = useState(1);
   const [folderFiles, setFolderFiles] = useState<File[]>([]);
   const [excelFile, setExcelFile] = useState<File | null>(null);
   
@@ -67,6 +68,11 @@ export default function DrawingListCheck() {
     setFolderFiles(files);
     setAnalysisResult(null);
     setAnalysisError('');
+    
+    // Advance to step 2 when folder is uploaded successfully
+    if (files.length > 0) {
+      setCurrentStep(2);
+    }
     
     // Auto-run analysis if we have both files and extracted file names
     if (files.length > 0 && extractedFileNames.length > 0) {
@@ -119,6 +125,9 @@ export default function DrawingListCheck() {
         const bestSheet = sheetAnalysis[0];
         setSelectedSheet(bestSheet.name);
         await processSheet(bestSheet);
+        
+        // Advance to step 3 when Excel is uploaded and processed successfully
+        setCurrentStep(3);
       }
     } catch (error) {
       console.error('Excel processing error:', error);
@@ -259,27 +268,46 @@ export default function DrawingListCheck() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Input Section */}
           <div className="lg:col-span-1 space-y-4">
-            {/* File Uploads */}
-            <FileUpload
-              title="1. Upload Delivered Files"
-              description="Folder containing delivered drawings"
-              onFilesSelected={handleFolderUpload}
-              webkitdirectory={true}
-              multiple={true}
-              icon={<FolderOpen className="w-5 h-5 text-primary" />}
-            />
+            {/* Step Progress */}
+            <div className="text-center mb-4">
+              <p className="text-sm text-muted-foreground">
+                Step {currentStep} of 3
+              </p>
+            </div>
 
-            <FileUpload
-              title="2. Upload Drawing Register"
-              description="Excel file with expected drawings"
-              accept=".xlsx,.xls"
-              onFilesSelected={handleExcelUpload}
-              icon={<FileSpreadsheet className="w-5 h-5 text-primary" />}
-            />
+            {/* Step 1: Folder Upload */}
+            {currentStep >= 1 && (
+              <div className={currentStep === 1 ? 'ring-2 ring-primary ring-offset-2 rounded-lg' : ''}>
+                <FileUpload
+                  title="1. Upload Delivered Files"
+                  description="Folder containing delivered drawings"
+                  onFilesSelected={handleFolderUpload}
+                  webkitdirectory={true}
+                  multiple={true}
+                  icon={<FolderOpen className="w-5 h-5 text-primary" />}
+                  shouldPulse={currentStep === 1}
+                />
+              </div>
+            )}
 
-            {/* Excel Configuration */}
-            {sheets.length > 0 && (
-              <Card className="glass-effect">
+            {/* Step 2: Excel Upload */}
+            {currentStep >= 2 && (
+              <div className={`transition-all duration-500 ${currentStep === 2 ? 'ring-2 ring-primary ring-offset-2 rounded-lg' : ''}`}>
+                <FileUpload
+                  title="2. Upload Drawing Register"
+                  description="Excel file with expected drawings"
+                  accept=".xlsx,.xls"
+                  onFilesSelected={handleExcelUpload}
+                  icon={<FileSpreadsheet className="w-5 h-5 text-primary" />}
+                  shouldPulse={currentStep === 2}
+                />
+              </div>
+            )}
+
+            {/* Step 3: Analysis Configuration */}
+            {currentStep >= 3 && sheets.length > 0 && (
+              <div className={`transition-all duration-500 ${currentStep === 3 ? 'ring-2 ring-primary ring-offset-2 rounded-lg' : ''}`}>
+                <Card className="glass-effect">
                 <CardContent className="p-4">
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
@@ -357,16 +385,18 @@ export default function DrawingListCheck() {
                   </div>
                 </CardContent>
               </Card>
+              </div>
             )}
 
             {/* Run Analysis Button */}
-            <Button
-              onClick={runAnalysis}
-              disabled={!canRunAnalysis || isAnalyzing}
-              className="w-full"
-              size="lg"
-              variant="cta"
-            >
+            {currentStep >= 3 && !showResults && (
+              <Button
+                onClick={runAnalysis}
+                disabled={!canRunAnalysis || isAnalyzing}
+                className={`w-full ${currentStep === 3 && canRunAnalysis && !isAnalyzing ? 'animate-bounce-soft' : ''}`}
+                size="lg"
+                variant="cta"
+              >
               {isAnalyzing ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -384,6 +414,7 @@ export default function DrawingListCheck() {
                 </>
               )}
             </Button>
+            )}
 
             {analysisError && (
               <Alert variant="destructive">
@@ -395,7 +426,26 @@ export default function DrawingListCheck() {
 
           {/* Results Section */}
           <div className="lg:col-span-2">
-            {showResults ? (
+            {!showResults ? (
+              <div className="h-full flex items-center justify-center">
+                <Card className="glass-effect p-8">
+                  <div className="text-center space-y-4">
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">
+                        {currentStep === 1 && "Upload Folder to Get Started"}
+                        {currentStep === 2 && "Upload Drawing List Excel File"}
+                        {currentStep === 3 && "Configure and Run Analysis"}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {currentStep === 1 && "Select a folder containing your CAD drawings and deliverables"}
+                        {currentStep === 2 && "Upload the Excel file with the expected drawing list"}
+                        {currentStep === 3 && "Review configuration and click analyze to check completeness"}
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            ) : (
               <div className="space-y-4">
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -549,7 +599,7 @@ export default function DrawingListCheck() {
                         onClick={leadCaptureWebhook.openModal}
                         size="default"
                         variant="cta"
-                        className="h-9"
+                        className="h-9 animate-gradient-shift text-white"
                       >
                         <Download className="w-3 h-3 mr-2" />
                         Get Full QA Report (Free)
@@ -558,21 +608,6 @@ export default function DrawingListCheck() {
                   </CardContent>
                 </Card>
               </div>
-            ) : (
-              <Card className="glass-effect h-96 flex items-center justify-center">
-                <CardContent className="text-center">
-                  <div className="text-muted-foreground mb-4">
-                    <FileSpreadsheet className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  </div>
-                  <h3 className="text-base font-semibold text-foreground mb-2">
-                    Ready to Check Your Deliverables
-                  </h3>
-                  <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-                    Upload your drawing register and delivered files to get an instant completeness analysis. 
-                    We'll show you exactly what's delivered, missing, or extra.
-                  </p>
-                </CardContent>
-              </Card>
             )}
           </div>
         </div>

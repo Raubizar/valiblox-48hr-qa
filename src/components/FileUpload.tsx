@@ -12,6 +12,7 @@ interface FileUploadProps {
   title: string;
   description: string;
   icon?: React.ReactNode;
+  shouldPulse?: boolean;
 }
 
 export const FileUpload = ({ 
@@ -21,7 +22,8 @@ export const FileUpload = ({
   webkitdirectory = false,
   title,
   description,
-  icon
+  icon,
+  shouldPulse = false
 }: FileUploadProps) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
@@ -116,7 +118,7 @@ export const FileUpload = ({
           <Button
             onClick={handleButtonClick}
             variant="outline"
-            className="w-full h-10 text-sm"
+            className={`w-full h-10 text-sm ${shouldPulse ? 'animate-bounce-soft bg-primary/5 border-primary' : ''}`}
             disabled={status === 'processing'}
           >
             <div className="flex items-center gap-2">

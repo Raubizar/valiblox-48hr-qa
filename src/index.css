@@ -413,4 +413,34 @@ All colors MUST be HSL.
   .article-content div[style*="background"] ul {
     @apply mb-0;
   }
+
+  /* Gentle bounce animation for step buttons */
+  .animate-bounce-soft {
+    animation: bounce-soft 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce-soft {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  /* Gradient shift animation for CTA button */
+  .animate-gradient-shift {
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--primary)/0.8), hsl(var(--primary)));
+    background-size: 300% 300%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
 }
