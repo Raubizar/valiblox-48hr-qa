@@ -1,135 +1,257 @@
 import jsPDF from 'jspdf';
-import { ComparisonResult } from './drawing-list-utils';
+import { imageToBase64 } from './image-utils';
 
-export interface PDFGenerationOptions {
-  analysisResult: ComparisonResult;
-  projectName?: string;
-  timestamp?: string;
+interface ValidationResult {
+  expectedDrawingName: string;
+  deliveredFile: string;
+  status: 'Done' | 'To Do' | 'File not in Drawing List';
 }
 
-export async function generateVCheckReport(options: PDFGenerationOptions): Promise<string> {
-  const { analysisResult, projectName = 'V-Check Analysis', timestamp = new Date().toLocaleDateString() } = options;
-  
-  const pdf = new jsPDF();
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const pageHeight = pdf.internal.pageSize.getHeight();
-  
-  // Colors
-  const primaryColor = '#10b981'; // Valiblox green
-  const darkColor = '#374151';
-  const lightGray = '#f3f4f6';
-  
-  let yPosition = 30;
-  
-  // Header with Valiblox branding
-  pdf.setFontSize(24);
-  pdf.setTextColor(primaryColor);
-  pdf.text('VALIBLOX', 20, yPosition);
-  
-  pdf.setFontSize(20);
-  pdf.setTextColor(darkColor);
-  pdf.text('Deliverables V-Check Report', 20, yPosition + 15);
-  
-  // Project info
-  yPosition += 35;
-  pdf.setFontSize(12);
-  pdf.setTextColor('#6b7280');
-  pdf.text(`Project: ${projectName}`, 20, yPosition);
-  pdf.text(`Analysis Date: ${timestamp}`, 20, yPosition + 8);
-  pdf.text(`Generated: ${new Date().toLocaleString()}`, 20, yPosition + 16);
-  
-  // Executive Summary Box
-  yPosition += 35;
-  pdf.setFillColor(240, 253, 244); // Light green background
-  pdf.rect(20, yPosition - 5, pageWidth - 40, 45, 'F');
-  
-  pdf.setFontSize(16);
-  pdf.setTextColor(darkColor);
-  pdf.text('Executive Summary', 25, yPosition + 8);
-  
-  pdf.setFontSize(12);
-  const summary = analysisResult.summary;
-  pdf.text(`✓ Delivery Completion: ${summary.deliveryPercentage.toFixed(1)}%`, 25, yPosition + 20);
-  pdf.text(`✓ Files Delivered: ${summary.done} of ${summary.total} expected`, 25, yPosition + 28);
-  pdf.text(`⚠ Missing Files: ${summary.todo}`, 25, yPosition + 36);
-  if (summary.extra > 0) {
-    pdf.text(`📎 Extra Files: ${summary.extra} (not in register)`, 120, yPosition + 36);
+interface AnalysisResult {
+  results: ValidationResult[];
+  summary: {
+    total: number;
+    done: number;
+    todo: number;
+    extra: number;
+    deliveryPercentage: number;
+  };
+}
+
+export const generateVCheckReport = async (analysisResult: AnalysisResult): Promise<string> => {
+  try {
+    console.log('Starting PDF generation with:', analysisResult);
+    console.log('Summary data:', analysisResult?.summary);
+    console.log('Results data:', analysisResult?.results);
+    
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    // Colors matching website
+    const primaryColor = '#10b981'; // emerald-500
+    const darkColor = '#1e293b'; // slate-800  
+    const grayColor = '#64748b'; // slate-500
+    const redColor = '#ef4444'; // red-500
+    const greenColor = '#10b981'; // emerald-500
+    const amberColor = '#f59e0b'; // amber-500
+
+    // Load logo
+    let logoBase64: string | null = null;
+    try {
+      logoBase64 = await imageToBase64('/lovable-uploads/21b98309-c8cb-4502-abb6-3a70b51fd83a.png');
+      console.log('Logo loaded successfully');
+    } catch (error) {
+      console.warn('Could not load logo:', error);
+    }
+
+  // Header with logo and title
+  let yPosition = 25;
+
+  if (logoBase64) {
+    // Use actual logo
+    try {
+      pdf.addImage(logoBase64, 'PNG', 25, yPosition - 5, 12, 12);
+    } catch (error) {
+      console.warn('Could not add logo to PDF, using fallback');
+      // Fallback to placeholder
+      pdf.setFillColor(16, 185, 129);
+      pdf.rect(25, yPosition - 5, 30, 10, 'F');
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFontSize(10);
+      pdf.setFont("helvetica", "bold");
+      pdf.text('VALIBLOX', 27, yPosition + 1);
+    }
+  } else {
+    // Fallback placeholder
+    pdf.setFillColor(16, 185, 129);
+    pdf.rect(25, yPosition - 5, 30, 10, 'F');
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(10);
+    pdf.setFont("helvetica", "bold");
+    pdf.text('VALIBLOX', 27, yPosition + 1);
   }
+
+  // Company name and tagline
+  pdf.setTextColor(darkColor);
+  pdf.setFontSize(20);
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Valiblox', logoBase64 ? 45 : 60, yPosition + 2);
+
+  pdf.setFontSize(10);
+  pdf.setFont("helvetica", "normal");
+  pdf.setTextColor(grayColor);
+  pdf.text('Independent QA validation for data center projects', logoBase64 ? 45 : 60, yPosition + 8);
+
+  // Report title
+  yPosition += 25;
+  pdf.setFontSize(18);
+  pdf.setTextColor(darkColor);
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Deliverables V-Check Report', 25, yPosition);
+
+  // Project info
+  yPosition += 20;
+  pdf.setFontSize(10);
+  pdf.setTextColor(grayColor);
+  pdf.text(`Project: V-Check Analysis`, 25, yPosition);
+  pdf.text(`Analysis Date: ${new Date().toLocaleDateString()}`, 25, yPosition + 8);
+  pdf.text(`Generated: ${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`, 25, yPosition + 16);
+
+  // Donut chart and summary section
+  yPosition += 35;
   
-  // Detailed Results Table
-  yPosition += 60;
+  // Draw donut chart like website
+  const chartCenterX = 150;
+  const chartCenterY = yPosition + 25;
+  const outerRadius = 20;
+  const innerRadius = 12;
+  const percentage = Math.max(0, Math.min(100, analysisResult.summary.deliveryPercentage || 0));
+
+  // Determine color based on percentage like website
+  let chartColor = redColor;
+  if (percentage >= 90) chartColor = greenColor;
+  else if (percentage >= 60) chartColor = amberColor;
+
+  // Background circle
+  pdf.setFillColor(240, 240, 240);
+  pdf.circle(chartCenterX, chartCenterY, outerRadius, 'F');
+  pdf.setFillColor(255, 255, 255);
+  pdf.circle(chartCenterX, chartCenterY, innerRadius, 'F');
+
+  // Progress arc (simplified implementation)
+  if (percentage > 0) {
+    const angleStep = 3;
+    const totalAngle = (percentage / 100) * 360;
+    
+    pdf.setDrawColor(chartColor);
+    pdf.setLineWidth(outerRadius - innerRadius);
+    
+    for (let angle = 0; angle < totalAngle; angle += angleStep) {
+      const radians = (angle - 90) * Math.PI / 180;
+      const x = chartCenterX + Math.cos(radians) * ((outerRadius + innerRadius) / 2);
+      const y = chartCenterY + Math.sin(radians) * ((outerRadius + innerRadius) / 2);
+      pdf.circle(x, y, 0.5, 'F');
+    }
+  }
+
+  // Percentage text in center
+  pdf.setTextColor(chartColor);
+  pdf.setFontSize(12);
+  pdf.setFont("helvetica", "bold");
+  pdf.text(`${percentage.toFixed(0)}%`, chartCenterX - 8, chartCenterY + 2);
+
+  // Chart label
+  pdf.setFontSize(8);
+  pdf.setTextColor(grayColor);
+  pdf.text('Completion Rate', chartCenterX - 15, chartCenterY + 35);
+
+  // Executive Summary Box
+  const summaryBoxX = 25;
+  const summaryBoxY = yPosition;
+  const summaryBoxWidth = 100;
+  const summaryBoxHeight = 50;
+
+  pdf.setFillColor(240, 253, 244); // light green background
+  pdf.setDrawColor(34, 197, 94); // green border
+  pdf.setLineWidth(0.5);
+  pdf.rect(summaryBoxX, summaryBoxY, summaryBoxWidth, summaryBoxHeight, 'FD');
+
   pdf.setFontSize(14);
   pdf.setTextColor(darkColor);
-  pdf.text('Detailed Analysis Results', 20, yPosition);
-  
-  yPosition += 15;
-  
-  // Table headers
-  pdf.setFillColor(229, 231, 235); // Gray background
-  pdf.rect(20, yPosition - 3, pageWidth - 40, 12, 'F');
-  
-  pdf.setFontSize(10);
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Executive Summary', summaryBoxX + 5, summaryBoxY + 12);
+
+  pdf.setFontSize(9);
+  pdf.setFont("helvetica", "normal");
   pdf.setTextColor(darkColor);
-  pdf.text('Expected Drawing Name', 22, yPosition + 5);
-  pdf.text('Delivered File', 90, yPosition + 5);
-  pdf.text('Status', 150, yPosition + 5);
+
+  let textY = summaryBoxY + 22;
+  pdf.text(`• Delivery Completion: ${percentage.toFixed(1)}%`, summaryBoxX + 5, textY);
+  textY += 7;
+  pdf.text(`• Files Delivered: ${analysisResult.summary.done || 0} of ${analysisResult.summary.total || 0} expected`, summaryBoxX + 5, textY);
+  textY += 7;
+  pdf.text(`• Missing Files: ${analysisResult.summary.todo || 0}`, summaryBoxX + 5, textY);
   
+  if ((analysisResult.summary.extra || 0) > 0) {
+    textY += 7;
+    pdf.text(`• Extra Files: ${analysisResult.summary.extra} (not in register)`, summaryBoxX + 5, textY);
+  }
+
+  // Detailed Results Table
+  yPosition += 70;
+  pdf.setFontSize(14);
+  pdf.setTextColor(darkColor);
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Detailed Analysis Results', 25, yPosition);
+
   yPosition += 15;
+
+  // Table headers
+  pdf.setFillColor(248, 250, 252); // slate-50
+  pdf.rect(25, yPosition, pageWidth - 50, 10, 'F');
   
+  pdf.setFontSize(9);
+  pdf.setTextColor(darkColor);
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Expected Drawing Name', 30, yPosition + 7);
+  pdf.text('Delivered File', 95, yPosition + 7);
+  pdf.text('Status', 155, yPosition + 7);
+
+  yPosition += 12;
+
   // Table rows
-  const maxRowsPerPage = 20;
-  let rowCount = 0;
+  pdf.setFont("helvetica", "normal");
   
-  for (const result of analysisResult.results.slice(0, maxRowsPerPage)) {
-    if (yPosition > pageHeight - 30) {
+  // Ensure results array exists and has items
+  const results = analysisResult.results || [];
+  results.forEach((result, index) => {
+    if (!result) return; // Skip if result is null/undefined
+    
+    if (yPosition > pageHeight - 40) {
       pdf.addPage();
-      yPosition = 30;
+      yPosition = 25;
     }
-    
-    pdf.setFontSize(9);
-    
-    // Alternate row background
-    if (rowCount % 2 === 0) {
+
+    // Alternating row colors
+    if (index % 2 === 0) {
       pdf.setFillColor(249, 250, 251);
-      pdf.rect(20, yPosition - 3, pageWidth - 40, 10, 'F');
+      pdf.rect(25, yPosition - 2, pageWidth - 50, 10, 'F');
     }
-    
-    // Status color coding
+
+    // Status color
     let statusColor = darkColor;
-    if (result.status === 'Done') statusColor = '#059669';
-    else if (result.status === 'To Do') statusColor = '#dc2626';
-    else statusColor = '#f59e0b';
+    let displayStatus: string = result.status;
     
+    if (result.status === 'Done') {
+      statusColor = greenColor;
+    } else if (result.status === 'To Do') {
+      statusColor = redColor;
+      displayStatus = 'Missing';
+    } else {
+      statusColor = amberColor;
+    }
+
     pdf.setTextColor(darkColor);
-    const excelName = result.excelName.length > 25 ? result.excelName.substring(0, 22) + '...' : result.excelName;
-    const fileName = result.matchedFile.length > 25 ? result.matchedFile.substring(0, 22) + '...' : result.matchedFile;
-    
-    pdf.text(excelName, 22, yPosition + 4);
-    pdf.text(fileName, 90, yPosition + 4);
+    pdf.text(String(result.expectedDrawingName || 'Unknown'), 30, yPosition + 5);
+    pdf.text(String(result.deliveredFile || 'N/A'), 95, yPosition + 5);
     
     pdf.setTextColor(statusColor);
-    pdf.text(result.status, 150, yPosition + 4);
-    
-    yPosition += 12;
-    rowCount++;
-  }
-  
-  // Full QA Audit Information
+    pdf.text(String(displayStatus || 'Unknown'), 155, yPosition + 5);
+
+    yPosition += 10;
+  });
+
+  // QA Services section
   yPosition += 20;
-  if (yPosition > pageHeight - 100) {
-    pdf.addPage();
-    yPosition = 30;
-  }
-  
-  pdf.setFillColor(239, 246, 255); // Light blue background
-  pdf.rect(20, yPosition - 5, pageWidth - 40, 80, 'F');
-  
-  pdf.setFontSize(16);
+  pdf.setFontSize(12);
   pdf.setTextColor(darkColor);
-  pdf.text('Ready for a Complete 48-Hour QA Audit?', 25, yPosition + 10);
-  
-  pdf.setFontSize(10);
-  pdf.setTextColor('#374151');
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Our Complete QA Validation Services', 25, yPosition);
+
+  yPosition += 10;
+  pdf.setFontSize(9);
+  pdf.setTextColor(grayColor);
   const qaServices = [
     '• Drawing Register & Naming Convention Compliance',
     '• Title Block Standards & Consistency Validation',
@@ -140,26 +262,63 @@ export async function generateVCheckReport(options: PDFGenerationOptions): Promi
     '• Client-Specific Standard Compliance Check',
     '• Deliverable Package Coordination Review'
   ];
-  
+
   qaServices.forEach((service, index) => {
-    pdf.text(service, 25, yPosition + 20 + (index * 6));
+    pdf.text(service, 25, yPosition + 8 + (index * 6));
   });
-  
+
   // Call to Action
-  yPosition += 70;
-  pdf.setFontSize(12);
+  yPosition += 65;
+  pdf.setFontSize(11);
   pdf.setTextColor(primaryColor);
-  pdf.textWithLink('📅 Book Your Free 30-Minute QA Consultation', 25, yPosition, {
-    url: 'https://calendly.com/raubizar/30min'
-  });
+  pdf.setFont("helvetica", "bold");
+  pdf.text('📅 Book Your Free 30-Minute QA Consultation', 25, yPosition);
+
+  // Footer with website elements
+  const footerY = pageHeight - 35;
   
-  // Footer
-  yPosition = pageHeight - 20;
+  if (logoBase64) {
+    // Use actual logo in footer
+    try {
+      pdf.addImage(logoBase64, 'PNG', 25, footerY - 3, 8, 8);
+    } catch (error) {
+      // Fallback
+      pdf.setFillColor(16, 185, 129);
+      pdf.rect(25, footerY - 3, 20, 6, 'F');
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFontSize(7);
+      pdf.text('VALIBLOX', 27, footerY + 1);
+    }
+  } else {
+    // Footer logo placeholder
+    pdf.setFillColor(16, 185, 129);
+    pdf.rect(25, footerY - 3, 20, 6, 'F');
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(7);
+    pdf.text('VALIBLOX', 27, footerY + 1);
+  }
+
+  // Trust badges like website footer
+  const badgeY = footerY + 12;
   pdf.setFontSize(8);
-  pdf.setTextColor('#9ca3af');
-  pdf.textWithLink('www.valiblox.com', 20, yPosition, { url: 'https://valiblox.com' });
-  pdf.text('Valiblox - Quality Assurance for Construction Deliverables', pageWidth - 120, yPosition);
+  pdf.setTextColor(grayColor);
+  pdf.setFont("helvetica", "normal");
   
-  // Return base64 PDF data
+  pdf.text('🛡️ NDA-Protected', 25, badgeY);
+  pdf.text('🕐 48h Turnaround', 70, badgeY);
+  pdf.text('🎯 Machine-Precision + Expert Review', 115, badgeY);
+
+  // Contact email
+  pdf.setTextColor(primaryColor);
+  pdf.text('team@valiblox.com', 25, badgeY + 10);
+
+  // Website link
+  pdf.setTextColor(grayColor);
+  pdf.text('www.valiblox.com', pageWidth - 35, footerY + 2);
+
   return pdf.output('datauristring').split(',')[1];
-}
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    throw error;
+  }
+};

@@ -33,11 +33,7 @@ export const useWebhook = ({
       setIsGeneratingPDF(true);
       try {
         const { generateVCheckReport } = await import("@/lib/pdf-generator");
-        const pdf = await generateVCheckReport({
-          analysisResult: analysisData,
-          projectName: "V-Check Analysis",
-          timestamp: new Date().toLocaleDateString()
-        });
+        const pdf = await generateVCheckReport(analysisData);
         setPdfBase64(pdf);
       } catch (error) {
         console.error("PDF generation error:", error);
