@@ -58,9 +58,11 @@ export default function DrawingListCheck() {
   // Lead capture webhook
   const leadCaptureWebhook = useWebhook({
     source: "drawing-list-check-results",
-    title: "Get Your Full QA Report",
-    description: "Based on your V-Check analysis, get a comprehensive 48-hour QA report for your complete project deliverables.",
-    submitButtonText: "Get My QA Report"
+    title: "Download Your V-Check Report",
+    description: "Get your detailed V-Check analysis report and learn about our comprehensive 48-hour QA audit services.",
+    submitButtonText: "Download Report & Get QA Info",
+    generatePDF: true,
+    analysisData: analysisResult
   });
 
   // Help with drawing register webhook
@@ -749,14 +751,24 @@ export default function DrawingListCheck() {
                         <p>This quick check found <strong className="text-foreground">{analysisResult.summary.todo} missing files</strong> and <strong className="text-foreground">{analysisResult.summary.extra} extra files</strong>.</p>
                         <p>Get a comprehensive 48-hour QA validation report for your complete project deliverables.</p>
                       </div>
-                      <Button 
+                      <Button
                         onClick={leadCaptureWebhook.openModal}
+                        disabled={leadCaptureWebhook.isGeneratingPDF}
                         size="default"
                         variant="cta"
                         className="h-9 animate-gradient-shift text-white"
                       >
-                        <Download className="w-3 h-3 mr-2" />
-                        Get Full Deliverables V-Check Report (Free)
+                        {leadCaptureWebhook.isGeneratingPDF ? (
+                          <>
+                            <div className="w-3 h-3 mr-2 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                            Generating PDF Report...
+                          </>
+                        ) : (
+                          <>
+                            <Download className="w-3 h-3 mr-2" />
+                            Download Full V-Check Report (Free)
+                          </>
+                        )}
                       </Button>
                     </div>
                   </CardContent>

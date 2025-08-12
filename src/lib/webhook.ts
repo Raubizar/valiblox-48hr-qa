@@ -3,6 +3,12 @@ interface WebhookFormData {
   email: string;
   message?: string;
   source: string;
+  analysisData?: {
+    completionPercentage: number;
+    totalFiles: number;
+    deliveredFiles: number;
+    missingFiles: number;
+  };
 }
 
 interface WebhookResponse {
@@ -47,7 +53,10 @@ export const submitToWebhook = async (formData: WebhookFormData): Promise<Webhoo
       timestamp: new Date().toISOString(),
       page: window.location.pathname,
       userAgent: navigator.userAgent,
-      referrer: document.referrer || "direct"
+      referrer: document.referrer || "direct",
+      ...(formData.analysisData && {
+        analysisData: formData.analysisData
+      })
     };
 
     console.log("📤 Sending payload:", payload);
