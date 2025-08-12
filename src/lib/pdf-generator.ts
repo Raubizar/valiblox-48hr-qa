@@ -89,7 +89,7 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
   pdf.setFontSize(18);
   pdf.setTextColor(darkColor);
   pdf.setFont("helvetica", "bold");
-  pdf.text('Deliverables V-Check Report', 25, yPosition);
+  pdf.text('Deliverables V-Check Report (free sample)', 25, yPosition);
 
   // Project info
   yPosition += 20;
@@ -354,108 +354,89 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     yPosition += rowHeight; // Use dynamic row height
   });
 
+  // Check if we need a new page before adding QA section
+  if (yPosition > pageHeight - 200) {
+    pdf.addPage();
+    yPosition = 25;
+  }
+  
   // QA Services section with compelling sales pitch
-  yPosition += 30;
+  yPosition += 20;
   
   // Main section title
   pdf.setFillColor(240, 248, 255); // Light blue background
-  pdf.rect(25, yPosition - 5, pageWidth - 50, 20, 'F');
+  pdf.rect(25, yPosition - 5, pageWidth - 50, 18, 'F');
   
   pdf.setTextColor(51, 65, 85);
-  pdf.setFontSize(16);
+  pdf.setFontSize(14);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('Ready for Full 48h QA Validation?', 30, yPosition + 8);
+  pdf.text('Ready for Full 48h QA Validation?', 30, yPosition + 7);
   
-  yPosition += 35;
+  yPosition += 25;
   
-  // Sales pitch paragraph
-  pdf.setFontSize(11);
+  // Sales pitch paragraph - more compact
+  pdf.setFontSize(10);
   pdf.setTextColor(75, 85, 99);
   pdf.setFont('helvetica', 'normal');
-  const salesPitch = [
-    'This V-Check found your deliverable gaps. Now get the complete solution:',
-    'Our 48h QA audit covers naming, title blocks, BIM LOD/LOIN, clashes,',
-    'versions, and content compliance—so you deliver a complete,',
-    'client-ready package on time.'
-  ];
+  pdf.text('This V-Check found your deliverable gaps. Now get the complete solution:', 30, yPosition);
+  yPosition += 6;
+  pdf.text('Our 48h QA audit covers naming, title blocks, BIM LOD/LOIN, clashes, versions,', 30, yPosition);
+  yPosition += 6;
+  pdf.text('and content compliance—so you deliver a complete, client-ready package on time.', 30, yPosition);
   
-  salesPitch.forEach((line, index) => {
-    pdf.text(line, 30, yPosition + (index * 6));
-  });
+  yPosition += 20;
   
-  yPosition += 35;
-  
-  // Value proposition box
+  // Compact value proposition box
   pdf.setFillColor(240, 253, 244); // Light green background
   pdf.setDrawColor(34, 197, 94); // Green border
   pdf.setLineWidth(1);
-  pdf.rect(25, yPosition, pageWidth - 50, 45, 'FD');
+  pdf.rect(25, yPosition, pageWidth - 50, 35, 'FD');
   
-  pdf.setFontSize(12);
+  pdf.setFontSize(11);
   pdf.setTextColor(51, 65, 85);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('Why Choose Our Complete QA Validation:', 30, yPosition + 15);
+  pdf.text('Why Choose Our Complete QA Validation:', 30, yPosition + 12);
   
-  pdf.setFontSize(10);
+  pdf.setFontSize(9);
   pdf.setFont('helvetica', 'normal');
   pdf.setTextColor(75, 85, 99);
+  pdf.text('• NDA-Protected  • 48h Delivery  • Zero Software Install  • Expert Review', 30, yPosition + 22);
   
-  const benefits = [
-    '• NDA-Protected  • 48h Delivery  • Zero Software Install',
-    '• Machine-Precision + Expert Review  • We Re-check Until It Passes'
-  ];
+  yPosition += 45;
   
-  benefits.forEach((benefit, index) => {
-    pdf.text(benefit, 30, yPosition + 25 + (index * 8));
-  });
+  // Check if we have enough space for button, if not add new page
+  if (yPosition > pageHeight - 100) {
+    pdf.addPage();
+    yPosition = 25;
+  }
   
-  yPosition += 60;
-  
-  // Add prominent CTA button with embedded link
+  // Compact CTA button
   const buttonY = yPosition;
-  const buttonWidth = 140; // Larger width for better visibility
-  const buttonHeight = 20; // Taller for better prominence
+  const buttonText = 'Book Free 30-Min Consultation';
+  
+  // Calculate button width based on text + padding
+  pdf.setFontSize(10);
+  pdf.setFont('helvetica', 'bold');
+  const buttonTextWidth = pdf.getTextWidth(buttonText);
+  const buttonWidth = buttonTextWidth + 20; // Add 20px padding
+  const buttonHeight = 16;
   const buttonX = (pageWidth - buttonWidth) / 2;
   
-  // Button shadow for depth
-  pdf.setFillColor(0, 0, 0, 0.1); // Shadow
-  pdf.roundedRect(buttonX + 2, buttonY + 2, buttonWidth, buttonHeight, 4, 4, 'F');
-  
-  // Button background with primary green color
+  // Button background
   pdf.setFillColor(16, 185, 129); // Primary green
-  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight, 4, 4, 'F');
+  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight, 3, 3, 'F');
   
-  // Button highlight (top gradient effect)
-  pdf.setFillColor(34, 197, 94); // Lighter green for highlight
-  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight / 2, 4, 4, 'F');
-  
-  // Button text with embedded link
-  pdf.setTextColor(255, 255, 255); // White
-  pdf.setFontSize(11); // Larger font for visibility
-  pdf.setFont('helvetica', 'bold');
-  const buttonText = '📅 Book Your Free 30-Min QA Consultation';
-  const buttonTextWidth = pdf.getTextWidth(buttonText);
+  // Button text (centered)
+  pdf.setTextColor(255, 255, 255);
   const textX = buttonX + (buttonWidth - buttonTextWidth) / 2;
   
-  // Add clickable text
-  pdf.text(buttonText, textX, buttonY + 13);
-  
-  // Make the entire button area clickable
+  pdf.text(buttonText, textX, buttonY + 10);
   pdf.link(buttonX, buttonY, buttonWidth, buttonHeight, { url: 'https://calendly.com/raubizar/30min' });
   
-  // Add urgency text below button
-  yPosition += buttonHeight + 8;
-  pdf.setFontSize(9);
-  pdf.setTextColor(239, 68, 68); // Red for urgency
-  pdf.setFont('helvetica', 'bold');
-  const urgencyText = 'Limited Availability - Book Now to Secure Your Spot';
-  const urgencyWidth = pdf.getTextWidth(urgencyText);
-  pdf.text(urgencyText, (pageWidth - urgencyWidth) / 2, yPosition);
-  
-  yPosition += 25;
+  yPosition += buttonHeight + 15;
 
-  // Footer with website elements
-  const footerY = pageHeight - 35;
+  // Ensure footer doesn't overlap with content
+  const footerY = Math.max(yPosition + 20, pageHeight - 35);
   
   if (logoBase64) {
     // Use actual logo in footer
@@ -478,28 +459,26 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     pdf.text('VALIBLOX', 27, footerY + 1);
   }
 
-  // Trust badges like website footer
+  // Trust badges on first line
   const badgeY = footerY + 8;
   pdf.setFontSize(7);
   pdf.setTextColor(grayColor);
   pdf.setFont("helvetica", "normal");
   
   pdf.text('• NDA-Protected', 50, badgeY);
-  pdf.text('• 48h Turnaround', 105, badgeY);
-  pdf.text('• Machine-Precision + Expert Review', 25, badgeY + 8);
+  pdf.text('• 48h Turnaround', 110, badgeY);
+  pdf.text('• Machine-Precision + Expert Review', 165, badgeY);
 
-  // Contact email
-  pdf.setFontSize(9);
+  // Contact information on second line
+  const contactY = badgeY + 12;
+  pdf.setFontSize(8);
   pdf.setTextColor(primaryColor);
   pdf.setFont("helvetica", "normal");
-  pdf.text('team@valiblox.com', 25, badgeY + 18);
+  pdf.text('team@valiblox.com', 50, contactY);
 
-  // Website link (right aligned)
-  pdf.setFontSize(8);
+  // Website link on same line as contact
   pdf.setTextColor(grayColor);
-  const websiteText = 'www.valiblox.com';
-  const websiteWidth = pdf.getTextWidth(websiteText);
-  pdf.text(websiteText, pageWidth - websiteWidth - 25, footerY + 2);
+  pdf.text('www.valiblox.com', 130, contactY);
 
   return pdf.output('datauristring').split(',')[1];
   } catch (error) {

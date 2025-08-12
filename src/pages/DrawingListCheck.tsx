@@ -349,6 +349,7 @@ export default function DrawingListCheck() {
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
               Deliverables V-Check — Completeness in 5 Seconds
             </span>
+            <span className="text-muted-foreground"> (free sample)</span>
           </h1>
           <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto mb-8">
             <p>Upload your drawing list and folder to see what's missing in seconds.</p>
