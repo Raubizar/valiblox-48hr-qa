@@ -51,7 +51,7 @@ export default function DrawingListCheck() {
   const leadCaptureWebhook = useWebhook({
     source: "drawing-list-check-results",
     title: "Get Your Full QA Report",
-    description: "Based on your drawing list analysis, get a comprehensive 48-hour QA report for your complete project deliverables.",
+    description: "Based on your V-Check analysis, get a comprehensive 48-hour QA report for your complete project deliverables.",
     submitButtonText: "Get My QA Report"
   });
 
@@ -254,11 +254,11 @@ export default function DrawingListCheck() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground leading-tight tracking-tight mb-3">
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              Free Check: Are Your Design Deliverables Complete?
+              Deliverables V-Check — Completeness in 5 Seconds
             </span>
           </h1>
           <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto">
-            <p>Upload your drawing register and delivered files to instantly check completeness and get a detailed analysis.</p>
+            <p>Upload your drawing list and folder to instantly see what's missing. Get a free chart in seconds, then upgrade to Full Valiblox QA for a deep audit of every detail before your client ever sees the package.</p>
           </div>
         </div>
       </section>
@@ -400,17 +400,17 @@ export default function DrawingListCheck() {
               {isAnalyzing ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Analyzing...
+                  Running V-Check...
                 </>
               ) : canRunAnalysis ? (
                 <>
                   <Play className="w-4 h-4 mr-2" />
-                  Re-run Analysis
+                  Run V-Check
                 </>
               ) : (
                 <>
                   <Play className="w-4 h-4 mr-2" />
-                  Upload Files to Start
+                  Start Free V-Check
                 </>
               )}
             </Button>
@@ -434,12 +434,12 @@ export default function DrawingListCheck() {
                       <h3 className="text-lg font-semibold mb-2">
                         {currentStep === 1 && "Upload Folder to Get Started"}
                         {currentStep === 2 && "Upload Drawing List Excel File"}
-                        {currentStep === 3 && "Configure and Run Analysis"}
+                        {currentStep === 3 && "Configure and Run V-Check"}
                       </h3>
                       <p className="text-sm text-muted-foreground">
                         {currentStep === 1 && "Select a folder containing your CAD drawings and deliverables"}
                         {currentStep === 2 && "Upload the Excel file with the expected drawing list"}
-                        {currentStep === 3 && "Review configuration and click analyze to check completeness"}
+                        {currentStep === 3 && "Review configuration and click V-Check to see completeness in 5 seconds"}
                       </p>
                     </div>
                   </div>
@@ -602,7 +602,7 @@ export default function DrawingListCheck() {
                         className="h-9 animate-gradient-shift text-white"
                       >
                         <Download className="w-3 h-3 mr-2" />
-                        Get Full QA Report (Free)
+                        Get Full Deliverables V-Check Report (Free)
                       </Button>
                     </div>
                   </CardContent>
