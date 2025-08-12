@@ -46,6 +46,14 @@ export default function DrawingListCheck() {
   const [analysisResult, setAnalysisResult] = useState<ComparisonResult | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisError, setAnalysisError] = useState<string>('');
+  
+  // Excel validation states
+  const [excelValidationFailed, setExcelValidationFailed] = useState(false);
+  const [excelFailureCount, setExcelFailureCount] = useState(0);
+
+  // Folder validation states
+  const [folderValidationFailed, setFolderValidationFailed] = useState(false);
+  const [folderFailureCount, setFolderFailureCount] = useState(0);
 
   // Lead capture webhook
   const leadCaptureWebhook = useWebhook({
@@ -53,6 +61,14 @@ export default function DrawingListCheck() {
     title: "Get Your Full QA Report",
     description: "Based on your V-Check analysis, get a comprehensive 48-hour QA report for your complete project deliverables.",
     submitButtonText: "Get My QA Report"
+  });
+
+  // Help with drawing register webhook
+  const helpWebhook = useWebhook({
+    source: "drawing-register-help",
+    title: "Need Help with Your Drawing Register?",
+    description: "Our team can help you format your Excel file or discuss alternative solutions for your project.",
+    submitButtonText: "Book a Call"
   });
 
   const handleFolderUpload = (files: File[]) => {
@@ -68,6 +84,9 @@ export default function DrawingListCheck() {
     setFolderFiles(files);
     setAnalysisResult(null);
     setAnalysisError('');
+    
+    // Reset folder validation state for new upload
+    setFolderValidationFailed(false);
     
     // Advance to step 2 when folder is uploaded successfully
     if (files.length > 0) {
@@ -95,11 +114,39 @@ export default function DrawingListCheck() {
       const result = compareDrawingList(fileNames, folderFilesData);
       setAnalysisResult(result);
       
+      // Check for poor matching results (validation failure)
+      const totalExpected = fileNames.length;
+      const matchedCount = result.summary.done;
+      const matchPercentage = totalExpected > 0 ? (matchedCount / totalExpected) * 100 : 0;
+      
+      // Consider it a validation failure if less than 20% of expected files were found
+      if (matchPercentage < 20 && totalExpected > 0) {
+        setFolderValidationFailed(true);
+        setFolderFailureCount(prev => prev + 1);
+        
+        // After second failure, offer help
+        if (folderFailureCount >= 1) {
+          setTimeout(() => {
+            helpWebhook.openModal();
+          }, 2000); // Slightly longer delay to let user see the results first
+        }
+        
+        console.log(`⚠️ Poor matching results: ${matchedCount}/${totalExpected} (${matchPercentage.toFixed(1)}%) - Validation failed`);
+      } else {
+        // Reset validation failure state on successful match
+        setFolderValidationFailed(false);
+        console.log(`✅ Good matching results: ${matchedCount}/${totalExpected} (${matchPercentage.toFixed(1)}%)`);
+      }
+      
       // Show success message for auto-analysis
       console.log('✅ Auto-analysis completed successfully!');
     } catch (error) {
       console.error('Analysis error:', error);
       setAnalysisError(`Analysis failed: ${(error as Error).message}`);
+      
+      // Also count analysis errors as validation failures
+      setFolderValidationFailed(true);
+      setFolderFailureCount(prev => prev + 1);
     } finally {
       setIsAnalyzing(false);
     }
@@ -113,6 +160,9 @@ export default function DrawingListCheck() {
     setAnalysisResult(null);
     setAnalysisError('');
     
+    // Reset validation state for new upload
+    setExcelValidationFailed(false);
+    
     try {
       console.log('Processing Excel file:', file.name);
       const wb = await processExcelFile(file);
@@ -124,18 +174,22 @@ export default function DrawingListCheck() {
       if (sheetAnalysis.length > 0) {
         const bestSheet = sheetAnalysis[0];
         setSelectedSheet(bestSheet.name);
-        await processSheet(bestSheet);
+        const validationPassed = await processSheet(bestSheet);
         
-        // Advance to step 3 when Excel is uploaded and processed successfully
-        setCurrentStep(3);
+        // Only advance to step 3 if validation passed
+        if (validationPassed) {
+          setCurrentStep(3);
+        }
       }
     } catch (error) {
       console.error('Excel processing error:', error);
       setAnalysisError(`Failed to process Excel file: ${(error as Error).message}`);
+      setExcelValidationFailed(true);
+      setExcelFailureCount(prev => prev + 1);
     }
   };
 
-  const processSheet = async (sheet: SheetAnalysis) => {
+  const processSheet = async (sheet: SheetAnalysis): Promise<boolean> => {
     try {
       const headerDet = detectHeaderRow(sheet.data);
       setHeaderDetection(headerDet);
@@ -148,7 +202,26 @@ export default function DrawingListCheck() {
         );
         setColumnDetection(columnDet);
         
-        if (columnDet && columnDet.confidence > 75) {
+        // Check if file names column was found
+        if (!columnDet || columnDet.confidence < 30) {
+          // File names column not found - mark as validation failed
+          setExcelValidationFailed(true);
+          setExcelFailureCount(prev => prev + 1);
+          
+          // After second failure, offer help
+          if (excelFailureCount >= 1) {
+            setTimeout(() => {
+              helpWebhook.openModal();
+            }, 1000);
+          }
+          
+          return false; // Validation failed
+        }
+        
+        // Validation passed - reset error state and proceed
+        setExcelValidationFailed(false);
+        
+        if (columnDet.confidence > 75) {
           setSelectedColumn(columnDet.columnIndex.toString());
           const fileNames = extractFileNamesFromExcel(
             sheet.data,
@@ -164,10 +237,28 @@ export default function DrawingListCheck() {
             }, 500); // Small delay to ensure state is updated
           }
         }
+        
+        return true; // Validation passed
+      } else {
+        // No header row found
+        setExcelValidationFailed(true);
+        setExcelFailureCount(prev => prev + 1);
+        
+        // After second failure, offer help
+        if (excelFailureCount >= 1) {
+          setTimeout(() => {
+            helpWebhook.openModal();
+          }, 1000);
+        }
+        
+        return false; // Validation failed
       }
     } catch (error) {
       console.error('Sheet processing error:', error);
       setAnalysisError(`Failed to process sheet: ${(error as Error).message}`);
+      setExcelValidationFailed(true);
+      setExcelFailureCount(prev => prev + 1);
+      return false; // Validation failed
     }
   };
 
@@ -259,7 +350,7 @@ export default function DrawingListCheck() {
           </h1>
           <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto mb-8">
             <p>Upload your drawing list and folder to see what's missing in seconds.</p>
-            <p>Then book a call for a full 48-hour QA audit — naming, title blocks, BIM LOD/LOIN, clashes, versions, and content compliance.</p>
+            <p>Then book a call for a full 48-hour QA audit — naming, title blocks, BIM LOD/LOIN, clashes, versions, and content compliance — so you can deliver a complete, client-ready package on time.</p>
           </div>
 
           {/* QA Process Cards */}
@@ -357,7 +448,12 @@ export default function DrawingListCheck() {
                   accept=".xlsx,.xls"
                   onFilesSelected={handleExcelUpload}
                   icon={<FileSpreadsheet className="w-5 h-5 text-primary" />}
-                  shouldPulse={currentStep === 2}
+                  shouldPulse={currentStep === 2 && !excelValidationFailed}
+                  hasError={excelValidationFailed}
+                  errorMessage={excelValidationFailed ? 
+                    "No file names column found. Please ensure your Excel has a column header named 'File Name' or similar. Try columns like 'Drawing Number', 'File Name', or 'Drawing Name'." : 
+                    undefined
+                  }
                 />
               </div>
             )}
@@ -679,6 +775,14 @@ export default function DrawingListCheck() {
         onClose={leadCaptureWebhook.closeModal}
         onSubmit={leadCaptureWebhook.handleSubmit}
         {...leadCaptureWebhook.modalProps}
+      />
+
+      {/* Help with Drawing Register Modal */}
+      <WebhookModal
+        isOpen={helpWebhook.isModalOpen}
+        onClose={helpWebhook.closeModal}
+        onSubmit={helpWebhook.handleSubmit}
+        {...helpWebhook.modalProps}
       />
     </div>
   );

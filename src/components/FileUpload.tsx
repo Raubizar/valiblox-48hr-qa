@@ -13,6 +13,8 @@ interface FileUploadProps {
   description: string;
   icon?: React.ReactNode;
   shouldPulse?: boolean;
+  hasError?: boolean;
+  errorMessage?: string;
 }
 
 export const FileUpload = ({ 
@@ -23,7 +25,9 @@ export const FileUpload = ({
   title,
   description,
   icon,
-  shouldPulse = false
+  shouldPulse = false,
+  hasError = false,
+  errorMessage
 }: FileUploadProps) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
@@ -94,13 +98,13 @@ export const FileUpload = ({
   };
 
   return (
-    <Card className="w-full glass-effect">
+    <Card className={`w-full glass-effect ${hasError ? 'border-red-500 bg-red-50/50' : ''}`}>
       <CardContent className="p-4">
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            {icon || <FolderOpen className="w-4 h-4 text-primary" />}
+            {hasError ? <AlertCircle className="w-4 h-4 text-red-500" /> : (icon || <FolderOpen className="w-4 h-4 text-primary" />)}
             <div>
-              <h3 className="font-semibold text-foreground text-sm">{title}</h3>
+              <h3 className={`font-semibold text-foreground text-sm ${hasError ? 'text-red-700' : ''}`}>{title}</h3>
               <p className="text-xs text-muted-foreground">{description}</p>
             </div>
           </div>
@@ -118,7 +122,10 @@ export const FileUpload = ({
           <Button
             onClick={handleButtonClick}
             variant="outline"
-            className={`w-full h-10 text-sm ${shouldPulse ? 'animate-bounce-soft bg-primary/5 border-primary' : ''}`}
+            className={`w-full h-10 text-sm ${
+              hasError ? 'border-red-500 bg-red-50 text-red-700' : 
+              shouldPulse ? 'animate-bounce-soft bg-primary/5 border-primary' : ''
+            }`}
             disabled={status === 'processing'}
           >
             <div className="flex items-center gap-2">
@@ -138,6 +145,12 @@ export const FileUpload = ({
               'bg-blue-50 text-blue-700'
             }`}>
               {statusMessage}
+            </div>
+          )}
+
+          {hasError && errorMessage && (
+            <div className="p-2 rounded text-xs bg-red-50 text-red-700 border border-red-200">
+              {errorMessage}
             </div>
           )}
         </div>
