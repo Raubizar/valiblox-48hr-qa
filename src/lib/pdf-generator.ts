@@ -435,50 +435,74 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
   
   yPosition += buttonHeight + 15;
 
-  // Ensure footer doesn't overlap with content
-  const footerY = Math.max(yPosition + 20, pageHeight - 35);
+  // Footer with improved layout and proper alignment
+  const footerY = Math.max(yPosition + 20, pageHeight - 45);
+  
+  // Logo and brand section (left side)
+  const logoX = 25;
+  const logoY = footerY;
   
   if (logoBase64) {
-    // Use actual logo in footer
     try {
-      pdf.addImage(logoBase64, 'PNG', 25, footerY - 3, 8, 8);
+      pdf.addImage(logoBase64, 'PNG', logoX, logoY, 10, 10);
     } catch (error) {
-      // Fallback
+      // Fallback logo
       pdf.setFillColor(16, 185, 129);
-      pdf.rect(25, footerY - 3, 20, 6, 'F');
+      pdf.rect(logoX, logoY, 10, 8, 'F');
       pdf.setTextColor(255, 255, 255);
-      pdf.setFontSize(7);
-      pdf.text('VALIBLOX', 27, footerY + 1);
+      pdf.setFontSize(8);
+      pdf.setFont("helvetica", "bold");
+      pdf.text('V', logoX + 3, logoY + 5);
     }
   } else {
-    // Footer logo placeholder
+    // Fallback logo
     pdf.setFillColor(16, 185, 129);
-    pdf.rect(25, footerY - 3, 20, 6, 'F');
+    pdf.rect(logoX, logoY, 10, 8, 'F');
     pdf.setTextColor(255, 255, 255);
-    pdf.setFontSize(7);
-    pdf.text('VALIBLOX', 27, footerY + 1);
+    pdf.setFontSize(8);
+    pdf.setFont("helvetica", "bold");
+    pdf.text('V', logoX + 3, logoY + 5);
   }
-
-  // Trust badges on first line
-  const badgeY = footerY + 8;
+  
+  // Company name aligned with logo
+  pdf.setTextColor(darkColor);
+  pdf.setFontSize(10);
+  pdf.setFont("helvetica", "bold");
+  pdf.text('Valiblox', logoX + 15, logoY + 6);
+  
+  // Website URL (right aligned)
+  pdf.setFontSize(8);
+  pdf.setTextColor(grayColor);
+  pdf.setFont("helvetica", "normal");
+  const websiteText = 'www.valiblox.com';
+  const websiteWidth = pdf.getTextWidth(websiteText);
+  pdf.text(websiteText, pageWidth - websiteWidth - 25, logoY + 6);
+  
+  // Trust badges row (centered below)
+  const badgeY = logoY + 18;
   pdf.setFontSize(7);
   pdf.setTextColor(grayColor);
   pdf.setFont("helvetica", "normal");
   
-  pdf.text('• NDA-Protected', 50, badgeY);
-  pdf.text('• 48h Turnaround', 110, badgeY);
-  pdf.text('• Machine-Precision + Expert Review', 165, badgeY);
-
-  // Contact information on second line
+  // Calculate center positioning for badges
+  const badge1 = '• NDA-Protected';
+  const badge2 = '• 48h Turnaround';
+  const badge3 = '• Machine-Precision + Expert Review';
+  const spacing = 15;
+  
+  const totalBadgeWidth = pdf.getTextWidth(badge1) + pdf.getTextWidth(badge2) + pdf.getTextWidth(badge3) + (spacing * 2);
+  const startX = (pageWidth - totalBadgeWidth) / 2;
+  
+  pdf.text(badge1, startX, badgeY);
+  pdf.text(badge2, startX + pdf.getTextWidth(badge1) + spacing, badgeY);
+  pdf.text(badge3, startX + pdf.getTextWidth(badge1) + pdf.getTextWidth(badge2) + (spacing * 2), badgeY);
+  
+  // Contact email (aligned with logo)
   const contactY = badgeY + 12;
   pdf.setFontSize(8);
   pdf.setTextColor(primaryColor);
   pdf.setFont("helvetica", "normal");
-  pdf.text('team@valiblox.com', 50, contactY);
-
-  // Website link on same line as contact
-  pdf.setTextColor(grayColor);
-  pdf.text('www.valiblox.com', 130, contactY);
+  pdf.text('team@valiblox.com', logoX, contactY);
 
   return pdf.output('datauristring').split(',')[1];
   } catch (error) {
