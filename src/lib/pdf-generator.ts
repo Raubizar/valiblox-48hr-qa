@@ -2,9 +2,10 @@ import jsPDF from 'jspdf';
 import { imageToBase64 } from './image-utils';
 
 interface ValidationResult {
-  expectedDrawingName: string;
-  deliveredFile: string;
+  excelName: string;
+  matchedFile: string;
   status: 'Done' | 'To Do' | 'File not in Drawing List';
+  matchType: 'exact' | 'none' | 'extra';
 }
 
 interface AnalysisResult {
@@ -24,9 +25,9 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     console.log('Summary data:', analysisResult?.summary);
     console.log('Results data:', analysisResult?.results);
     
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
+    const pdf = new jsPDF('p', 'mm', 'a4'); // 'p' for portrait
+    const pageWidth = pdf.internal.pageSize.getWidth(); // ~210mm in portrait
+    const pageHeight = pdf.internal.pageSize.getHeight(); // ~297mm in portrait
 
     // Colors matching website
     const primaryColor = '#10b981'; // emerald-500
@@ -113,38 +114,54 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
   if (percentage >= 90) chartColor = greenColor;
   else if (percentage >= 60) chartColor = amberColor;
 
-  // Background circle
-  pdf.setFillColor(240, 240, 240);
+  // Background donut (light gray)
+  pdf.setFillColor(229, 231, 235); // gray-200
   pdf.circle(chartCenterX, chartCenterY, outerRadius, 'F');
-  pdf.setFillColor(255, 255, 255);
+  pdf.setFillColor(255, 255, 255); // white center
   pdf.circle(chartCenterX, chartCenterY, innerRadius, 'F');
 
-  // Progress arc (simplified implementation)
+  // Progress donut using multiple small circles to create arc effect
   if (percentage > 0) {
-    const angleStep = 3;
-    const totalAngle = (percentage / 100) * 360;
+    // Set the progress color
+    if (chartColor === greenColor) {
+      pdf.setFillColor(16, 185, 129); // emerald-500
+    } else if (chartColor === amberColor) {
+      pdf.setFillColor(245, 158, 11); // amber-500  
+    } else {
+      pdf.setFillColor(239, 68, 68); // red-500
+    }
     
-    pdf.setDrawColor(chartColor);
-    pdf.setLineWidth(outerRadius - innerRadius);
+    // Calculate how many degrees to fill
+    const progressAngle = (percentage / 100) * 360;
+    const donutRadius = (outerRadius + innerRadius) / 2;
+    const donutThickness = outerRadius - innerRadius;
     
-    for (let angle = 0; angle < totalAngle; angle += angleStep) {
-      const radians = (angle - 90) * Math.PI / 180;
-      const x = chartCenterX + Math.cos(radians) * ((outerRadius + innerRadius) / 2);
-      const y = chartCenterY + Math.sin(radians) * ((outerRadius + innerRadius) / 2);
-      pdf.circle(x, y, 0.5, 'F');
+    // Draw small filled circles along the arc path
+    const step = 3; // degrees between each circle
+    for (let angle = 0; angle < progressAngle; angle += step) {
+      const radians = (angle - 90) * Math.PI / 180; // Start from top
+      const x = chartCenterX + Math.cos(radians) * donutRadius;
+      const y = chartCenterY + Math.sin(radians) * donutRadius;
+      
+      // Draw small filled circle
+      pdf.circle(x, y, donutThickness / 2, 'F');
     }
   }
 
   // Percentage text in center
-  pdf.setTextColor(chartColor);
-  pdf.setFontSize(12);
+  pdf.setTextColor(darkColor); // Use dark color for text, not chart color
+  pdf.setFontSize(14);
   pdf.setFont("helvetica", "bold");
-  pdf.text(`${percentage.toFixed(0)}%`, chartCenterX - 8, chartCenterY + 2);
+  const percentText = `${percentage.toFixed(0)}%`;
+  const textWidth = pdf.getTextWidth(percentText);
+  pdf.text(percentText, chartCenterX - (textWidth / 2), chartCenterY + 3);
 
   // Chart label
-  pdf.setFontSize(8);
+  pdf.setFontSize(9);
   pdf.setTextColor(grayColor);
-  pdf.text('Completion Rate', chartCenterX - 15, chartCenterY + 35);
+  const labelText = 'Completion Rate';
+  const labelWidth = pdf.getTextWidth(labelText);
+  pdf.text(labelText, chartCenterX - (labelWidth / 2), chartCenterY + 35);
 
   // Executive Summary Box
   const summaryBoxX = 25;
@@ -187,24 +204,27 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
 
   yPosition += 15;
 
-  // Table headers
+  // Table headers with portrait positioning
   pdf.setFillColor(248, 250, 252); // slate-50
-  pdf.rect(25, yPosition, pageWidth - 50, 10, 'F');
+  pdf.rect(25, yPosition, pageWidth - 50, 12, 'F'); // Full width header
   
   pdf.setFontSize(9);
   pdf.setTextColor(darkColor);
   pdf.setFont("helvetica", "bold");
   pdf.text('Expected Drawing Name', 30, yPosition + 7);
-  pdf.text('Delivered File', 95, yPosition + 7);
-  pdf.text('Status', 155, yPosition + 7);
+  pdf.text('Delivered File', 115, yPosition + 7); // Adjusted for portrait
+  pdf.text('Status', 165, yPosition + 7); // Adjusted for portrait
 
-  yPosition += 12;
+  yPosition += 14; // Increased spacing to match
 
   // Table rows
   pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(8); // Reduced font size for better fit
   
   // Ensure results array exists and has items
   const results = analysisResult.results || [];
+  console.log('PDF Generator - Results data:', results.slice(0, 3)); // Show first 3 for debugging
+  
   results.forEach((result, index) => {
     if (!result) return; // Skip if result is null/undefined
     
@@ -216,7 +236,7 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     // Alternating row colors
     if (index % 2 === 0) {
       pdf.setFillColor(249, 250, 251);
-      pdf.rect(25, yPosition - 2, pageWidth - 50, 10, 'F');
+      pdf.rect(25, yPosition - 2, pageWidth - 50, 12, 'F'); // Increased height from 10 to 12
     }
 
     // Status color
@@ -233,46 +253,175 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
     }
 
     pdf.setTextColor(darkColor);
-    pdf.text(String(result.expectedDrawingName || 'Unknown'), 30, yPosition + 5);
-    pdf.text(String(result.deliveredFile || 'N/A'), 95, yPosition + 5);
+    
+    // Function to wrap text across multiple lines with better width calculation
+    const wrapText = (text: string, maxWidth: number, fontSize: number = 8) => {
+      pdf.setFontSize(fontSize);
+      
+      // If text fits in one line, return as is
+      if (pdf.getTextWidth(text) <= maxWidth) {
+        return [text];
+      }
+      
+      // Split on common separators for better breaking
+      const parts = text.split(/[\s\-_\/\\]+/);
+      const lines = [];
+      let currentLine = '';
+      
+      for (const part of parts) {
+        const testLine = currentLine + (currentLine ? ' ' : '') + part;
+        const textWidth = pdf.getTextWidth(testLine);
+        
+        if (textWidth > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = part;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) lines.push(currentLine);
+      return lines;
+    };
+    
+    // Get full text without truncation
+    const excelName = String(result.excelName || 'Unknown');
+    const matchedFile = String(result.matchedFile || 'N/A');
+    const statusText = String(displayStatus || 'Unknown');
+    
+    // Wrap text for each column with portrait-optimized widths
+    const excelLines = wrapText(excelName, 80); // ~80mm width for first column in portrait
+    const matchedLines = wrapText(matchedFile, 70); // ~70mm width for second column
+    const statusLines = wrapText(statusText, 30); // ~30mm width for status column
+    
+    // Calculate row height based on maximum lines needed
+    const maxLines = Math.max(excelLines.length, matchedLines.length, statusLines.length);
+    const lineHeight = 4;
+    const rowHeight = Math.max(12, maxLines * lineHeight + 4);
+    
+    // Draw alternating row background
+    if (index % 2 === 0) {
+      pdf.setFillColor(249, 250, 251);
+      pdf.rect(25, yPosition - 2, pageWidth - 50, rowHeight, 'F');
+    }
+    
+    // Draw wrapped text for each column with portrait positioning
+    pdf.setTextColor(darkColor);
+    excelLines.forEach((line, lineIndex) => {
+      pdf.text(line, 30, yPosition + 6 + (lineIndex * lineHeight));
+    });
+    
+    matchedLines.forEach((line, lineIndex) => {
+      pdf.text(line, 115, yPosition + 6 + (lineIndex * lineHeight)); // Adjusted for portrait
+    });
     
     pdf.setTextColor(statusColor);
-    pdf.text(String(displayStatus || 'Unknown'), 155, yPosition + 5);
+    statusLines.forEach((line, lineIndex) => {
+      pdf.text(line, 165, yPosition + 6 + (lineIndex * lineHeight)); // Adjusted for portrait
+    });
 
-    yPosition += 10;
+    yPosition += rowHeight; // Use dynamic row height
   });
 
-  // QA Services section
-  yPosition += 20;
-  pdf.setFontSize(12);
-  pdf.setTextColor(darkColor);
-  pdf.setFont("helvetica", "bold");
-  pdf.text('Our Complete QA Validation Services', 25, yPosition);
-
-  yPosition += 10;
-  pdf.setFontSize(9);
-  pdf.setTextColor(grayColor);
-  const qaServices = [
-    '• Drawing Register & Naming Convention Compliance',
-    '• Title Block Standards & Consistency Validation',
-    '• BIM LOD/LOIN Requirements Verification',
-    '• 3D Model Clash Detection & Resolution',
-    '• Version Control & Drawing Status Verification',
-    '• Content Completeness & Quality Assessment',
-    '• Client-Specific Standard Compliance Check',
-    '• Deliverable Package Coordination Review'
+  // QA Services section with improved layout
+  yPosition += 30; // Increased spacing to avoid overlap
+  
+  // Section title with background
+  pdf.setFillColor(240, 248, 255); // Light blue background
+  pdf.rect(25, yPosition - 5, pageWidth - 50, 20, 'F');
+  
+  pdf.setTextColor(51, 65, 85); // Dark slate color
+  pdf.setFontSize(14);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Our Complete QA Validation Services', 30, yPosition + 8);
+  
+  yPosition += 25;
+  
+  // Services list with better formatting and PDF-safe bullets
+  const services = [
+    { icon: '•', text: 'Drawing Register & Naming Convention Compliance', color: [34, 197, 94] }, // Green
+    { icon: '•', text: 'Title Block Standards & Consistency Validation', color: [59, 130, 246] }, // Blue  
+    { icon: '•', text: 'BIM LOD/LOIN Requirements Verification', color: [168, 85, 247] }, // Purple
+    { icon: '•', text: '3D Model Clash Detection & Resolution', color: [245, 101, 101] }, // Red
+    { icon: '•', text: 'Version Control & Drawing Status Verification', color: [251, 146, 60] }, // Orange
+    { icon: '•', text: 'Content Completeness & Quality Assessment', color: [14, 165, 233] }, // Sky blue
+    { icon: '•', text: 'Client-Specific Standard Compliance Check', color: [139, 69, 19] }, // Saddle brown
+    { icon: '•', text: 'Deliverable Package Coordination Review', color: [219, 39, 119] } // Pink
   ];
-
-  qaServices.forEach((service, index) => {
-    pdf.text(service, 25, yPosition + 8 + (index * 6));
+  
+  // Create two columns for services with portrait optimization
+  const leftColumnServices = services.slice(0, 4);
+  const rightColumnServices = services.slice(4);
+  
+  const leftColumnX = 30; // Standard left margin for portrait
+  const rightColumnX = pageWidth / 2 + 5; // Adjusted spacing for portrait
+  const serviceLineHeight = 8; // Compact spacing for portrait
+  
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica', 'normal');
+  
+  // Left column
+  leftColumnServices.forEach((service, index) => {
+    const currentY = yPosition + (index * serviceLineHeight);
+    
+    // Checkmark with color
+    pdf.setTextColor(service.color[0], service.color[1], service.color[2]);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(service.icon, leftColumnX, currentY);
+    
+    // Service text
+    pdf.setTextColor(75, 85, 99); // Gray-600
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(service.text, leftColumnX + 8, currentY);
   });
-
-  // Call to Action
-  yPosition += 65;
-  pdf.setFontSize(11);
-  pdf.setTextColor(primaryColor);
-  pdf.setFont("helvetica", "bold");
-  pdf.text('📅 Book Your Free 30-Minute QA Consultation', 25, yPosition);
+  
+  // Right column
+  rightColumnServices.forEach((service, index) => {
+    const currentY = yPosition + (index * serviceLineHeight);
+    
+    // Checkmark with color
+    pdf.setTextColor(service.color[0], service.color[1], service.color[2]);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(service.icon, rightColumnX, currentY);
+    
+    // Service text
+    pdf.setTextColor(75, 85, 99); // Gray-600
+    pdf.setFont('helvetica', 'normal');
+    pdf.text(service.text, rightColumnX + 8, currentY);
+  });
+  
+  yPosition += leftColumnServices.length * serviceLineHeight + 40; // Increased spacing before button
+  
+  // Add vibrant CTA button with embedded link
+  const buttonY = yPosition;
+  const buttonWidth = 120; // Adjusted width for portrait
+  const buttonHeight = 16; // Standard height
+  const buttonX = (pageWidth - buttonWidth) / 2;
+  
+  // Button background with gradient effect (simulate with overlapping rectangles)
+  pdf.setFillColor(59, 130, 246); // Blue-500
+  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight, 3, 3, 'F');
+  
+  // Button highlight (top gradient effect)
+  pdf.setFillColor(96, 165, 250); // Blue-400
+  pdf.roundedRect(buttonX, buttonY, buttonWidth, buttonHeight / 2, 3, 3, 'F');
+  
+  // Button text with embedded link
+  pdf.setTextColor(255, 255, 255); // White
+  pdf.setFontSize(10); // Slightly smaller for portrait
+  pdf.setFont('helvetica', 'bold');
+  const buttonText = '>> Book Your Free 30-Minute QA Consultation';
+  const buttonTextWidth = pdf.getTextWidth(buttonText);
+  const textX = buttonX + (buttonWidth - buttonTextWidth) / 2;
+  
+  // Add clickable text
+  pdf.text(buttonText, textX, buttonY + 10);
+  
+  // Make the entire button area clickable by adding an invisible link rectangle
+  pdf.link(buttonX, buttonY, buttonWidth, buttonHeight, { url: 'https://calendly.com/raubizar/30min' });
+  
+  // Update yPosition after button (no separate URL line)
+  yPosition += buttonHeight + 20; // Space after button
+  yPosition += 15;
 
   // Footer with website elements
   const footerY = pageHeight - 35;
@@ -299,22 +448,27 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
   }
 
   // Trust badges like website footer
-  const badgeY = footerY + 12;
-  pdf.setFontSize(8);
+  const badgeY = footerY + 8;
+  pdf.setFontSize(7);
   pdf.setTextColor(grayColor);
   pdf.setFont("helvetica", "normal");
   
-  pdf.text('🛡️ NDA-Protected', 25, badgeY);
-  pdf.text('🕐 48h Turnaround', 70, badgeY);
-  pdf.text('🎯 Machine-Precision + Expert Review', 115, badgeY);
+  pdf.text('• NDA-Protected', 50, badgeY);
+  pdf.text('• 48h Turnaround', 105, badgeY);
+  pdf.text('• Machine-Precision + Expert Review', 25, badgeY + 8);
 
   // Contact email
+  pdf.setFontSize(9);
   pdf.setTextColor(primaryColor);
-  pdf.text('team@valiblox.com', 25, badgeY + 10);
+  pdf.setFont("helvetica", "normal");
+  pdf.text('team@valiblox.com', 25, badgeY + 18);
 
-  // Website link
+  // Website link (right aligned)
+  pdf.setFontSize(8);
   pdf.setTextColor(grayColor);
-  pdf.text('www.valiblox.com', pageWidth - 35, footerY + 2);
+  const websiteText = 'www.valiblox.com';
+  const websiteWidth = pdf.getTextWidth(websiteText);
+  pdf.text(websiteText, pageWidth - websiteWidth - 25, footerY + 2);
 
   return pdf.output('datauristring').split(',')[1];
   } catch (error) {
