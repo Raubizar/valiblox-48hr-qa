@@ -10,7 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FileSpreadsheet, FolderOpen, CheckCircle, XCircle, AlertTriangle, Play, Download } from 'lucide-react';
+import { FileSpreadsheet, FolderOpen, CheckCircle, XCircle, AlertTriangle, Play, Download, FileCheck, Shield, Box, FileText, Settings, Users, RectangleHorizontal } from 'lucide-react';
 import { useWebhook } from '@/hooks/useWebhook';
 import { WebhookModal } from '@/components/WebhookModal';
 import * as XLSX from 'xlsx';
@@ -250,15 +250,72 @@ export default function DrawingListCheck() {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-8 bg-[#F3F6F8]">
+      <section className="py-8 pb-12 bg-[#F3F6F8]">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground leading-tight tracking-tight mb-3">
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
               Deliverables V-Check — Completeness in 5 Seconds
             </span>
           </h1>
-          <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto">
-            <p>Upload your drawing list and folder to instantly see what's missing. Get a free chart in seconds, then upgrade to Full Valiblox QA for a deep audit of every detail before your client ever sees the package.</p>
+          <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto mb-8">
+            <p>This free tool gives you a quick sample of our completeness checking service. Upload your drawing list and folder to instantly see what's missing. For a comprehensive audit of naming, compliance, title blocks, and more, upgrade to our Full Deliverables V-Check Report.</p>
+          </div>
+
+          {/* QA Process Cards */}
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              
+              {/* Active Card - Deliverables */}
+              <div className="bg-primary/10 border-2 border-primary rounded-lg p-3 text-center">
+                <div className="w-8 h-8 mx-auto mb-2 bg-primary rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-4 h-4 text-white" />
+                </div>
+                <h3 className="text-xs font-semibold text-primary">Deliverables</h3>
+                <p className="text-xs text-primary/80 mt-1">Completeness</p>
+              </div>
+
+              {/* Inactive Cards */}
+              <div className="bg-gray-100 border border-gray-200 rounded-lg p-3 text-center opacity-60">
+                <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-gray-500" />
+                </div>
+                <h3 className="text-xs font-semibold text-gray-500">Naming</h3>
+                <p className="text-xs text-gray-400 mt-1">Compliance</p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 rounded-lg p-3 text-center opacity-60">
+                <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
+                  <RectangleHorizontal className="w-4 h-4 text-gray-500" />
+                </div>
+                <h3 className="text-xs font-semibold text-gray-500">Title Blocks</h3>
+                <p className="text-xs text-gray-400 mt-1">Verification</p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 rounded-lg p-3 text-center opacity-60">
+                <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
+                  <Box className="w-4 h-4 text-gray-500" />
+                </div>
+                <h3 className="text-xs font-semibold text-gray-500">BIM LOD</h3>
+                <p className="text-xs text-gray-400 mt-1">& LOIN</p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 rounded-lg p-3 text-center opacity-60">
+                <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-gray-500" />
+                </div>
+                <h3 className="text-xs font-semibold text-gray-500">Clash Risk</h3>
+                <p className="text-xs text-gray-400 mt-1">Detection</p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 rounded-lg p-3 text-center opacity-60">
+                <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
+                  <Settings className="w-4 h-4 text-gray-500" />
+                </div>
+                <h3 className="text-xs font-semibold text-gray-500">Version</h3>
+                <p className="text-xs text-gray-400 mt-1">Control</p>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
