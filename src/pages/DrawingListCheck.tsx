@@ -258,7 +258,8 @@ export default function DrawingListCheck() {
             </span>
           </h1>
           <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto mb-8">
-            <p>This free tool gives you a quick sample of our completeness checking service. Upload your drawing list and folder to instantly see what's missing. For a comprehensive audit of naming, compliance, title blocks, and more, upgrade to our Full Deliverables V-Check Report.</p>
+            <p>Upload your drawing list and folder to see what's missing in seconds.</p>
+            <p>Then book a call for a full 48-hour QA audit — naming, title blocks, BIM LOD/LOIN, clashes, versions, and content compliance.</p>
           </div>
 
           {/* QA Process Cards */}
