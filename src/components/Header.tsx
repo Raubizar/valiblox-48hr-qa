@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,8 +75,9 @@ export const Header = () => {
           </a>
         </nav>
         
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle & Theme */}
         <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <Button 
             variant="ghost" 
             size="icon"
@@ -86,7 +88,7 @@ export const Header = () => {
           </Button>
         </div>
 
-        {/* Desktop CTA Buttons */}
+        {/* Desktop CTA Buttons & Theme */}
         <div className="hidden md:flex items-center gap-2">
           <Button variant="outline" size="sm" className="hidden sm:inline-flex" onClick={downloadSampleWebhook.openModal}>
             Download Sample
@@ -94,6 +96,7 @@ export const Header = () => {
           <Button size="sm" className="bg-primary hover:bg-primary-hover" onClick={bookCallWebhook.openModal}>
             Book a Call
           </Button>
+          <ThemeToggle />
         </div>
       </div>
 

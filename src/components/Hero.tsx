@@ -13,7 +13,7 @@ export const Hero = () => {
   });
 
   return (
-    <section className="py-20 bg-[#F3F6F8]">
+    <section className="py-20 bg-[#F3F6F8] dark:bg-background">
       <div className="max-w-[1600px] mx-auto px-8 lg:px-16 xl:px-20">
         {/* Two Column Grid */}
         <div className="grid lg:grid-cols-[60%_40%] gap-8 lg:gap-12 items-start">
@@ -41,15 +41,15 @@ export const Hero = () => {
 
             {/* Trust Points */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="bg-background/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
+              <div className="bg-background/60 dark:bg-card/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                 <Shield className="w-3 h-3 text-primary" />
                 100% NDA-Covered
               </div>
-              <div className="bg-background/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
+              <div className="bg-background/60 dark:bg-card/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                 <CheckCircle className="w-3 h-3 text-primary" />
                 No Software to Install
               </div>
-              <div className="bg-background/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
+              <div className="bg-background/60 dark:bg-card/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                 <Clock className="w-3 h-3 text-primary" />
                 48h Initial Report
               </div>

@@ -343,7 +343,7 @@ export default function DrawingListCheck() {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-8 pb-12 bg-[#F3F6F8]">
+      <section className="py-8 pb-12 bg-[#F3F6F8] dark:bg-background">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground leading-tight tracking-tight mb-3">
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">

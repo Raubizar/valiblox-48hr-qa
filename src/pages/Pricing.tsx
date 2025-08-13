@@ -83,7 +83,7 @@ const Pricing = () => {
       <Header />
       
       {/* Introduction Banner */}
-      <section className="py-20 bg-[#F3F6F8]">
+      <section className="py-20 bg-[#F3F6F8] dark:bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -103,22 +103,22 @@ const Pricing = () => {
 
                 {/* Trust Indicators */}
                 <div className="flex flex-wrap items-center gap-3">
-                  <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                  <div className="bg-background/60 dark:bg-card/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                     <Clock className="w-3 h-3 text-primary" />
                     48h delivery
                   </div>
-                  <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                  <div className="bg-background/60 dark:bg-card/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                     <Shield className="w-3 h-3 text-primary" />
                     NDA protected
                   </div>
-                  <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                  <div className="bg-background/60 dark:bg-card/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                     <CheckCircle className="w-3 h-3 text-primary" />
                     Professional validation
                   </div>
                 </div>
 
                 {/* Cost Banner */}
-                <div className="glass-effect p-4 rounded-xl max-w-xl">
+                <div className="bg-muted/40 dark:bg-card/40 border border-border/50 p-4 rounded-xl max-w-xl">
                   <p className="text-sm text-foreground mb-1 font-medium">
                     Manual QA & rework for a Data Center stage runs $8 000+ per phase. 
                   </p>
@@ -306,7 +306,7 @@ const Pricing = () => {
             </div>
 
             {/* Risk Banner Below Pricing - Desktop */}
-            <div className="glass-effect p-6 rounded-xl border border-destructive/20 mb-12 text-center hidden md:block">
+            <div className="bg-muted/40 dark:bg-card/40 p-6 rounded-xl border border-destructive/20 mb-12 text-center hidden md:block">
               <p className="text-lg font-medium text-foreground">
                 A single deliverable error on a $50 M project can cost up to 
                 <span className="text-destructive font-semibold"> $500 k in rework and delays.</span>
@@ -334,13 +334,13 @@ const Pricing = () => {
                       
                       {/* Mobile Banners - Both banners near Custom Package */}
                       <div className="md:hidden space-y-4 mb-6">
-                        <div className="glass-effect p-4 rounded-lg border border-primary/20 text-center">
+                        <div className="bg-muted/40 dark:bg-card/40 p-4 rounded-lg border border-primary/20 text-center">
                           <p className="text-sm font-medium text-foreground">
                             Manual QA & rework runs $8 000+ per phase. 
                             <span className="text-primary font-semibold"> Valiblox delivers professional validation in 48 h.</span>
                           </p>
                         </div>
-                        <div className="glass-effect p-4 rounded-lg border border-destructive/20 text-center">
+                        <div className="bg-muted/40 dark:bg-card/40 p-4 rounded-lg border border-destructive/20 text-center">
                           <p className="text-sm font-medium text-foreground">
                             A single error on a $50 M project can cost up to 
                             <span className="text-destructive font-semibold"> $500 k in rework.</span>
@@ -370,7 +370,7 @@ const Pricing = () => {
       </section>
 
       {/* Guarantee & Anchor Section */}
-      <section className="py-16 bg-muted/20">
+      <section className="py-16 bg-muted/20 dark:bg-muted/10">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-foreground mb-6">
