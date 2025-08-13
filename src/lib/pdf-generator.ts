@@ -435,74 +435,111 @@ export const generateVCheckReport = async (analysisResult: AnalysisResult): Prom
   
   yPosition += buttonHeight + 15;
 
-  // Footer with improved layout and proper alignment
-  const footerY = Math.max(yPosition + 20, pageHeight - 45);
+  // Professional corporate footer with proper visual hierarchy
+  const footerY = Math.max(yPosition + 25, pageHeight - 50);
   
-  // Logo and brand section (left side)
-  const logoX = 25;
+  // Footer background - subtle separation
+  pdf.setFillColor(248, 250, 252); // very light gray
+  pdf.rect(0, footerY - 10, pageWidth, 55, 'F');
+  
+  // Divider line above footer
+  pdf.setDrawColor(229, 231, 235); // light gray
+  pdf.setLineWidth(0.5);
+  pdf.line(25, footerY - 10, pageWidth - 25, footerY - 10);
+  
+  // Logo and brand section (professionally aligned)
+  const logoX = 30;
   const logoY = footerY;
   
   if (logoBase64) {
     try {
-      pdf.addImage(logoBase64, 'PNG', logoX, logoY, 10, 10);
+      pdf.addImage(logoBase64, 'PNG', logoX, logoY, 12, 12);
     } catch (error) {
-      // Fallback logo
+      // Fallback logo - enhanced
       pdf.setFillColor(16, 185, 129);
-      pdf.rect(logoX, logoY, 10, 8, 'F');
+      pdf.rect(logoX, logoY, 12, 10, 'F');
       pdf.setTextColor(255, 255, 255);
-      pdf.setFontSize(8);
+      pdf.setFontSize(9);
       pdf.setFont("helvetica", "bold");
-      pdf.text('V', logoX + 3, logoY + 5);
+      pdf.text('V', logoX + 4, logoY + 7);
     }
   } else {
-    // Fallback logo
+    // Fallback logo - enhanced
     pdf.setFillColor(16, 185, 129);
-    pdf.rect(logoX, logoY, 10, 8, 'F');
+    pdf.rect(logoX, logoY, 12, 10, 'F');
     pdf.setTextColor(255, 255, 255);
-    pdf.setFontSize(8);
+    pdf.setFontSize(9);
     pdf.setFont("helvetica", "bold");
-    pdf.text('V', logoX + 3, logoY + 5);
+    pdf.text('V', logoX + 4, logoY + 7);
   }
   
-  // Company name aligned with logo
-  pdf.setTextColor(darkColor);
-  pdf.setFontSize(10);
+  // Company name - perfectly aligned with logo center
+  pdf.setTextColor(30, 41, 59); // slate-800 for strong branding
+  pdf.setFontSize(12);
   pdf.setFont("helvetica", "bold");
-  pdf.text('Valiblox', logoX + 15, logoY + 6);
+  pdf.text('Valiblox', logoX + 18, logoY + 8);
   
-  // Website URL (right aligned)
+  // Tagline under company name
   pdf.setFontSize(8);
-  pdf.setTextColor(grayColor);
+  pdf.setTextColor(71, 85, 105); // slate-600
   pdf.setFont("helvetica", "normal");
-  const websiteText = 'www.valiblox.com';
-  const websiteWidth = pdf.getTextWidth(websiteText);
-  pdf.text(websiteText, pageWidth - websiteWidth - 25, logoY + 6);
+  pdf.text('Independent QA Validation', logoX + 18, logoY + 16);
   
-  // Trust badges row (centered below)
-  const badgeY = logoY + 18;
-  pdf.setFontSize(7);
-  pdf.setTextColor(grayColor);
-  pdf.setFont("helvetica", "normal");
-  
-  // Calculate center positioning for badges
-  const badge1 = '• NDA-Protected';
-  const badge2 = '• 48h Turnaround';
-  const badge3 = '• Machine-Precision + Expert Review';
-  const spacing = 15;
-  
-  const totalBadgeWidth = pdf.getTextWidth(badge1) + pdf.getTextWidth(badge2) + pdf.getTextWidth(badge3) + (spacing * 2);
-  const startX = (pageWidth - totalBadgeWidth) / 2;
-  
-  pdf.text(badge1, startX, badgeY);
-  pdf.text(badge2, startX + pdf.getTextWidth(badge1) + spacing, badgeY);
-  pdf.text(badge3, startX + pdf.getTextWidth(badge1) + pdf.getTextWidth(badge2) + (spacing * 2), badgeY);
-  
-  // Contact email (aligned with logo)
-  const contactY = badgeY + 12;
+  // Contact information block (left side, below logo)
+  const contactY = logoY + 26;
   pdf.setFontSize(8);
-  pdf.setTextColor(primaryColor);
+  pdf.setTextColor(16, 185, 129); // primary color
   pdf.setFont("helvetica", "normal");
   pdf.text('team@valiblox.com', logoX, contactY);
+  
+  // Website and company info (right side)
+  const rightSideX = pageWidth - 80;
+  pdf.setFontSize(10);
+  pdf.setTextColor(30, 41, 59); // slate-800
+  pdf.setFont("helvetica", "bold");
+  pdf.text('www.valiblox.com', rightSideX, logoY + 8);
+  
+  pdf.setFontSize(8);
+  pdf.setTextColor(71, 85, 105); // slate-600
+  pdf.setFont("helvetica", "normal");
+  pdf.text('Professional QA Services', rightSideX, logoY + 16);
+  
+  // Trust badges - centered, professional styling
+  const badgeY = logoY + 30;
+  pdf.setFontSize(7);
+  pdf.setTextColor(71, 85, 105); // slate-600
+  pdf.setFont("helvetica", "normal");
+  
+  // Professional badges with better spacing
+  const badge1 = 'NDA-Protected';
+  const badge2 = '48h Delivery';
+  const badge3 = 'Machine-Precision + Expert Review';
+  const divider = ' • ';
+  
+  // Calculate total width for perfect centering
+  const totalText = badge1 + divider + badge2 + divider + badge3;
+  const totalWidth = pdf.getTextWidth(totalText);
+  const badgeStartX = (pageWidth - totalWidth) / 2;
+  
+  // Draw badges with dividers
+  let currentX = badgeStartX;
+  pdf.text(badge1, currentX, badgeY);
+  currentX += pdf.getTextWidth(badge1);
+  
+  pdf.setTextColor(156, 163, 175); // gray-400 for dividers
+  pdf.text(divider, currentX, badgeY);
+  currentX += pdf.getTextWidth(divider);
+  
+  pdf.setTextColor(71, 85, 105); // back to slate-600
+  pdf.text(badge2, currentX, badgeY);
+  currentX += pdf.getTextWidth(badge2);
+  
+  pdf.setTextColor(156, 163, 175); // gray-400 for dividers
+  pdf.text(divider, currentX, badgeY);
+  currentX += pdf.getTextWidth(divider);
+  
+  pdf.setTextColor(71, 85, 105); // back to slate-600
+  pdf.text(badge3, currentX, badgeY);
 
   return pdf.output('datauristring').split(',')[1];
   } catch (error) {
