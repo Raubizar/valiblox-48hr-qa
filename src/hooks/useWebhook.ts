@@ -69,13 +69,13 @@ export const useWebhook = ({
       const result = await submitToWebhook({
         ...formData,
         source,
-        // Don't send PDF data - just the analysis summary for lead scoring
-        analysisData: analysisData ? {
+        // Analysis data as direct parameters (not nested)
+        ...(analysisData && {
           completionPercentage: analysisData.summary.deliveryPercentage,
           totalFiles: analysisData.summary.total,
           deliveredFiles: analysisData.summary.done,
           missingFiles: analysisData.summary.todo
-        } : undefined
+        })
       });
       
       return result;

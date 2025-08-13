@@ -3,12 +3,10 @@ interface WebhookFormData {
   email: string;
   message?: string;
   source: string;
-  analysisData?: {
-    completionPercentage: number;
-    totalFiles: number;
-    deliveredFiles: number;
-    missingFiles: number;
-  };
+  completionPercentage?: number;
+  totalFiles?: number;
+  deliveredFiles?: number;
+  missingFiles?: number;
 }
 
 interface WebhookResponse {
@@ -54,8 +52,12 @@ export const submitToWebhook = async (formData: WebhookFormData): Promise<Webhoo
       page: window.location.pathname,
       userAgent: navigator.userAgent,
       referrer: document.referrer || "direct",
-      ...(formData.analysisData && {
-        analysisData: formData.analysisData
+      // Analysis data as direct parameters (not nested)
+      ...(formData.completionPercentage !== undefined && {
+        completionPercentage: formData.completionPercentage,
+        totalFiles: formData.totalFiles,
+        deliveredFiles: formData.deliveredFiles,
+        missingFiles: formData.missingFiles
       })
     };
 
