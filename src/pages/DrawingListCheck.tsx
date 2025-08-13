@@ -347,17 +347,22 @@ export default function DrawingListCheck() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground leading-tight tracking-tight mb-3">
             <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-              Deliverables V-Check — Completeness in 5 Seconds
+              Instant Deliverable Completeness Check — See What's Missing Before It Costs You
             </span>
             <span className="text-muted-foreground"> (free sample)</span>
           </h1>
-          <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto mb-8">
-            <p>Upload your drawing list and folder to see what's missing in seconds.</p>
-            <p>Then book a call for a full 48-hour QA audit — naming, title blocks, BIM LOD/LOIN, clashes, versions, and content compliance — so you can deliver a complete, client-ready package on time.</p>
+          <div className="text-sm text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto mb-6">
+            <p>Upload your drawing list and folder to instantly identify missing files.</p>
+            <p>Then book a call for a full 48-hour QA audit — naming compliance, title blocks, BIM LOD/LOIN, clashes, versions, and content checks — so you can deliver a complete, client-ready package on time and without budget surprises.</p>
+          </div>
+          
+          {/* Trust Line */}
+          <div className="text-sm md:text-base text-neutral-600 md:text-neutral-700 font-normal max-w-2xl mx-auto text-center mt-2 mb-4 md:mt-3 md:mb-5">
+            Trusted by Tier-1 Data Center Operators • <span className="font-bold">1,200+ Packages Validated</span>
           </div>
 
           {/* QA Process Cards */}
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto mt-4">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
               
               {/* Active Card - Deliverables */}

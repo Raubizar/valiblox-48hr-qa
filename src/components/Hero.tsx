@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Clock, CheckCircle } from "lucide-react";
+import { Shield, Clock, CheckCircle, Handshake } from "lucide-react";
 import heroImage from "@/assets/hero-professional-sidebyside.webp";
 import { useWebhook } from "@/hooks/useWebhook";
 import { WebhookModal } from "@/components/WebhookModal";
 import { DecorativeCheck } from "@/components/ui/decorative-check";
 
 export const Hero = () => {
-  const qaReportWebhook = useWebhook({
-    source: "hero-qa-report",
-    title: "Get Your 48 h QA Report",
-    description: "Request your comprehensive QA validation report for data center deliverables."
+  const qaStrategyWebhook = useWebhook({
+    source: "hero-qa-strategy-call",
+    title: "Book a QA Strategy Call",
+    description: "Schedule a consultation to discuss your QA validation needs and discover how we can help prevent costly deliverable issues."
   });
 
   return (
@@ -23,48 +23,58 @@ export const Hero = () => {
             {/* Main Headline */}
             <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-foreground leading-tight tracking-tight">
               <span className="text-primary bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
-                Spot Every Deliverable Error in 48 h
+                Independent QA Validation for Data Center Design Deliverables
               </span>
-              —Independent QA for Data Center Projects
+              — in 48h, Zero Disruption
             </h1>
 
             {/* Subheadline */}
-            <div className="text-sm md:text-sm lg:text-base text-muted-foreground leading-relaxed font-normal space-y-2">
-              <p>We flag issues in your drawings, models, and specs—then re-check until the package passes.</p>
-              <p>No software to install, NDA-protected, machine-precision plus expert review.</p>
+            <div className="text-sm md:text-sm lg:text-base text-muted-foreground leading-relaxed font-normal space-y-3">
+              <p>We verify every drawing, model, and specification against your standards and project requirements—combining machine precision with expert review.</p>
+              <p>Our process prevents costly RFIs, rework, and delays—and we remain engaged until your deliverables meet all requirements.</p>
             </div>
 
-            {/* Trust Indicators */}
+            {/* Proof Strip */}
+            <div className="text-sm font-medium text-foreground">
+              1,200+ Packages Validated • €500M+ in Projects • Trusted by Tier-1 Operators
+            </div>
+
+            {/* Trust Points */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+              <div className="bg-background/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                 <Shield className="w-3 h-3 text-primary" />
-                NDA-Covered
+                100% NDA-Covered
               </div>
-              <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
-                <Clock className="w-3 h-3 text-primary" />
-                48h Delivery
-              </div>
-              <div className="glass-effect px-2 py-1 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+              <div className="bg-background/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
                 <CheckCircle className="w-3 h-3 text-primary" />
-                Zero Software Install
+                No Software to Install
+              </div>
+              <div className="bg-background/60 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs text-muted-foreground font-medium border border-border/50">
+                <Clock className="w-3 h-3 text-primary" />
+                48h Initial Report
+              </div>
+            </div>
+
+            {/* Partnership Guarantee */}
+            <div className="bg-muted/40 border border-border/50 p-4 rounded-xl max-w-xl">
+              <div className="flex items-start gap-3">
+                <Handshake className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-sm text-foreground font-medium mb-1">
+                    Partnership Guarantee
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    We stay with your team until the package passes your QA requirements—unlimited re-checks included.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* CTA Button */}
             <div className="flex">
-              <Button variant="cta" size="lg" onClick={qaReportWebhook.openModal}>
-                Get Your 48 h QA Report
+              <Button variant="cta" size="lg" onClick={qaStrategyWebhook.openModal}>
+                Book a QA Strategy Call
               </Button>
-            </div>
-
-            {/* Value Proposition */}
-            <div className="glass-effect p-4 rounded-xl max-w-xl">
-              <p className="text-sm text-foreground mb-1 font-medium">
-                We validate the information before it becomes a costly problem
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Helping PMs and Owners prevent delays, RFIs, rework, and budget overruns
-              </p>
             </div>
           </div>
 
@@ -90,10 +100,10 @@ export const Hero = () => {
 
       {/* Webhook Modal */}
       <WebhookModal
-        isOpen={qaReportWebhook.isModalOpen}
-        onClose={qaReportWebhook.closeModal}
-        onSubmit={qaReportWebhook.handleSubmit}
-        {...qaReportWebhook.modalProps}
+        isOpen={qaStrategyWebhook.isModalOpen}
+        onClose={qaStrategyWebhook.closeModal}
+        onSubmit={qaStrategyWebhook.handleSubmit}
+        {...qaStrategyWebhook.modalProps}
       />
     </section>
   );
